@@ -1,7 +1,7 @@
 # Haus Panama - Plataforma Inmobiliaria Exclusiva
 
 <div align="center">
-  <img src="./public/assets/logohaus.svg" alt="Haus Panama Logo" width="200">
+  <img src="https://storage.googleapis.com/hauspanama/Logos/logohaus_usiwqr.svg" alt="Haus Panama Logo" width="200">
   <p><em>Propiedades exclusivas en la ciudad de Panamá</em></p>
 </div>
 
