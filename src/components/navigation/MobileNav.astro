@@ -3,22 +3,25 @@ import GcsImage from '../GcsImage.astro';
 
 // Obtener la ruta actual para resaltar el ítem activo
 const currentPath = Astro.url.pathname;
+
+// Detectar la página activa normalizando las rutas
 const isHomePage = currentPath === '/' || currentPath === '';
-const isAboutPage = currentPath === '/about';
-const isContactPage = currentPath === '/contacto';
+const isAboutPage = currentPath.startsWith('/about') || currentPath.startsWith('/sobre-nosotros') || currentPath.includes('nosotros');
+const isContactPage = currentPath.includes('contacto') || currentPath.includes('contact');
 const isProjectsPage = currentPath.includes('/centro') || 
-                      currentPath.includes('/este') || 
-                      currentPath.includes('/oeste') ||
-                      currentPath.includes('/athas') ||
-                      currentPath.includes('/gaudi') ||
-                      currentPath.includes('/alai') ||
-                      currentPath.includes('/amitie') ||
-                      currentPath.includes('/lagun') ||
-                      currentPath.includes('/filia') ||
-                      currentPath.includes('/casas-este') ||
-                      currentPath.includes('/verona') ||
-                      currentPath.includes('/piamonte') ||
-                      currentPath.includes('/siena');
+                     currentPath.includes('/este') || 
+                     currentPath.includes('/oeste') ||
+                     currentPath.includes('/athas') ||
+                     currentPath.includes('/gaudi') ||
+                     currentPath.includes('/alai') ||
+                     currentPath.includes('/amitie') ||
+                     currentPath.includes('/lagun') ||
+                     currentPath.includes('/filia') ||
+                     currentPath.includes('/casas-este') ||
+                     currentPath.includes('/verona') ||
+                     currentPath.includes('/piamonte') ||
+                     currentPath.includes('/siena') ||
+                     currentPath.includes('/proyecto');
 
 // Proyectos organizados por zona para el menú móvil
 const projectsByZone = {
