@@ -8,8 +8,8 @@ interface ImageCarouselProps {
 
 function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [modalImageIndex, setModalImageIndex] = useState(0);
@@ -71,26 +71,59 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
   }, [modalImageIndex, images]);
 
   // Función para manejar el inicio del deslizamiento táctil
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
-  };
+    setTouchEnd(null); // Reiniciar el fin del toque al iniciar
+  }, []);
 
   // Función para manejar el movimiento del deslizamiento táctil
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
-  };
+  }, []);
 
   // Función para manejar el final del deslizamiento táctil
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      // Deslizar a la izquierda: siguiente diapositiva
-      nextSlide();
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isSignificantSwipe = Math.abs(distance) > 50; // Reducir el umbral para mayor sensibilidad
+    
+    if (isSignificantSwipe) {
+      if (distance > 0) {
+        // Deslizar a la izquierda: siguiente diapositiva
+        nextSlide();
+      } else {
+        // Deslizar a la derecha: diapositiva anterior
+        prevSlide();
+      }
     }
-    if (touchStart - touchEnd < -75) {
-      // Deslizar a la derecha: diapositiva anterior
-      prevSlide();
+    
+    // Reiniciar valores
+    setTouchStart(null);
+    setTouchEnd(null);
+  }, [touchStart, touchEnd, nextSlide, prevSlide]);
+
+  // Función para manejar el final del deslizamiento táctil en el modal
+  const handleModalTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isSignificantSwipe = Math.abs(distance) > 50;
+    
+    if (isSignificantSwipe) {
+      if (distance > 0) {
+        // Swipe izquierda: siguiente imagen
+        nextModalImage();
+      } else {
+        // Swipe derecha: imagen anterior
+        prevModalImage();
+      }
     }
-  };
+    
+    // Reiniciar valores
+    setTouchStart(null);
+    setTouchEnd(null);
+  }, [touchStart, touchEnd, nextModalImage, prevModalImage]);
 
   // Auto-reproducción del carrusel (solo cuando el modal está cerrado)
   useEffect(() => {
@@ -172,7 +205,12 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="relative w-full">
+            <div 
+              className="relative w-full"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleModalTouchEnd}
+            >
               <img 
                 src={`https://storage.googleapis.com/hauspanama/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${selectedImage}`} 
                 alt="Imagen ampliada" 
