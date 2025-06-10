@@ -83,8 +83,7 @@ const formId = "contact-form";
         </div>
         
         <!-- Card del formulario -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden p-3">
-          <h2 class="text-lg font-bold text-[var(--secondary)] mb-2">Envíenos un mensaje</h2>
+        <div class="bg-[var(-primary)] rounded-xl shadow-md overflow-hidden p-3">
           <div class="pipedriveWebForms w-full"
             data-pd-webforms={pipedriveFormUrl}
             id="mobile-form"
@@ -147,9 +146,9 @@ const formId = "contact-form";
     
     <!-- Versión Desktop: Layout de grid en una sola card -->
     <section class="hidden lg:flex lg:flex-grow lg:items-center lg:justify-center">
-      <div class="container max-w-3xl mx-auto px-4">
+      <div class="container max-w-5xl mx-auto px-4">
         <!-- Card principal con sombra y bordes redondeados -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden lg:h-full lg:max-h-[calc(100vh-130px)]">
+        <div class="bg-white rounded-xl  overflow-hidden lg:h-full lg:max-h-[calc(100vh-130px)]">
           <div class="grid grid-cols-1 lg:grid-cols-2 lg:h-full">
             
             <!-- Lado izquierdo: Información de contacto -->
@@ -209,11 +208,10 @@ const formId = "contact-form";
             </div>
             
             <!-- Lado derecho: Formulario -->
-            <div class="p-3 bg-white h-full">
+            <div class="p-3 h-full bg-gray-100">
               <!-- Formulario de Pipedrive implementado directamente con ancho controlado -->
-              <div class="mx-auto h-full w-full">
+              <div class="mx-auto h-full w-full -mt-12">
                 <div
-                  class="pipedriveWebForms w-full h-full"
                   data-pd-webforms={pipedriveFormUrl}
                   id={formId}
                 >
@@ -222,7 +220,7 @@ const formId = "contact-form";
                     src={`${pipedriveFormUrl}?embedded=1&uuid=${formId}`}
                     name="hauspanama-contact"
                     title="Web Forms"
-                    style="width: 100%; border: none; min-height: 520px; height: 100%; margin: 0 auto; border-radius: 0.25rem; overflow: visible;"
+                    style="width: 100%; border: none; height: 100%; margin: 0 auto; border-radius: 0.25rem; overflow: visible;"
                     class="mx-auto block pipedrive-iframe"
                     scrolling="yes"
                     data-form-id={formId}
