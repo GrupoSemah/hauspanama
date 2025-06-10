@@ -9,12 +9,14 @@ interface Props {
   image?: string;
   canonicalUrl?: string;
   structuredData?: Record<string, any>;
+  fixedHeader?: boolean;
 }
 
 const { 
   title, 
   description = "Descubre propiedades exclusivas en la ciudad de Panamá con Haus Panama. Proyectos inmobiliarios de lujo en las mejores ubicaciones.", 
-  image = "/images/og-image.jpg" 
+  image = "/images/og-image.jpg",
+  fixedHeader = true
 } = Astro.props;
 ---
 
@@ -131,13 +133,13 @@ const {
     </script>
     
   </head>
-  <body class="min-h-screen bg-[var(--background)] text-[var(--secondary)] font-helvetica">
+  <body class={`bg-[var(--background)] text-[var(--secondary)] font-helvetica flex flex-col ${fixedHeader ? 'with-fixed-header' : ''}`}>
     <!-- Skip to content link for keyboard users - will be positioned via CSS -->
     <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
     
-    <div class="site-wrapper w-full">
-      <div class="max-container w-full max-w-[1400px] mx-auto">
-        <main id="main-content" class="relative w-full">
+    <div class="site-wrapper w-full flex flex-col flex-grow">
+      <div class="max-container w-full mx-auto flex flex-col flex-grow">
+        <main id="main-content" class="w-full flex flex-col flex-grow">
           <slot />
         </main>
       </div>
