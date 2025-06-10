@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeaderAstro from '../components/HeaderAstro.astro';
+import HeaderNonSticky from '../components/HeaderNonSticky.astro';
 import SocialFooter from '../components/SocialFooter.astro';
 import ChatWrapper from '../components/ChatWrapper.astro';
 import GcsImage from '../components/GcsImage.astro';
@@ -42,13 +42,13 @@ const mainCards = [
 ];
 ---
 
-<Layout title="Haus Panama - Propiedades exclusivas en la ciudad de Panamá">
-  <HeaderAstro />
+<Layout title="Haus Panama - Propiedades exclusivas en la ciudad de Panamá" fixedHeader={false}>
+  <HeaderNonSticky />
   
   <!-- Pipedrive LeadBooster Chat -->
   <ChatWrapper />
   
-  <main class="font-helvetica w-full h-[calc(100vh-60px)] flex flex-col overflow-hidden -mt-[8px] touch-none">
+  <main class="font-helvetica w-full h-[calc(100vh-60px)] flex flex-col -mt-[8px] overflow-hidden">
     <!-- Fondo blanco -->
     <div class="absolute inset-0 z-0 top-0 bg-white"></div>
     
