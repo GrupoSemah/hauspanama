@@ -48,21 +48,11 @@ const mainCards = [
   <!-- Pipedrive LeadBooster Chat -->
   <ChatWrapper />
   
-  <main class="font-helvetica w-full h-[calc(100vh-60px)] flex flex-col overflow-hidden -mt-[8px]">
-    <!-- Fondo con overlay (COMENTADO TEMPORALMENTE) -->
-    <!-- 
-    <div class="absolute inset-0 z-0 top-0">
-      <GcsImage 
-        publicId="Backgrounds/Webpage_-_home-_background_uguldf.jpg" 
-        alt="" 
-        className="w-full h-full object-cover opacity-10" 
-      />
-    </div>
-    -->
-    <!-- Fondo blanco temporal -->
+  <main class="font-helvetica w-full h-[calc(100vh-60px)] flex flex-col overflow-hidden -mt-[8px] touch-none">
+    <!-- Fondo blanco -->
     <div class="absolute inset-0 z-0 top-0 bg-white"></div>
     
-    <div class="relative z-10 flex flex-col h-full max-w-[1920px] mx-auto w-full pt-1 pb-0"> <!-- Añadido padding superior e inferior -->
+    <div class="relative z-10 flex flex-col h-full max-w-[1400px] mx-auto w-full pt-1 pb-0"> 
       <!-- Logo y título centrados para pantallas grandes -->
       <div class="hidden xl:flex flex-col items-center justify-center pt-4">
         <GcsImage 
@@ -74,9 +64,9 @@ const mainCards = [
       </div>
 
       <!-- Contenedor principal de cards -->
-      <div class="w-full flex-1 flex flex-col justify-evenly items-center px-3 sm:p-6 md:p-8 overflow-hidden">
+      <div class="w-full flex-1 flex flex-col justify-center items-center px-3 sm:px-4 md:p-6 lg:p-8 overflow-hidden">
         <!-- Cards en formato vertical para mobile y horizontal para desktop -->
-        <div class="cards-container w-full max-w-5xl mx-auto flex flex-col space-y-2 md:flex md:flex-col md:space-y-2 md:items-center lg:flex lg:flex-row lg:space-y-0 lg:gap-4 lg:justify-center">
+        <div class="cards-container w-full max-w-5xl mx-auto flex flex-col space-y-4 sm:space-y-3 md:space-y-2 md:flex md:flex-col md:items-center lg:flex lg:flex-row lg:space-y-0 lg:gap-4 lg:justify-center">
           {mainCards.map((card) => (
             <a 
               href={card.link}

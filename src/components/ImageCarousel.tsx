@@ -70,59 +70,141 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
     }
   }, [modalImageIndex, images]);
 
-  // Función para manejar el inicio del deslizamiento táctil
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-    setTouchEnd(null); // Reiniciar el fin del toque al iniciar
-  }, []);
-
-  // Función para manejar el movimiento del deslizamiento táctil
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  }, []);
-
-  // Función para manejar el final del deslizamiento táctil
-  const handleTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return;
+  // Implementación mejorada de eventos táctiles usando useEffect para mejor compatibilidad
+  useEffect(() => {
+    // Referencias a los elementos que necesitamos para el carousel
+    const carouselElement = document.querySelector('.carousel-container') as HTMLElement;
+    const modalElement = document.querySelector('.modal-container') as HTMLElement;
     
-    const distance = touchStart - touchEnd;
-    const isSignificantSwipe = Math.abs(distance) > 50; // Reducir el umbral para mayor sensibilidad
+    // Variables para seguimiento de eventos táctiles
+    let startX = 0;
+    let currentX = 0;
     
-    if (isSignificantSwipe) {
-      if (distance > 0) {
-        // Deslizar a la izquierda: siguiente diapositiva
-        nextSlide();
-      } else {
-        // Deslizar a la derecha: diapositiva anterior
-        prevSlide();
+    // Función para manejar el inicio del toque
+    const touchStartHandler = (e: Event): void => {
+      const touchEvent = e as unknown as TouchEvent;
+      startX = touchEvent.touches[0].clientX;
+      currentX = startX;
+      console.log('Touch start handler', { startX });
+    };
+    
+    // Función para manejar el movimiento del toque
+    const touchMoveHandler = (e: Event): void => {
+      const touchEvent = e as unknown as TouchEvent;
+      // Actualizar posición actual
+      currentX = touchEvent.touches[0].clientX;
+      const diff = startX - currentX;
+      
+      // Si es un deslizamiento horizontal significativo, prevenir scroll vertical
+      if (Math.abs(diff) > 10) {
+        e.preventDefault();
       }
+      
+      console.log('Touch move handler', { currentX, diff });
+    };
+    
+    // Función para manejar el fin del toque en el carousel
+    const touchEndHandler = (e: Event): void => {
+      const diff = startX - currentX;
+      const threshold = 30; // Reducido para mayor sensibilidad
+      
+      console.log('Touch end handler', { diff, threshold });
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          console.log('Calling nextSlide from handler');
+          nextSlide();
+        } else {
+          console.log('Calling prevSlide from handler');
+          prevSlide();
+        }
+      }
+    };
+    
+    // Función para manejar el fin del toque en el modal
+    const modalTouchEndHandler = (e: Event): void => {
+      const diff = startX - currentX;
+      const threshold = 30;
+      
+      console.log('Modal touch end handler', { diff, threshold });
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          console.log('Calling nextModalImage from handler');
+          nextModalImage();
+        } else {
+          console.log('Calling prevModalImage from handler');
+          prevModalImage();
+        }
+      }
+    };
+    
+    // Agregar event listeners nativos al carousel
+    if (carouselElement) {
+      console.log('Adding touch event listeners to carousel');
+      carouselElement.addEventListener('touchstart', touchStartHandler as EventListener, { passive: false });
+      carouselElement.addEventListener('touchmove', touchMoveHandler as EventListener, { passive: false });
+      carouselElement.addEventListener('touchend', touchEndHandler as EventListener);
     }
     
-    // Reiniciar valores
-    setTouchStart(null);
-    setTouchEnd(null);
-  }, [touchStart, touchEnd, nextSlide, prevSlide]);
-
-  // Función para manejar el final del deslizamiento táctil en el modal
-  const handleModalTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return;
+    // Agregar event listeners nativos al modal cuando esté abierto
+    if (modalOpen && modalElement) {
+      console.log('Adding touch event listeners to modal');
+      modalElement.addEventListener('touchstart', touchStartHandler as EventListener, { passive: false });
+      modalElement.addEventListener('touchmove', touchMoveHandler as EventListener, { passive: false });
+      modalElement.addEventListener('touchend', modalTouchEndHandler as EventListener);
+    }
     
+    // Limpiar event listeners cuando el componente se desmonte o cambie el estado del modal
+    return () => {
+      if (carouselElement) {
+        carouselElement.removeEventListener('touchstart', touchStartHandler as EventListener);
+        carouselElement.removeEventListener('touchmove', touchMoveHandler as EventListener);
+        carouselElement.removeEventListener('touchend', touchEndHandler as EventListener);
+      }
+      
+      if (modalElement) {
+        modalElement.removeEventListener('touchstart', touchStartHandler as EventListener);
+        modalElement.removeEventListener('touchmove', touchMoveHandler as EventListener);
+        modalElement.removeEventListener('touchend', modalTouchEndHandler as EventListener);
+      }
+    };
+  }, [nextSlide, prevSlide, nextModalImage, prevModalImage, modalOpen]);
+
+  // Función mejorada para manejar el final del deslizamiento táctil en el modal
+  const handleModalTouchEnd = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+    // Verificamos que tengamos valores de inicio y fin válidos
+    if (touchStart === null || touchEnd === null) {
+      console.log('Modal touch canceled - missing values');
+      return;
+    }
+    
+    // Calculamos la distancia y dirección del swipe
     const distance = touchStart - touchEnd;
-    const isSignificantSwipe = Math.abs(distance) > 50;
+    const isSignificantSwipe = Math.abs(distance) > 30; // Umbral más bajo para mayor sensibilidad
+    
+    console.log('Modal touch end', { distance, isSignificant: isSignificantSwipe });
     
     if (isSignificantSwipe) {
       if (distance > 0) {
         // Swipe izquierda: siguiente imagen
+        console.log('Modal swipe left - next image');
         nextModalImage();
       } else {
         // Swipe derecha: imagen anterior
+        console.log('Modal swipe right - prev image');
         prevModalImage();
       }
     }
     
-    // Reiniciar valores
+    // Reiniciar valores para el próximo gesto
     setTouchStart(null);
     setTouchEnd(null);
+    
+    // Prevenir comportamiento de scroll por defecto en móviles
+    if (e.cancelable) {
+      e.preventDefault();
+    }
   }, [touchStart, touchEnd, nextModalImage, prevModalImage]);
 
   // Auto-reproducción del carrusel (solo cuando el modal está cerrado)
@@ -141,12 +223,9 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
 
   return (
     <div className="relative w-full mb-8 max-w-[100vw]">
-      {/* Contenedor principal del carrusel */}
+      {/* Contenedor principal del carrusel con la clase necesaria para los event listeners */}
       <div 
-        className="relative overflow-hidden w-full" 
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        className="relative overflow-hidden w-full carousel-container" 
       >
         {/* Se han eliminado los botones de navegación (flechas) para permitir solo navegación táctil/mouse */}
         
@@ -189,11 +268,11 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
       {/* Modal para ver la imagen en grande */}
       {modalOpen && (
         <div 
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 touch-none"
           onClick={closeModal}
         >
           <div 
-            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center"
+            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center modal-container"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
@@ -206,16 +285,14 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
               </svg>
             </button>
             <div 
-              className="relative w-full"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleModalTouchEnd}
+              className="relative w-full touch-pan-x overflow-hidden"
             >
               <img 
                 src={`https://storage.googleapis.com/hauspanama/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${selectedImage}`} 
                 alt="Imagen ampliada" 
-                className="w-full h-auto max-h-[80vh] object-contain"
+                className="w-full h-auto max-h-[80vh] object-contain select-none"
                 loading="lazy"
+                draggable="false" // Prevenir arrastre de imágenes nativo
               />
             </div>
             
