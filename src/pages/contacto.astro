@@ -91,12 +91,13 @@ const formId = "contact-form";
           >
             <script src="https://webforms.pipedrive.com/f/loader"></script>
             <iframe
-              src={`${pipedriveFormUrl}?embeded=1&uuid=mobile-form&scrolling=no`}
+              src={`${pipedriveFormUrl}?embedded=1&uuid=mobile-form`}
               name="hauspanama-contact-mobile"
               title="Web Forms"
-              style="width: 100%; border: none; height: 520px; margin: 0 auto; border-radius: 0.5rem; overflow: hidden;"
-              class="mx-auto block"
-              scrolling="no"
+              style="width: 100%; border: none; min-height: 520px; height: 100%; margin: 0 auto; border-radius: 0.5rem; overflow: visible;"
+              class="mx-auto block pipedrive-iframe"
+              scrolling="yes"
+              data-form-id="mobile-form"
             ></iframe>
           </div>
         </div>
@@ -218,12 +219,13 @@ const formId = "contact-form";
                 >
                   <script src="https://webforms.pipedrive.com/f/loader"></script>
                   <iframe
-                    src={`${pipedriveFormUrl}?embeded=1&uuid=${formId}&scrolling=no`}
+                    src={`${pipedriveFormUrl}?embedded=1&uuid=${formId}`}
                     name="hauspanama-contact"
                     title="Web Forms"
-                    style="width: 100%; border: none; height: 500px; margin: 0 auto; border-radius: 0.25rem; overflow: hidden;"
-                    class="mx-auto block"
-                    scrolling="no"
+                    style="width: 100%; border: none; min-height: 520px; height: 100%; margin: 0 auto; border-radius: 0.25rem; overflow: visible;"
+                    class="mx-auto block pipedrive-iframe"
+                    scrolling="yes"
+                    data-form-id={formId}
                   ></iframe>
                 </div>
               </div>
@@ -286,3 +288,67 @@ const formId = "contact-form";
   
   <SocialFooter />
 </Layout>
+
+<script>
+  // Script para hacer que los iframes de Pipedrive sean totalmente responsivos
+  document.addEventListener('DOMContentLoaded', function() {
+    // Arreglar el nombre de la variable embebida (era 'embeded', ahora es 'embedded')
+    const pipedriveIframes = document.querySelectorAll<HTMLIFrameElement>('.pipedrive-iframe');
+    
+    // Función para ajustar la altura del iframe basado en su contenido
+    const adjustIframeHeight = (iframe: HTMLIFrameElement): void => {
+      try {
+        // Intentar comunicarse con el iframe
+        if (iframe.contentWindow) {
+          const height = iframe.contentWindow.document.body.scrollHeight;
+          if (height > 500) {
+            iframe.style.height = `${height + 50}px`; // Agregamos margen extra
+          }
+        }
+      } catch (error) {
+        // Error de seguridad de dominio cruzado (esperado), usamos alternativa
+        console.log('Usando método alternativo para el iframe');
+      }
+    };
+
+    // Definir la interfaz para los mensajes de Pipedrive
+    interface PipedriveHeightMessage {
+      type: string;
+      formId: string;
+      height: number;
+    }
+
+    // Escuchar los mensajes desde el iframe de Pipedrive
+    window.addEventListener('message', function(e: MessageEvent) {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data as Partial<PipedriveHeightMessage>;
+        
+        if (data && data.type === 'webforms:height') {
+          const formId = data.formId;
+          const height = data.height;
+          
+          // Buscar el iframe correspondiente
+          const iframe = document.querySelector<HTMLIFrameElement>(`.pipedrive-iframe[data-form-id="${formId}"]`);
+          if (iframe && height) {
+            iframe.style.height = `${Math.max(height, 520)}px`;
+          }
+        }
+      } catch (error) {
+        // Ignorar errores de parseo JSON
+      }
+    });
+    
+    // Alternativa: comprobar periódicamente el tamaño
+    pipedriveIframes.forEach((iframe: HTMLIFrameElement) => {
+      // Intentar ajustar después de que cargue
+      iframe.addEventListener('load', () => {
+        setTimeout(() => adjustIframeHeight(iframe), 1000);
+        setTimeout(() => adjustIframeHeight(iframe), 2000);
+        setTimeout(() => adjustIframeHeight(iframe), 3000);
+      });
+      
+      // Verificar periódicamente para casos de cambios dinámicos
+      setInterval(() => adjustIframeHeight(iframe), 5000);
+    });
+  });
+</script>

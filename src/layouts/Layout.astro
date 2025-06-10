@@ -22,7 +22,7 @@ const {
 <html lang="es" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <CSPHeaders />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -135,10 +135,12 @@ const {
     <!-- Skip to content link for keyboard users - will be positioned via CSS -->
     <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
     
-    <div class="max-container overflow-hidden">
-      <main id="main-content">
-        <slot />
-      </main>
+    <div class="site-wrapper">
+      <div class="max-container overflow-hidden w-full">
+        <main id="main-content">
+          <slot />
+        </main>
+      </div>
     </div>
     
     {Astro.props.structuredData && (

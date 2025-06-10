@@ -12,6 +12,8 @@
 
   html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: 100%; /* Prevenir ajuste automático de texto en dispositivos móviles y en zoom */
+    text-size-adjust: 100%;
   }
 
   body {
@@ -30,10 +32,22 @@
   /* Contenedor principal con ancho máximo para evitar estiramientos excesivos en pantallas grandes */
   .max-container {
     width: 100%;
-    max-width: 1920px; /* Ancho máximo para el contenido */
+    max-width: 1400px; /* Ancho máximo reducido para mejor experiencia en pantallas grandes */
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Contenedor para el sitio completo que centra todo */
+  .site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    background-color: var(--background);
   }
 
   /* Hack para soportar hover en dispositivos táctiles */
