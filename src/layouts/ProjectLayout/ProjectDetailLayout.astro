@@ -239,21 +239,66 @@ const brochurePath = project.brochureFile.startsWith('http')
         
         <div class="rounded-xl border border-[var(--background)] px-4 py-6 md:px-6 md:py-8 lg:px-4 lg:py-4 xl:px-4 xl:py-4">
           <style is:inline>
-            /* Reducir el espacio en el formulario Pipedrive */
-            .pipedriveWebForms .ppf__button {
-              margin-bottom: 0 !important;
+            /* Estilos generales del formulario */
+            .pipedriveWebForms {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
             }
-            .pipedriveWebForms form > div:last-child {
+            
+            /* Ajustes responsivos para el iframe */
+            .pipedrive-form-iframe {
+              width: 100% !important;
+              overflow: hidden !important;
+              border: none !important;
+              border-radius: 0.5rem !important;
+              display: block !important;
+              flex-grow: 1 !important;
+            }
+            
+            /* Contenedor del formulario responsivo */
+            .pipedrive-form-container {
+              width: 100%;
+              height: auto;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              overflow: visible;
+            }
+            
+            /* Ajustes espaciado para Pipedrive forms */
+            .ppf__button {
               margin-bottom: 0 !important;
             }
             
-            /* Estilos específicos para desktop */
+            .ppf__form > div:last-child {
+              margin-bottom: 0 !important;
+            }
+            
+            @media (max-width: 639px) {
+              .pipedrive-form-container {
+                padding: 0;
+              }
+            }
+            
+            @media (min-width: 640px) {
+              .pipedrive-form-iframe {
+                min-height: 500px;
+              }
+            }
+            
             @media (min-width: 1024px) {
-              .pipedriveWebForms .ppf__form {
+              .pipedrive-form-iframe {
+                min-height: 550px;
+              }
+              
+              .ppf__form {
                 padding: 0 !important;
                 margin: 0 !important;
               }
-              .pipedriveWebForms .ppf__field {
+              
+              .ppf__field {
                 margin-bottom: 12px !important;
               }
             }
@@ -265,19 +310,68 @@ const brochurePath = project.brochureFile.startsWith('http')
             Por favor brindanos tus datos para poder contactarte y enviarte
             información más detallada del proyecto.
           </p>
-          <div
-            class="pipedriveWebForms max-w-md md:max-w-full mx-auto"
-            data-pd-webforms={project.pipedriveFormUrl}
-            id={`form-${project.id}`}
-          >
-            <script src="https://webforms.pipedrive.com/f/loader"></script>
-            <iframe
-              src={`${project.pipedriveFormUrl}?embeded=1&uuid=form-${project.id}`}
-              name={`hauspanama-${project.id}`}
-              title="Web Forms"
-              style="width: 100%; border: none; height: 650px; margin: 0 auto; border-radius: 0.5rem;"
-              class="mx-auto block lg:-mt-1"
-            ></iframe>
+          <div class="pipedrive-form-container max-w-md md:max-w-full mx-auto">
+            <div
+              class="pipedriveWebForms w-full"
+              data-pd-webforms={project.pipedriveFormUrl}
+              id={`form-${project.id}`}
+            >
+              <script define:vars={{ formId: project.id }}>
+                // Función para ajustar dinámicamente el tamaño del iframe basado en su contenido
+                window.addEventListener('message', function(event) {
+                  // Verificar que el mensaje viene del iframe de Pipedrive
+                  if (event.data && typeof event.data === 'object' && event.data.type === 'pipedrive-form-height') {
+                    const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
+                    const iframe = document.querySelector(iframeSelector);
+                    if (iframe && event.data.height) {
+                      // Asegurar que estamos modificando un elemento HTML con interfaz HTMLElement
+                      if (iframe instanceof HTMLElement) {
+                        iframe.style.height = `${event.data.height}px`;
+                      }
+                    }
+                  }
+                });
+
+                // Función para ajustar automáticamente la altura del iframe
+                function adjustIframeHeight() {
+                  const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
+                  const iframe = document.querySelector(iframeSelector);
+                  
+                  // Asegurarse de que el iframe exista antes de continuar
+                  if (iframe && iframe.contentWindow) {
+                    try {
+                      // Intentar obtener la altura del contenido
+                      const height = iframe.contentWindow.document.body.scrollHeight;
+                      if (height > 400) {
+                        iframe.style.height = `${height}px`;
+                      }
+                    } catch (e) {
+                      // Error de seguridad por política de mismo origen, es normal
+                      console.log('No se puede acceder al contenido del iframe por política de seguridad');
+                    }
+                  }
+                }
+
+                // Cargar el script de Pipedrive
+                const script = document.createElement('script');
+                script.src = 'https://webforms.pipedrive.com/f/loader';
+                script.async = true;
+                document.body.appendChild(script);
+
+                // Ajustar altura periódicamente (como fall-back)
+                setTimeout(adjustIframeHeight, 2000);
+                setTimeout(adjustIframeHeight, 4000); // Intentar de nuevo después de que el contenido esté completamente cargado
+              </script>
+
+              <iframe
+                src={`${project.pipedriveFormUrl}?embedded=1&uuid=form-${project.id}`}
+                name={`hauspanama-${project.id}`}
+                title="Web Forms"
+                class="pipedrive-form-iframe"
+                scrolling="no"
+                allowtransparency="true"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
