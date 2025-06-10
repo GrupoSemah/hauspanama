@@ -1,4 +1,11 @@
 ---
+// Definir props para el componente
+interface Props {
+  isActive?: boolean;
+}
+
+const { isActive = false } = Astro.props;
+
 // Proyectos organizados por zona
 const projectsByZone = {
   centro: [
@@ -23,7 +30,7 @@ const projectsByZone = {
 <div class="dropdown-container relative">
   <!-- Botón principal -->
   <button 
-    class="main-toggle flex items-center space-x-1 font-helvetica font-medium px-2.5 py-1.5 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105"
+    class={`main-toggle flex items-center space-x-1 font-helvetica font-medium px-2.5 py-1.5 transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isActive ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
   >
     <span>proyectos</span>
     <svg class="main-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

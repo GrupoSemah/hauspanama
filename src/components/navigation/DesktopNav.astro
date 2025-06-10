@@ -1,19 +1,50 @@
 ---
 import ProjectsDropdown from './ProjectsDropdown.astro';
+
+// Obtener la ruta actual para resaltar el ítem activo
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/' || currentPath === '';
+const isAboutPage = currentPath === '/about';
+const isContactPage = currentPath === '/contacto';
+const isProjectsPage = currentPath.includes('/centro') || 
+                      currentPath.includes('/este') || 
+                      currentPath.includes('/oeste') ||
+                      currentPath.includes('/athas') ||
+                      currentPath.includes('/gaudi') ||
+                      currentPath.includes('/alai') ||
+                      currentPath.includes('/amitie') ||
+                      currentPath.includes('/lagun') ||
+                      currentPath.includes('/filia') ||
+                      currentPath.includes('/casas-este') ||
+                      currentPath.includes('/verona') ||
+                      currentPath.includes('/piamonte') ||
+                      currentPath.includes('/siena');
 ---
 
 <nav class="hidden xl:flex items-center space-x-6 w-full justify-center">
-  <a href="/" class="font-helvetica font-medium px-2.5 py-1.5 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105">
-    inicio
-  </a>
+  <div class="flex flex-col items-center">
+    <a href="/" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isHomePage ? 'text-[var(--primary)] font-bold' : ''}`}>
+      inicio
+    </a>
+    {isHomePage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
+  </div>
   
-  <a href="/about" class="font-helvetica font-medium px-2.5 py-1.5 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105">
-    sobre nosotros
-  </a>
+  <div class="flex flex-col items-center">
+    <a href="/about" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isAboutPage ? 'text-[var(--primary)] font-bold' : ''}`}>
+      sobre nosotros
+    </a>
+    {isAboutPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
+  </div>
   
-  <ProjectsDropdown />
+  <div class="flex flex-col items-center">
+    <ProjectsDropdown isActive={isProjectsPage} />
+    {isProjectsPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
+  </div>
   
-  <a href="/contacto" class="font-helvetica font-medium px-2.5 py-1.5 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105">
-    contáctenos
-  </a>
+  <div class="flex flex-col items-center">
+    <a href="/contacto" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isContactPage ? 'text-[var(--primary)] font-bold' : ''}`}>
+      contáctenos
+    </a>
+    {isContactPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
+  </div>
 </nav>

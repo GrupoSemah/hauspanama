@@ -1,6 +1,25 @@
 ---
 import GcsImage from '../GcsImage.astro';
 
+// Obtener la ruta actual para resaltar el ítem activo
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/' || currentPath === '';
+const isAboutPage = currentPath === '/about';
+const isContactPage = currentPath === '/contacto';
+const isProjectsPage = currentPath.includes('/centro') || 
+                      currentPath.includes('/este') || 
+                      currentPath.includes('/oeste') ||
+                      currentPath.includes('/athas') ||
+                      currentPath.includes('/gaudi') ||
+                      currentPath.includes('/alai') ||
+                      currentPath.includes('/amitie') ||
+                      currentPath.includes('/lagun') ||
+                      currentPath.includes('/filia') ||
+                      currentPath.includes('/casas-este') ||
+                      currentPath.includes('/verona') ||
+                      currentPath.includes('/piamonte') ||
+                      currentPath.includes('/siena');
+
 // Proyectos organizados por zona para el menú móvil
 const projectsByZone = {
   centro: [
@@ -43,39 +62,48 @@ const projectsByZone = {
   <nav class="flex-1 overflow-y-auto" aria-label="Navegación principal">
     <ul class="py-6 px-4 space-y-4">
       <li class="border-b border-gray-100/20 pb-2">
-        <a 
-          href="/" 
-          class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1"
-        >
-          inicio
-        </a>
+        <div class="flex flex-col">
+          <a 
+            href="/" 
+            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isHomePage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
+          >
+            inicio
+          </a>
+          {isHomePage && <div class="w-12 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
+        </div>
       </li>
       <li class="border-b border-gray-100/20 pb-2">
-        <a 
-          href="/about" 
-          class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1"
-        >
-          sobre nosotros
-        </a>
+        <div class="flex flex-col">
+          <a 
+            href="/about" 
+            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isAboutPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
+          >
+            sobre nosotros
+          </a>
+          {isAboutPage && <div class="w-34 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
+        </div>
       </li>
       <li class="border-b border-gray-100/20 pb-2">
         <div class="relative">
           <!-- Dropdown toggle for mobile - Proyectos principal -->
-          <button 
-            id="projects-dropdown-toggle" 
-            class="flex items-center justify-between w-full text-xl py-3.5 px-4 font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)]"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-controls="projects-dropdown-content"
-          >
-            <span>proyectos</span>
-            <svg id="dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-            <svg id="dropdown-icon-up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden">
-              <path d="m18 15-6-6-6 6"/>
-            </svg>
-          </button>
+          <div class="flex flex-col">
+            <button 
+              id="projects-dropdown-toggle" 
+              class={`flex items-center justify-between w-full text-xl py-3.5 px-4 font-medium transition-all duration-300 hover:text-[var(--primary)] ${isProjectsPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="projects-dropdown-content"
+            >
+              <span>proyectos</span>
+              <svg id="dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+              <svg id="dropdown-icon-up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+                <path d="m18 15-6-6-6 6"/>
+              </svg>
+            </button>
+            {isProjectsPage && <div class="w-24 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
+          </div>
           
           <div 
             id="projects-dropdown-content" 
@@ -194,12 +222,21 @@ const projectsByZone = {
         </div>
       </li>
       <li class="border-b border-gray-100/20 pb-2">
-        <a href="/contacto" class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1">
-          contáctenos
-        </a>
+        <div class="flex flex-col">
+          <a 
+            href="/contacto" 
+            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isContactPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
+          >
+            contáctenos
+          </a>
+          {isContactPage && <div class="w-30 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
+        </div>
       </li>
       <li class="border-b border-gray-100/20 pb-2">
-        <a href="/terminos-legales" class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1">
+        <a 
+          href="/terminos-legales" 
+          class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1"
+        >
           términos legales
         </a>
       </li>
