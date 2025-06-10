@@ -3,9 +3,12 @@ import ProjectsDropdown from './ProjectsDropdown.astro';
 
 // Obtener la ruta actual para resaltar el ítem activo
 const currentPath = Astro.url.pathname;
+console.log('Current path:', currentPath); // Para depuración
+
+// Detectar la página activa normalizando las rutas
 const isHomePage = currentPath === '/' || currentPath === '';
-const isAboutPage = currentPath === '/about';
-const isContactPage = currentPath === '/contacto';
+const isAboutPage = currentPath.startsWith('/about') || currentPath.startsWith('/sobre-nosotros') || currentPath.includes('nosotros');
+const isContactPage = currentPath.includes('contacto') || currentPath.includes('contact');
 const isProjectsPage = currentPath.includes('/centro') || 
                       currentPath.includes('/este') || 
                       currentPath.includes('/oeste') ||
@@ -18,7 +21,8 @@ const isProjectsPage = currentPath.includes('/centro') ||
                       currentPath.includes('/casas-este') ||
                       currentPath.includes('/verona') ||
                       currentPath.includes('/piamonte') ||
-                      currentPath.includes('/siena');
+                      currentPath.includes('/siena') ||
+                      currentPath.includes('/proyecto');
 ---
 
 <nav class="hidden xl:flex items-center space-x-6 w-full justify-center">

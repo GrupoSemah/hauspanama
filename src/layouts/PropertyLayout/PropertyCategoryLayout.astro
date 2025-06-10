@@ -169,7 +169,7 @@ function getProjectRoute(imagePath: string): string {
   <!-- Pipedrive LeadBooster Chat -->
   <ChatWrapper />
   
-  <main class="font-helvetica relative w-full h-[calc(100vh-60px)] flex flex-col bg-white overflow-hidden">
+  <main class="font-helvetica relative w-full h-[calc(100vh-60px)] flex flex-col bg-white overflow-x-hidden">
     <div class="relative z-10 flex flex-col h-full w-full">
       <!-- Hero section con fondo de imagen - Ajustado para ser más compacto en móvil -->
       <div class="w-full relative overflow-hidden h-[25vh] md:h-[30vh] lg:h-[35vh] flex flex-col shrink-0 ">
@@ -191,8 +191,8 @@ function getProjectRoute(imagePath: string): string {
       </div>
       
       <!-- Lista de proyectos - Grid responsive optimizado para llenar el espacio disponible -->
-      <div class="w-full px-3 sm:px-4 md:px-6 flex-1 flex flex-col py-2 md:py-4">
-        <div class="projects-grid w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center">
+      <div class="w-full px-0 sm:px-4 md:px-6 flex-1 flex flex-col py-2 md:py-4">
+        <div class="projects-grid w-full flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center sm:place-items-center mx-auto max-w-[100vw] px-4">
           {properties.map((property) => {
             // Obtener la ruta correcta del proyecto basada en el logo
             const projectRoute = getProjectRoute(property.image);
@@ -206,7 +206,7 @@ function getProjectRoute(imagePath: string): string {
             return (
               <a 
                 href={projectRoute}
-                class="project-card group relative rounded-xl overflow-hidden flex flex-col items-center px-3 py-1 md:px-4 md:py-2 lg:px-1 lg:py-1 shadow-lg transition-all duration-300 hover:shadow-xl w-full mb-1.5 md:mb-2 lg:mb-0 lg:flex-shrink-0 border-2 border-[var(--secondary)]/80 md:border-2 md:border-[var(--secondary)]/80 pt-2 lg:pt-4"
+                class="project-card group relative rounded-xl overflow-hidden flex flex-col items-center px-3 py-1 md:px-4 md:py-2 lg:px-1 lg:py-1 shadow-lg transition-all duration-300 hover:shadow-xl w-full max-w-[90vw] sm:max-w-full mb-4 sm:mb-2 lg:mb-0 lg:flex-shrink-0 border-2 border-[var(--secondary)]/80 md:border-2 md:border-[var(--secondary)]/80 pt-2 lg:pt-4 mx-auto"
                 tabindex="0">
                 {/* Fondo con imagen de Google Cloud Storage según el proyecto */}
                 <div class="absolute inset-0 z-0 opacity-10">
