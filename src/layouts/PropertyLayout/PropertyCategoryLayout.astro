@@ -185,8 +185,21 @@ function getProjectRoute(imagePath: string): string {
         </div>
         
         <!-- Contenido del hero -->
-        <div class="relative z-10 flex flex-col items-center justify-end h-full pb-2 md:pb-6 text-center w-full">
-          <!-- Título oculto por ahora según diseño anterior -->
+        <div class="relative z-10 flex flex-col items-center justify-center h-full pb-2 md:pb-6 text-center w-full">
+          <!-- Título específico para proyectos del Oeste -->
+          {categoryId.toLowerCase().includes('oeste') || 
+           (categoryId.toLowerCase() === 'default' && (
+            Astro.url.pathname.includes('/verona') || 
+            Astro.url.pathname.includes('/siena') || 
+            Astro.url.pathname.includes('/piamonte')
+           )) ? (
+            <div class="text-white font-bold text-xl md:text-2xl lg:text-3xl tracking-wide">
+              CASA EN HATO MONTAÑA - ARRAIJÁN
+            </div>
+          ) : (
+            <!-- Título oculto por ahora según diseño anterior -->
+            <div></div>
+          )}
         </div>
       </div>
       

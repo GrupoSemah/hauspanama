@@ -16,6 +16,7 @@ function getProjectLocation(projectId: string): string {
     'amitie': 'Este',
     'filia': 'Este',
     'lagun': 'Este',
+    'provenza': 'Este',
     
     // Proyectos del Oeste
     'verona': 'Oeste',
@@ -97,7 +98,7 @@ const brochurePath = project.brochureFile.startsWith('http')
               class="w-full max-w-[350px] md:max-w-[500px] xl:max-w-[650px] aos-init aos-animate transition-all duration-500"
               loading="lazy"
             />  
-            <p class="text-white text-sm md:text-lg xl:text-2xl absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap z-10 px-2 pt-24 rounded">{project.address}</p>
+            <p class="text-white text-sm md:text-lg xl:text-2xl absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap z-10 px-2 pt-24 rounded">{project.location}</p>
           </div>
           
           <BrochureDownloader
