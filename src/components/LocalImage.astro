@@ -1,0 +1,49 @@
+---
+/**
+ * LocalImage.astro
+ * Componente para mostrar imágenes desde la carpeta public
+ */
+
+interface Props {
+  src: string;   // La ruta de la imagen en la carpeta public
+  alt: string;
+  className?: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+  sizes?: string;
+  fetchPriority?: 'high' | 'low' | 'auto';
+}
+
+const { 
+  src, 
+  alt, 
+  className = "", 
+  width, 
+  height, 
+  loading = "lazy",
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  fetchPriority = "auto"
+} = Astro.props;
+
+// Detectar si es un SVG para consideraciones especiales si fuera necesario
+const isSvg = src.toLowerCase().endsWith('.svg');
+
+// Construir la URL directamente
+let imageUrl = src;
+if (!src.startsWith('http') && !src.startsWith('/')) {
+  // Aseguramos que empiece con /
+  imageUrl = `/${src}`;
+}
+---
+
+<img 
+  src={imageUrl}
+  alt={alt}
+  class={className}
+  width={width}
+  height={height}
+  loading={loading}
+  sizes={sizes}
+  fetchpriority={fetchPriority}
+/>

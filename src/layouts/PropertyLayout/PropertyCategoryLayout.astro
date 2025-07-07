@@ -2,7 +2,7 @@
 import Layout from '../Layout.astro';
 import HeaderNonSticky from '../../components/HeaderNonSticky.astro';
 import SocialFooter from '../../components/SocialFooter.astro';
-import GcsImage from '../../components/GcsImage.astro';
+import LocalImage from '../../components/LocalImage.astro';
 import ChatWrapper from '../../components/ChatWrapper.astro';
 import projectsData from '../../data/projects.json';
 
@@ -176,8 +176,8 @@ function getProjectRoute(imagePath: string): string {
         <!-- Imagen de fondo con máscara de gradiente -->
         <div class="absolute inset-0 z-0">
           <div class="w-full h-full mask-linear-gradient-to-b">
-            <GcsImage 
-              publicId={`Backgrounds/${backgroundImage}`} 
+            <LocalImage 
+              src={`Backgrounds/${backgroundImage}`} 
               alt={title} 
               className="w-full h-full object-cover" 
             />
@@ -224,7 +224,7 @@ function getProjectRoute(imagePath: string): string {
                 {/* Fondo con imagen de Google Cloud Storage según el proyecto */}
                 <div class="absolute inset-0 z-0 opacity-10">
                   <img 
-                    src={projectInfo && projectInfo.coverImage ? `https://storage.googleapis.com/hauspanama/Proyectos/${getProjectLocation(projectInfo.id)}/${projectInfo.id.charAt(0).toUpperCase() + projectInfo.id.slice(1)}/${projectInfo.coverImage}` : `https://storage.googleapis.com/hauspanama/Proyectos/Centro/Background.webp`} 
+                    src={projectInfo && projectInfo.coverImage ? `/Proyectos/${getProjectLocation(projectInfo.id)}/${projectInfo.id.charAt(0).toUpperCase() + projectInfo.id.slice(1)}/${projectInfo.coverImage}` : `/Proyectos/Centro/Background.webp`} 
                     alt="" 
                     class="w-full h-full object-cover" 
                     loading="lazy"
@@ -235,7 +235,7 @@ function getProjectRoute(imagePath: string): string {
                 <div class="w-full h-[70px] flex items-center justify-center relative z-10 mt-2">
                   <div class="w-[140px] h-[60px] flex items-center justify-center overflow-hidden">
                     <img 
-                      src={projectInfo && projectInfo.logo ? `https://storage.googleapis.com/hauspanama/Portadas/${projectInfo.logo}` : `https://storage.googleapis.com/hauspanama/Portadas/${property.image}`} 
+                      src={projectInfo && projectInfo.logo ? `/Portadas/${projectInfo.logo}` : `/Portadas/${property.image}`} 
                       alt={property.title} 
                       class="w-auto h-auto max-w-[130px] max-h-[50px] object-contain transition-all duration-300 group-hover:scale-105" 
                       loading="lazy"

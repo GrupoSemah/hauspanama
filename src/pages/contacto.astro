@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HeaderAstro from '../components/HeaderAstro.astro';
 import SocialFooter from '../components/SocialFooter.astro';
-import GcsImage from '../components/GcsImage.astro';
+import LocalImage from '../components/LocalImage.astro';
 import ChatWrapper from '../components/ChatWrapper.astro';
 
 const pipedriveFormUrl = "https://webforms.pipedrive.com/f/1ytOitU9h6CfS4pSlk04tsAS3RnB6CGq2rSGVrXsTX7c612YxC0ILmQ7QnS3EOTcv";
@@ -30,8 +30,8 @@ const formId = "contact-form";
         <div class="bg-white rounded-xl shadow-md overflow-hidden">
           <!-- Imagen superior -->
           <div class="w-full h-36">
-            <GcsImage 
-              publicId="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
+            <LocalImage 
+              src="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
               alt="Vista de la Ciudad de Panamá" 
               className="w-full h-full object-contain" 
             />
@@ -155,8 +155,8 @@ const formId = "contact-form";
             <div class="p-3 bg-gray-100 flex flex-col">
               <!-- Imagen superior -->
               <div class="mb-3 flex justify-center items-center py-1">
-                <GcsImage 
-                  publicId="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
+                <LocalImage 
+                  src="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
                   alt="Vista de la Ciudad de Panamá" 
                   className="h-52 w-72 object-contain" 
                 />

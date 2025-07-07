@@ -27,16 +27,26 @@ export interface ContactFormProps {
   formUrl: string;
 }
 
-// Interfaces eliminadas tras migración a GCS
-
 /**
- * Propiedades para GcsImage
+ * Propiedades para LocalImage
  */
-export interface GcsImageProps {
-  publicId: string;
+export interface LocalImageProps {
+  src: string;
   alt: string;
   className?: string;
   width?: number;
   height?: number;
   loading?: 'eager' | 'lazy';
+  sizes?: string;
+  fetchPriority?: 'high' | 'low' | 'auto';
+}
+
+/**
+ * Propiedades para LocalVideo
+ */
+export interface LocalVideoProps {
+  videoSrc: string;
+  thumbnailPath: string;
+  altText?: string;
+  className?: string;
 }

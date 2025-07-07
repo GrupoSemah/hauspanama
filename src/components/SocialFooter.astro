@@ -1,5 +1,5 @@
 ---
-import GcsImage from './GcsImage.astro';
+import LocalImage from './LocalImage.astro';
 ---
 
 <footer class="w-full bg-transparent mt-auto">
@@ -10,8 +10,8 @@ import GcsImage from './GcsImage.astro';
         <p class="text-[10px] sm:text-xs text-gray-500 font-helvetica">una empresa de</p>
         <div class="mt-0 sm:mt-1">
           <a href="https://semah.com" target="_blank" rel="noopener noreferrer" aria-label="Ir a la página web de Semah Group">
-            <GcsImage 
-              publicId="Logos/semahLogo_lh5hyz.png" 
+            <LocalImage 
+              src="Logos/semahLogo_lh5hyz.png" 
               alt="Semah" 
               className="h-4 sm:h-6 md:h-7 transition-transform hover:scale-105" 
             />
@@ -31,8 +31,8 @@ import GcsImage from './GcsImage.astro';
           aria-label="Facebook Haus Panama" 
           class="block transition-transform hover:scale-110 active:scale-95"
         >
-          <GcsImage 
-            publicId="Icons/facebook.svg" 
+          <LocalImage 
+            src="Icons/facebook.svg" 
             alt="Facebook" 
             className="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7" 
           />
@@ -45,8 +45,8 @@ import GcsImage from './GcsImage.astro';
           aria-label="YouTube Haus Panama" 
           class="block transition-transform hover:scale-110 active:scale-95"
         >
-          <GcsImage 
-            publicId="Icons/youtube.svg" 
+          <LocalImage 
+            src="Icons/youtube.svg" 
             alt="YouTube" 
             className="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7" 
           />
@@ -58,8 +58,8 @@ import GcsImage from './GcsImage.astro';
           aria-label="Instagram Haus Panama" 
           class="block transition-transform hover:scale-110 active:scale-95"
         >
-          <GcsImage 
-            publicId="Icons/instagram.svg" 
+          <LocalImage 
+            src="Icons/instagram.svg" 
             alt="Instagram" 
             className="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7" 
           />

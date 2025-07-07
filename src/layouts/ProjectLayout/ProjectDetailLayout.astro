@@ -1,9 +1,9 @@
 ---
 import Layout from '../Layout.astro';
 import HeaderAstro from '../../components/HeaderAstro.astro';
-import GcsImage from '../../components/GcsImage.astro';
+import LocalImage from '../../components/LocalImage.astro';
 import ImageCarousel from '../../components/ImageCarousel.tsx';
-import GcsVideo from '../../components/GcsVideo.astro';
+import LocalVideo from '../../components/LocalVideo.astro';
 import MapModal from '../../components/MapModal.tsx';
 import ChatWrapper from '../../components/ChatWrapper.astro';
 import BrochureDownloader from '../../components/BrochureDownloader';
@@ -65,10 +65,10 @@ export interface Props {
 
 const { project } = Astro.props;
 
-// Determinar la URL del brochure usando GCS
+// Determinar la URL del brochure usando rutas locales
 const brochurePath = project.brochureFile.startsWith('http') 
   ? project.brochureFile 
-  : `https://storage.googleapis.com/hauspanama/Brochures/${project.brochureFile}`;
+  : `/Brochures/${project.brochureFile}`;
 
 // Determinar la ruta del video
 // Ya no necesitamos esta variable con GcsVideo
@@ -84,7 +84,7 @@ const brochurePath = project.brochureFile.startsWith('http')
     <!-- Hero section con imagen de fondo y logo del proyecto -->
     <div class="relative w-full h-[40vh] md:h-[50vh] xl:h-[60vh] overflow-hidden">
       <img 
-        src={`https://storage.googleapis.com/hauspanama/Proyectos/${getProjectLocation(project.id)}/${project.id.charAt(0).toUpperCase() + project.id.slice(1)}/${project.coverImage}`} 
+        src={`/Proyectos/${getProjectLocation(project.id)}/${project.id.charAt(0).toUpperCase() + project.id.slice(1)}/${project.coverImage}`} 
         alt={project.name}
         class="w-full h-full object-cover object-bottom blur-[1px]"
         loading="eager"
@@ -93,7 +93,7 @@ const brochurePath = project.brochureFile.startsWith('http')
         <div class="flex flex-col items-center gap-6 md:gap-8">
           <div class="relative">
             <img 
-              src={`https://storage.googleapis.com/hauspanama/Portadas/${project.logo2}`} 
+              src={`/Portadas/${project.logo2}`} 
               alt={project.name}
               class="w-full max-w-[350px] md:max-w-[500px] xl:max-w-[650px] aos-init aos-animate transition-all duration-500"
               loading="lazy"
@@ -179,7 +179,7 @@ const brochurePath = project.brochureFile.startsWith('http')
             {project.features.map((feature, index) => (
               <li class="text-gray-700 text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-300 hover:text-[var(--primary)] hover:font-bold hover:scale-[1.05] cursor-default py-1 md:py-2 px-1 flex flex-col items-center justify-center">
                 <img 
-                  src={`https://storage.googleapis.com/hauspanama/Icons/${feature.icon}`} 
+                  src={`/Icons/${feature.icon}`} 
                   alt={`Icono de ${feature.text}`}
                   class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-1 sm:mb-2"
                   loading="lazy"
@@ -193,8 +193,8 @@ const brochurePath = project.brochureFile.startsWith('http')
           <!-- Video del proyecto -->
           <div class="lg:w-1/2 flex items-center">
             <div class="w-full h-full rounded-xl overflow-hidden shadow-lg">
-              <GcsVideo 
-                videoId={`Videos/${project.videoFile}`} 
+              <LocalVideo 
+                videoSrc={`Videos/${project.videoFile}`} 
                 thumbnailPath={`Proyectos/${getProjectLocation(project.id)}/${project.id.charAt(0).toUpperCase() + project.id.slice(1)}/${project.videoThumbnail || project.coverImage}`}
                 altText="Video del proyecto"
                 className="w-full h-full object-cover"
@@ -221,7 +221,7 @@ const brochurePath = project.brochureFile.startsWith('http')
             class="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--primary)] hover:bg-[#ff7d00] text-white rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <img 
-              src="https://storage.googleapis.com/hauspanama/Icons/location.svg" 
+              src="/Icons/location.svg" 
               alt="Icono de ubicación" 
               class="w-5 h-5 mr-1"
               loading="lazy"
@@ -385,22 +385,22 @@ const brochurePath = project.brochureFile.startsWith('http')
         <div class="flex items-center gap-2 md:gap-4 mb-4 md:mb-6 justify-center">
         <!-- Facebook -->
     <a href="https://www.facebook.com/HausPanamaOficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook Haus Panama" class="block transition-transform hover:scale-110">
-      <GcsImage publicId="Icons/facebook.svg" alt="Facebook" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
+      <LocalImage src="Icons/facebook.svg" alt="Facebook" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
     </a>
     
     <!-- YouTube -->
     <a href="https://www.youtube.com/@hauspanama5505" target="_blank" rel="noopener noreferrer" aria-label="YouTube Haus Panama" class="block transition-transform hover:scale-110">
-      <GcsImage publicId="Icons/youtube.svg" alt="YouTube" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
+      <LocalImage src="Icons/youtube.svg" alt="YouTube" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
     </a>
     
     <!-- Instagram -->
     <a href="https://www.instagram.com/hauspanama/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Haus Panama" class="block transition-transform hover:scale-110">
-      <GcsImage publicId="Icons/instagram.svg" alt="Instagram" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
+      <LocalImage src="Icons/instagram.svg" alt="Instagram" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
     </a>
         </div>
         <div class="mb-4 md:mb-6">
           <p class="text-xs md:text-sm text-gray-500 font-helvetica text-center">una empresa de</p>
-          <GcsImage publicId="Logos/semahLogo_lh5hyz.png" alt="Semah" className="h-6 md:h-8" />
+          <LocalImage src="Logos/semahLogo_lh5hyz.png" alt="Semah" className="h-6 md:h-8" />
         </div>
         
       </div>

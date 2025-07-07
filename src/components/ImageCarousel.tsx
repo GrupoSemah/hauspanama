@@ -241,7 +241,7 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
               onClick={() => openModal(image, index)}
             >
               <img 
-                src={`https://storage.googleapis.com/hauspanama/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${image}`} 
+                src={`/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${image}`} 
                 alt={`Imagen ${index + 1}`} 
                 className="w-full aspect-square object-cover rounded-md"
                 loading="lazy"
@@ -288,7 +288,7 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
               className="relative w-full touch-pan-x overflow-hidden"
             >
               <img 
-                src={`https://storage.googleapis.com/hauspanama/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${selectedImage}`} 
+                src={`/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${selectedImage}`} 
                 alt="Imagen ampliada" 
                 className="w-full h-auto max-h-[80vh] object-contain select-none"
                 loading="lazy"

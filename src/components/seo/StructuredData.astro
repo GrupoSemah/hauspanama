@@ -87,7 +87,7 @@ switch (type) {
       ...schema,
       '@type': 'Organization',
       name: data.name || 'Haus Panama',
-      logo: data.logo || 'https://storage.googleapis.com/hauspanama/Portadas/logohaus.svg',
+      logo: data.logo || '/Portadas/logohaus.svg',
       url: new URL('/', Astro.site).toString(),
       contactPoint: {
         '@type': 'ContactPoint',

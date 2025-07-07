@@ -35,7 +35,7 @@ function MapModal({ mapImage, mapsUrl, projectName = 'Ubicación' }: MapModalPro
         onClick={openModal}
       >
         <img 
-          src={`https://storage.googleapis.com/hauspanama/Mapas/${mapImage}`} 
+          src={`/Mapas/${mapImage}`} 
           alt="Mapa de ubicación" 
           className="w-full"
           draggable="false"
@@ -76,7 +76,7 @@ function MapModal({ mapImage, mapsUrl, projectName = 'Ubicación' }: MapModalPro
             
             <div className="relative w-full p-4">
               <img 
-                src={`https://storage.googleapis.com/hauspanama/Mapas/${mapImage}`} 
+                src={`/Mapas/${mapImage}`} 
                 alt={`Mapa de ubicación de ${projectName}`} 
                 className="w-full h-full object-contain rounded-lg"
                 draggable="false"
