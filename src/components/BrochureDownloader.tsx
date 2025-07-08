@@ -18,10 +18,8 @@ export default function BrochureDownloader({ brochureFile, projectName, buttonTe
       setIsLoading(true);
       console.log('Iniciando descarga del brochure:', brochureFile);
       
-      // Construir la URL correcta usando Google Cloud Storage
+      // Construir la URL correcta usando rutas locales
       let finalUrl: string;
-      const bucketName = 'hauspanama';
-      const baseUrl = `https://storage.googleapis.com/${bucketName}`;
       
       if (brochureFile.startsWith('http')) {
         // Si ya es una URL completa, usarla directamente
@@ -29,13 +27,13 @@ export default function BrochureDownloader({ brochureFile, projectName, buttonTe
       } else if (projectId && projectLocation) {
         // Usar la estructura correcta para los brochures: Plantas/CENTRO, Plantas/ESTE, Plantas/OESTE
         const locationUpper = projectLocation.toUpperCase();
-        finalUrl = `${baseUrl}/Plantas/${locationUpper}/${brochureFile}`;
+        finalUrl = `/Plantas/${locationUpper}/${brochureFile}`;
       } else {
         // Fallback a la carpeta general de brochures si no hay información del proyecto
-        finalUrl = `${baseUrl}/Plantas/${brochureFile}`;
+        finalUrl = `/Plantas/${brochureFile}`;
       }
       
-      console.log('URL del brochure en GCS:', finalUrl);
+      console.log('URL del brochure local:', finalUrl);
       
       // Crear un nombre de archivo para la descarga
       const fileName = `${projectName.toLowerCase().replace(/\s+/g, '-')}-brochure.pdf`;

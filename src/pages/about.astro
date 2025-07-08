@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import HeaderAstro from '../components/HeaderAstro.astro';
 import SocialFooter from '../components/SocialFooter.astro';
 import PipedriveChat from '../components/PipedriveChat.astro';
-import GcsImage from '../components/GcsImage.astro';
+import LocalImage from '../components/LocalImage.astro';
 
 // Datos del equipo (comentado temporalmente)
 /*
@@ -99,8 +99,8 @@ const values = [
       <div class="relative z-10 flex flex-col items-center justify-center h-full text-center w-full px-4">
         <!-- Imagen 3D en formato banner -->
         <div class="flex justify-center items-center w-full h-full py-1 md:py-0">
-          <GcsImage 
-            publicId="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
+          <LocalImage 
+            src="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
             alt="Haus Panama Construcción" 
             className="w-full max-h-[1200px] md:w-auto md:h-[420px] lg:h-[370px] object-contain" 
           />
@@ -144,8 +144,8 @@ const values = [
       <div class="relative space-y-8 mb-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--secondary)] before:to-transparent">
         <!-- Logo viejo al inicio del timeline -->
         <div class="relative flex items-center justify-center mb-8">
-          <GcsImage 
-            publicId="Icons/Logo_viejo_haus_3d_ico_f9ctnr.png" 
+          <LocalImage 
+            src="Icons/Logo_viejo_haus_3d_ico_f9ctnr.png" 
             alt="Logo inicial Haus Panama" 
             className="w-52 h-52 md:w-72 md:h-72 object-contain" 
           />
@@ -168,8 +168,8 @@ const values = [
         
         <!-- Logo nuevo al final del timeline -->
         <div class="relative flex items-center justify-center mt-8">
-          <GcsImage 
-            publicId="Icons/Logo_haus_3D_icon_bbiuye.png" 
+          <LocalImage 
+            src="Icons/Logo_haus_3D_icon_bbiuye.png" 
             alt="Logo actual Haus Panama" 
             className="w-52 h-52 md:w-72 md:h-72 object-contain" 
           />
@@ -193,8 +193,8 @@ const values = [
         {values.map(value => (
           <div class="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border-t-2 border-[var(--secondary)]">
             <div class="flex justify-center mb-4">
-              <GcsImage 
-                publicId={`Icons/${value.icon}.png`} 
+              <LocalImage 
+                src={`Icons/${value.icon}.png`} 
                 alt={value.title} 
                 className="w-22 h-22" 
               />
@@ -223,8 +223,8 @@ const values = [
         {teamMembers.map(member => (
           <div class="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border-t-2 border-[var(--secondary)]">
             <div class="mb-4 overflow-hidden rounded-full w-32 h-32 mx-auto ring-4 ring-[var(--secondary)]/20">
-              <GcsImage 
-                publicId={`Personas/${member.image}.png`} 
+              <LocalImage 
+                src={`Personas/${member.image}.png`} 
                 alt={member.name} 
                 className="w-full h-full object-cover" 
               />
@@ -243,8 +243,8 @@ const values = [
   <section class="py-16 md:py-24 px-4 mb-6 relative overflow-hidden">
     <!-- Imagen de fondo -->
     <div class="absolute inset-0 z-0">
-      <GcsImage 
-        publicId="Backgrounds/siluetas-del-sitio-de-construccion_niweog.jpg" 
+      <LocalImage 
+        src="Backgrounds/siluetas-del-sitio-de-construccion_niweog.jpg" 
         alt="Fondo de apartamento" 
         className="w-full h-full object-cover" 
       />

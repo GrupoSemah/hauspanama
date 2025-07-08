@@ -1,5 +1,5 @@
 ---
-import GcsImage from './GcsImage.astro';
+import LocalImage from './LocalImage.astro';
 import DesktopNav from './navigation/DesktopNav.astro';
 import MobileNav from './navigation/MobileNav.astro';
 ---
@@ -7,8 +7,8 @@ import MobileNav from './navigation/MobileNav.astro';
 <header class="relative top-0 left-0 right-0 z-50 w-full bg-[var(--secondary)]/20 backdrop-blur-sm xl:bg-transparent font-helvetica">
   <div class="flex justify-between items-center px-4 py-2.5 md:px-8 md:py-3 w-full">
     <a href="/" class="z-10 xl:hidden">
-      <GcsImage 
-        publicId="Logos/logohaus_usiwqr.svg" 
+      <LocalImage 
+        src="Logos/logohaus_usiwqr.svg" 
         alt="Haus Panama Logo" 
         className="h-8" 
       />

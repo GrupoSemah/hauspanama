@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import HeaderNonSticky from '../components/HeaderNonSticky.astro';
 import SocialFooter from '../components/SocialFooter.astro';
 import ChatWrapper from '../components/ChatWrapper.astro';
-import GcsImage from '../components/GcsImage.astro';
+import LocalImage from '../components/LocalImage.astro';
 
 // Definimos exactamente las 4 propiedades que necesitamos mostrar en base al diseño de Figma
 const mainCards = [
@@ -55,8 +55,8 @@ const mainCards = [
     <div class="relative z-10 flex flex-col h-full w-full pt-1 pb-0"> 
       <!-- Logo y título centrados para pantallas grandes -->
       <div class="hidden xl:flex flex-col items-center justify-center pt-4">
-        <GcsImage 
-          publicId="Logos/logohaus_usiwqr.svg" 
+        <LocalImage 
+          src="Logos/logohaus_usiwqr.svg" 
           alt="Haus Panama Logo" 
           className="h-16" 
         />
@@ -75,8 +75,8 @@ const mainCards = [
               aria-label={`${card.title} ${card.title2} - ${card.subtitle} - Ver más detalles`}
             >
               <div class="card-image-container relative w-full aspect-[5/2] sm:aspect-[3/1] md:aspect-[1.8/1] lg:aspect-[3/4] xl:aspect-[2/3]">
-                <GcsImage 
-                  publicId={card.imagePath} 
+                <LocalImage 
+                  src={card.imagePath} 
                   alt={`${card.title} ${card.title2}`} 
                   className="w-full h-full object-cover opacity-80 transition-all duration-300 group-hover:opacity-100 active:opacity-100" 
                 />

@@ -1,5 +1,5 @@
 ---
-import GcsImage from '../GcsImage.astro';
+import LocalImage from '../LocalImage.astro';
 
 // Obtener la ruta actual para resaltar el ítem activo
 const currentPath = Astro.url.pathname;
@@ -21,6 +21,7 @@ const isProjectsPage = currentPath.includes('/centro') ||
                      currentPath.includes('/verona') ||
                      currentPath.includes('/piamonte') ||
                      currentPath.includes('/siena') ||
+                     currentPath.includes('/provenza') ||
                      currentPath.includes('/proyecto');
 
 // Proyectos organizados por zona para el menú móvil
@@ -34,7 +35,7 @@ const projectsByZone = {
     { name: "amitié", path: "/amitie" },
     { name: "lagun", path: "/lagun" },
     { name: "filia", path: "/filia" },
-    { name: "provenza", path: "/casas-este" }
+    { name: "provenza", path: "/provenza" }
   ],
   oeste: [
     { name: "verona", path: "/verona" },
@@ -55,8 +56,8 @@ const projectsByZone = {
 >
   <div class="flex justify-start items-center px-4 py-2.5 border-b border-gray-100/20 bg-[var(--secondary)]/20 backdrop-blur-sm">
     <a href="/">
-      <GcsImage 
-        publicId="Logos/logohaus_usiwqr.svg" 
+      <LocalImage 
+        src="Logos/logohaus_usiwqr.svg" 
         alt="Haus Panama Logo" 
         className="h-8" 
       />
