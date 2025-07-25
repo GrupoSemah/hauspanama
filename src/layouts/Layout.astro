@@ -132,15 +132,15 @@ const {
       })();
     </script>
     
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-N34TGN3CQV"></script>
+    <!-- Google Tag Manager -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-N34TGN3CQV');
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TWZ3NKZ');
     </script>
+    <!-- End Google Tag Manager -->
     
     <!-- Meta Pixel Code -->
     <script is:inline>
@@ -152,7 +152,7 @@ const {
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '577906592828372'); // Reemplaza TU_PIXEL_ID con tu ID de Meta Pixel
+      fbq('init', '577906592828372'); 
       fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
@@ -161,6 +161,11 @@ const {
     <!-- End Meta Pixel Code -->
   </head>
   <body class={`bg-[var(--background)] text-[var(--secondary)] font-helvetica flex flex-col ${fixedHeader ? 'with-fixed-header' : ''}`}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWZ3NKZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <!-- Skip to content link for keyboard users - will be positioned via CSS -->
     <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
     
