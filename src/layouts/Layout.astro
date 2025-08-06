@@ -23,6 +23,16 @@ const {
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+    <!-- Google Analytics - Debe ir inmediatamente después de <head> según documentación oficial -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N34TGN3CQV" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N34TGN3CQV');
+    </script>
+    <!-- End Google Analytics -->
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <CSPHeaders />
@@ -135,15 +145,7 @@ const {
     -->
     
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N34TGN3CQV" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-N34TGN3CQV');
-    </script>
-    <!-- End Google Analytics -->
+    <!-- Google Analytics movido al inicio del <head> según documentación oficial -->
     
     <!-- Meta Pixel Code -->
     <script is:inline>
