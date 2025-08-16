@@ -515,8 +515,55 @@
       "Carrusel imágenes-05.webp",
       "Carrusel imágenes-06.webp"
     ],
-    "videoThumbnail": "Carrusel imágenes-06.webp",
+    "videoThumbnail": "Carrusel imágenes-06.webp",
     "mapImage": "MAPA PROVENZA.webp",
     "mapsUrl": "https://www.google.com/maps?ll=9.111219,-79.252625&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=14428727568052350116"
+  },
+  "astre": {
+    "id": "astre",
+    "name": "Astre",
+    "logo": "Logo_Astre.svg",
+    "logo2": "Logo Astre - blanco.svg",
+    "propertyType": "apartamentos de",
+    "location": "panama centro",
+    "address": "acceso directo al corredor sur",
+    "slogan": "vive en el corazón de san francisco",
+    "description": "Ubicado en el prestigioso sector de San Francisco, PH Astre redefine el concepto de vida urbana en Ciudad de Panamá.Este exclusivo proyecto residencial combina elegancia, funcionalidad y una conexión directa con los puntos más dinámicos de la ciudad.",
+    "size": "95",
+    "bedrooms": " 2 y 3",
+    "bathrooms": "2",
+    "price": "desde $250k",
+    "coverImage": "Diseno_Imagenes-06.webp",
+    "heroVideo": "Diseno_Imagenes-06.webp",
+    "brochureFile": "Plantas_Astre.pdf",
+    "videoFile": "Video Astre (Apto Modelo).mp4",
+    "buttonText": "descargar planta",
+    "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC1i6Fuw5xQBNkn6yqqjCZVGvPZf1C6tVSykl17rK5QvxtfWoQJkh6Yy4mWix0pd",
+    "features": [
+      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" }, 
+      { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
+      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
+      { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
+      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
+      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "salón de fiesta" },
+      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+    ],
+    "gallery": [
+      "Diseno_Imagenes-01.webp",
+      "Diseno_Imagenes-02.webp",
+      "Diseno_Imagenes-03.webp",
+      "Diseno_Imagenes-04.webp",
+      "Diseno_Imagenes-05.webp",
+      "Diseno_Imagenes-06.webp",
+      "Amenidades_imagenes-01.webp",
+      "Amenidades_imagenes-02.webp",
+      "Amenidades_imagenes-03.webp",
+      "Amenidades_imagenes-04.webp",
+      "Amenidades_imagenes-05.webp",
+      "Amenidades_imagenes-06.webp"
+    ],
+    "videoThumbnail": "Diseno_Imagenes-06.webp",
+    "mapImage": "Mapa Astre - Haus.webp",
+    "mapsUrl": "https://www.google.com/maps/place/Panama+City,+Panama/@8.9823792,-79.5199793,13z/data=!3m1!4b1!4m6!3m5!1s0x8faca8f1de7bf28f:0xa7030cfb9cd2c718!8m2!3d8.9823792!4d-79.5199793!16zL20vMDVfZzI?entry=ttu"
   }
 }

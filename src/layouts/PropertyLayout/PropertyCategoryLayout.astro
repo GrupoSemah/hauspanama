@@ -23,7 +23,8 @@ function getProjectLocation(projectId: string): string {
     // Proyectos del Centro
     'athas': 'Centro',
     'gaudi': 'Centro',
-    'alai': 'Centro'
+    'alai': 'Centro',
+    'astre': 'Centro'
   };
   
   // Devolver la ubicación correspondiente o 'Centro' como valor predeterminado
@@ -136,24 +137,35 @@ function getProjectRoute(imagePath: string): string {
   // Extraer el nombre del archivo de la URL de Google Cloud Storage
   const logoFileName = imagePath.split('/').pop() || '';
   
-  // Simplificar la detección del proyecto buscando nombres clave en la URL completa
-  if (imagePath.includes('Athas')) {
+  // Mapear logos específicos a rutas de proyectos
+  if (logoFileName.includes('Logo_Athas') || logoFileName.includes('athas')) {
     return '/athas';
-  } else if (imagePath.includes('Gaudi')) {
+  }
+  if (logoFileName.includes('Logo_Gaudi') || logoFileName.includes('gaudi')) {
     return '/gaudi';
-  } else if (imagePath.includes('Alai')) {
+  }
+  if (logoFileName.includes('Logo_Alai') || logoFileName.includes('alai')) {
     return '/alai';
-  } else if (imagePath.includes('Filia')) {
-    return '/filia';
-  } else if (imagePath.includes('Amitie')) {
+  }
+  if (logoFileName.includes('Logo_Astre') || logoFileName.includes('astre')) {
+    return '/astre';
+  }
+  if (logoFileName.includes('Logo_Amitie') || logoFileName.includes('amitie')) {
     return '/amitie';
-  } else if (imagePath.includes('Lagun')) {
+  }
+  if (logoFileName.includes('Logo_Filia') || logoFileName.includes('filia')) {
+    return '/filia';
+  }
+  if (logoFileName.includes('Logo_Lagun') || logoFileName.includes('lagun')) {
     return '/lagun';
-  } else if (imagePath.includes('Verona')) {
+  }
+  if (logoFileName.includes('Logo_Verona') || logoFileName.includes('verona')) {
     return '/verona';
-  } else if (imagePath.includes('Siena')) {
+  }
+  if (logoFileName.includes('Logo_Siena') || logoFileName.includes('siena')) {
     return '/siena';
-  } else if (imagePath.includes('Piamonte')) {
+  }
+  if (logoFileName.includes('Logo_Piamonte') || logoFileName.includes('piamonte')) {
     return '/piamonte';
   }
   

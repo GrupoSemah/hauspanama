@@ -1,0 +1,13 @@
+---
+import ProjectDetailLayout from '../../layouts/ProjectLayout/ProjectDetailLayout.astro';
+import projectsData from '../../data/projects.json';
+
+// Obtener los datos del proyecto Astre
+const projectData = projectsData.astre;
+
+if (!projectData) {
+  throw new Error('Datos del proyecto Astre no encontrados');
+}
+---
+
+<ProjectDetailLayout project={projectData} />
