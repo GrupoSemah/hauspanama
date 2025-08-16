@@ -87,6 +87,14 @@
           "subtitle": "desde $120k hasta $190k",
           "image": "Logo_Alai_asylsy.svg",
           "link": "/property-details/centro-3"
+        },
+        {
+          "id": "centro-4",
+          "title": "acceso directo al",
+          "title2": "corredor sur",
+          "subtitle": "desde $250k hasta $400k",
+          "image": "Logo_Astre.svg",
+          "link": "/astre"
         }
       ]
     },
@@ -171,6 +179,13 @@
           "subtitle": "desde $185k hasta $260k",
           "image": "Logo_Alai_asylsy.svg",
           "link": "/alai"
+        },
+        {
+          "id": "premium-4",
+          "title": "astre",
+          "subtitle": "desde $165k hasta $220k",
+          "image": "Logo_Astre.svg",
+          "link": "/astre"
         }
       ]
     }
