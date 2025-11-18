@@ -260,7 +260,9 @@ function getProjectRoute(imagePath: string): string {
                     {projectInfo ? (
                       <>
                         <p class="text-sm sm:text-2xl font-bold leading-tight">{projectInfo.address}</p>
-                        <p class="text-sm sm:text-2xl leading-tight"><span class="font-semibold">Precio:</span> {projectInfo.price}</p>
+                        {projectId !== 'gaudi' && projectId !== 'alai' && (
+                          <p class="text-sm sm:text-2xl leading-tight"><span class="font-semibold">Precio:</span> {projectInfo.price}</p>
+                        )}
                       </>
                     ) : (
                       <p class="text-sm sm:text-2xl leading-tight"><span class="font-semibold">Precios:</span> {property.subtitle}</p>
