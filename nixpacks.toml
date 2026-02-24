@@ -8,4 +8,4 @@ cmds = ["npm ci"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "npx serve dist -l ${PORT:-4321}"
+cmd = "adduser --disabled-password --gecos '' --uid 1001 appuser 2>/dev/null; exec su appuser -s /bin/sh -c 'npx serve dist -l ${PORT:-4321}'"
