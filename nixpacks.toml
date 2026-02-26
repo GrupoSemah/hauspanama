@@ -8,4 +8,4 @@ cmds = ["npm ci"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "echo 'appuser:x:1001:1001::/tmp:/bin/sh' >> /etc/passwd && echo 'appgroup:x:1001:' >> /etc/group; exec su appuser -s /bin/sh -c 'npx serve dist -l ${PORT:-4321}'"
+cmd = "npx serve dist -l ${PORT:-4321}"
