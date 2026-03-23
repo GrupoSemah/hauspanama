@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeaderNonSticky from '../../components/home/HeaderNonSticky.astro';
+import SocialFooter from '../../components/home/SocialFooter.astro';
+import ChatWrapper from '../../components/ChatWrapper.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const areaCentro = [
+  {
+    name: "Áthas",
+    href: "/athas",
+    coverImage: "/Proyectos/Centro/Athas/Fotos_Athas-16.webp",
+    logoWhite: "/Portadas/Logo_Athas_-_blanco_diizlt.svg",
+    price: "$125,000",
+    locationBold: "12 de octubre / av. la pulida",
+    locationDetail: "a 5min del KFC",
+  },
+  {
+    name: "Astre",
+    href: "/astre",
+    coverImage: "/Proyectos/Centro/Astre/Diseno_Imagenes-06.webp",
+    logoWhite: "/Portadas/Logo Astre - blanco.svg",
+    price: "$250,000",
+    locationBold: "calle 75 / vía israel",
+    locationDetail: "acceso directo a corredor sur",
+  },
+  {
+    name: "Alai",
+    href: "/alai",
+    coverImage: "/Proyectos/Centro/Alai/Fotos_Alai-19.webp",
+    logoWhite: "/Portadas/Logo_Alai_-_blanco_xunsmh.svg",
+    price: "$140,000",
+    locationBold: "vía españa",
+    locationDetail: "frente al hospital san fernando",
+  },
+];
+
+const areaEste = [
+  {
+    name: "Amitié",
+    href: "/amitie",
+    coverImage: "/Proyectos/Este/Amitie/Fotos_Amitie-03.webp",
+    logoWhite: "/Portadas/Logo_Amitie_-_blanco_cr7vna.svg",
+    price: "$115,000",
+    locationBold: "tocumen",
+    locationDetail: "frente al ITSE y estación de metro",
+  },
+  {
+    name: "Filia",
+    href: "/filia",
+    coverImage: "/Proyectos/Este/Filia/Fotos_filia-20.webp",
+    logoWhite: "/Portadas/Logo_Filia_-_blanco_uc5cnq.svg",
+    price: "$95,000",
+    locationBold: "mañanitas",
+    locationDetail: "frente al jumbo market",
+  },
+  {
+    name: "Lagun",
+    href: "/lagun",
+    coverImage: "/Proyectos/Este/Lagun/Fotos_lagun-01.webp",
+    logoWhite: "/Portadas/Logo_Lagun_-_blanco_bdv3wo.svg",
+    price: "$131,000",
+    locationBold: "brisas-vía club de golf",
+    locationDetail: "diagonal al riba smith",
+  },
+];
+---
+
+<Layout title="Apartamentos | Haus Panama" fixedHeader={false}>
+  <HeaderNonSticky />
+  <ChatWrapper />
+
+  <main class="font-helvetica w-full bg-white">
+    <!-- Área Centro -->
+    <section class="w-full px-5 lg:px-8 pt-10 lg:pt-16 pb-8 lg:pb-12">
+      <div class="max-w-[1312px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] leading-tight mb-8 lg:mb-10">
+          apartamentos en el área centro
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {areaCentro.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Área Este -->
+    <section class="w-full px-5 lg:px-8 pt-8 lg:pt-12 pb-16 lg:pb-24">
+      <div class="max-w-[1312px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] leading-tight mb-8 lg:mb-10">
+          apartamentos en el área este
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {areaEste.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SocialFooter />
+</Layout>

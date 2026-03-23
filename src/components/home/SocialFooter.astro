@@ -1,0 +1,78 @@
+---
+import LocalImage from '../LocalImage.astro';
+---
+
+<footer class="w-full bg-[#f7f7f7] px-5 lg:px-8 py-6 lg:py-8 mt-auto">
+  <div class="max-w-7xl mx-auto">
+    <!-- Desktop: row layout / Mobile: column layout -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-5">
+      <!-- Haus logo -->
+      <div class="flex-shrink-0">
+        <a href="/">
+          <LocalImage 
+            src="Logos/logohaus_usiwqr.svg" 
+            alt="Haus Panama" 
+            className="h-8 lg:h-10" 
+          />
+        </a>
+      </div>
+      
+      <!-- Social icons -->
+      <div class="flex items-center gap-4">
+        <a 
+          href="https://www.facebook.com/HausPanamaOficial" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Facebook Haus Panama" 
+          class="block transition-transform hover:scale-110 active:scale-95"
+        >
+          <LocalImage 
+            src="Icons/facebook.svg" 
+            alt="Facebook" 
+            className="w-10 h-10" 
+          />
+        </a>
+        <a 
+          href="https://www.instagram.com/hauspanama/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Instagram Haus Panama" 
+          class="block transition-transform hover:scale-110 active:scale-95"
+        >
+          <LocalImage 
+            src="Icons/instagram.svg" 
+            alt="Instagram" 
+            className="w-10 h-10" 
+          />
+        </a>
+        <a 
+          href="https://www.tiktok.com/@hauspanama" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="TikTok Haus Panama" 
+          class="block transition-transform hover:scale-110 active:scale-95"
+        >
+          <img src="/Icons/Tik Tok.webp" alt="TikTok" class="w-11 h-11 object-contain" loading="lazy" />
+        </a>
+      </div>
+      
+      <!-- Semah group -->
+      <div class="flex flex-col items-center gap-0.5">
+        <p class="text-[10px] text-black text-center font-helvetica">una empresa de</p>
+        <a href="https://semah.com" target="_blank" rel="noopener noreferrer" aria-label="Ir a la página web de Semah Group">
+          <LocalImage 
+            src="Logos/semahLogo_lh5hyz.png" 
+            alt="Semah Group" 
+            className="h-6 lg:h-8 transition-transform hover:scale-105" 
+          />
+        </a>
+      </div>
+    </div>
+    
+    <!-- Divider -->
+    <div class="w-full h-px bg-[#3a3a3c] my-4"></div>
+    
+    <!-- Copyright -->
+    <p class="text-[11px] text-black text-center font-helvetica">Copyright 2026 All Rights Reserved Haus Panamá</p>
+  </div>
+</footer>

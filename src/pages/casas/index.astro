@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeaderNonSticky from '../../components/home/HeaderNonSticky.astro';
+import SocialFooter from '../../components/home/SocialFooter.astro';
+import ChatWrapper from '../../components/ChatWrapper.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const areaOeste = [
+  {
+    name: "Solaris",
+    href: "/solaris",
+    // PENDIENTE: Reemplazar con imagen real de Solaris cuando esté disponible
+    coverImage: "/Proyectos/Oeste/Siena/Fotos_siena-02.webp",
+    // PENDIENTE: Reemplazar con logo blanco real de Solaris
+    logoWhite: "/Portadas/Logo_Siena_-_blanco_zodyyk.svg",
+    price: "$120,000",
+    locationBold: "hato montaña / arraijan",
+    locationDetail: "a 2 min de la panamericana",
+    preVenta: true,
+  },
+  {
+    name: "Siena",
+    href: "/siena",
+    coverImage: "/Proyectos/Oeste/Siena/Fotos_siena-02.webp",
+    logoWhite: "/Portadas/Logo_Siena_-_blanco_zodyyk.svg",
+    price: "$113,000",
+    locationBold: "hato montaña / arraijan",
+    locationDetail: "a 6 min de la panamericana",
+  },
+  {
+    name: "Verona",
+    href: "/verona",
+    coverImage: "/Proyectos/Oeste/Verona/Verona_fotos-02.webp",
+    logoWhite: "/Portadas/Logo_Verona_-_blanco_rdwfze.svg",
+    price: "$82,000",
+    locationBold: "hato montaña / arraijan",
+    locationDetail: "entrando por el machetazo",
+  },
+  {
+    name: "Piamonte",
+    href: "/piamonte",
+    coverImage: "/Proyectos/Oeste/Piamonte/Fotos_Piamonte-10.jpg",
+    logoWhite: "/Portadas/Logo_Piamonte_-_blanco_sudxvt.svg",
+    price: "$120,000",
+    locationBold: "hato montaña / arraijan",
+    locationDetail: "frente al parque hato montaña",
+  },
+];
+
+const areaEste = [
+  {
+    name: "Provenza",
+    href: "/provenza",
+    coverImage: "/Proyectos/Este/Provenza/Carrusel imágenes-01.webp",
+    logoWhite: "/Portadas/Logo_Provenza_-_blanco.svg",
+    price: "$85,000",
+    locationBold: "sobre la vía panamericana",
+    locationDetail: "pasando la entrada de san diego-pacora",
+    preVenta: true,
+  },
+];
+---
+
+<Layout title="Casas | Haus Panama" fixedHeader={false}>
+  <HeaderNonSticky />
+  <ChatWrapper />
+
+  <main class="font-helvetica w-full bg-white">
+    <!-- Área Oeste -->
+    <section class="w-full px-5 lg:px-8 pt-10 lg:pt-16 pb-8 lg:pb-12">
+      <div class="max-w-[1312px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] leading-tight mb-8 lg:mb-10">
+          casas en el área oeste
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {areaOeste.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Área Este -->
+    <section class="w-full px-5 lg:px-8 pt-8 lg:pt-12 pb-16 lg:pb-24">
+      <div class="max-w-[1312px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] leading-tight mb-8 lg:mb-10">
+          casas en el área este
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {areaEste.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SocialFooter />
+</Layout>

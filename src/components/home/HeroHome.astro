@@ -1,0 +1,96 @@
+---
+---
+
+<section class="relative w-full px-5 lg:px-8 pt-0">
+  <div class="relative w-full max-w-[1312px] mx-auto rounded-[24px] overflow-hidden flex flex-col">
+    <!-- Hero background image -->
+    <img 
+      src="/Logos/ciudadpanama_omkwzv.jpg" 
+      alt="Ciudad de Panamá skyline" 
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-[#464648] mix-blend-multiply"></div>
+    
+    <!-- Hero content -->
+    <div class="relative z-10 flex flex-col justify-center p-5 sm:p-8 md:p-10 lg:p-14 xl:p-20 min-h-[420px] sm:min-h-[480px] md:min-h-[580px] lg:min-h-[650px] xl:min-h-[810px]">
+      <div class="flex flex-col gap-4 sm:gap-5 lg:gap-6 max-w-[876px]">
+        <h1 class="text-white font-bold text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-[1.1] lg:leading-[1.2]">
+          un hogar bien pensado cambia la forma de vivir
+        </h1>
+        <p class="text-white text-sm sm:text-base md:text-xl lg:text-[24px] xl:text-[32px] leading-relaxed lg:leading-[38px]">
+          en haus desarrollamos casas y apartamentos en Panamá que combinan ubicación, diseño y tranquilidad para cada etapa de tu vida.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a href="#proyectos" class="bg-[var(--primary)] text-white font-medium text-sm sm:text-base lg:text-[21px] px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 rounded-[9px] text-center transition-all duration-300 hover:brightness-110 hover:scale-[1.02]">
+            explorar proyectos
+          </a>
+          <!-- Agenda una visita dropdown -->
+          <div class="relative w-full sm:w-auto" id="visita-dropdown-container">
+            <button id="visita-toggle" class="w-full sm:w-auto group border-2 border-white text-white font-medium text-sm sm:text-base lg:text-[21px] px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 rounded-[10px] text-center transition-all duration-300 hover:bg-white/10 flex items-center justify-center gap-2 cursor-pointer">
+              agenda una visita
+              <svg id="visita-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+            </button>
+            <div id="visita-options" class="hidden absolute left-0 bottom-full mb-2 sm:bottom-auto sm:top-full sm:mt-2 sm:mb-0 w-full rounded-[10px] border-2 border-white backdrop-blur-md bg-white/10 overflow-hidden z-20">
+              <a href="https://wa.me/50763307851?text=%C2%A1Hola!%20Estoy%20interesado%20en%20proyectos%20del%20%C3%A1rea%20centro" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 text-white font-medium text-sm hover:bg-white/20 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                área centro
+              </a>
+              <a href="https://wa.me/50763307851?text=%C2%A1Hola!%20Estoy%20interesado%20en%20proyectos%20del%20%C3%A1rea%20este" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 text-white font-medium text-sm hover:bg-white/20 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                área este
+              </a>
+              <a href="https://wa.me/50763307851?text=%C2%A1Hola!%20Estoy%20interesado%20en%20proyectos%20del%20%C3%A1rea%20oeste" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 text-white font-medium text-sm hover:bg-white/20 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                área oeste
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Stats card: in-flow on mobile, absolute bottom-right on lg+ -->
+    <div class="relative z-10 mx-5 mb-5 sm:mx-0 sm:mb-0 sm:absolute sm:bottom-8 sm:right-8 lg:bottom-10 lg:right-14 xl:right-20 bg-[#3a3a3c]/70 backdrop-blur-sm rounded-[16px] px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-center gap-5 sm:gap-8 self-end sm:self-auto">
+      <div class="flex flex-col items-center">
+        <span class="text-white font-bold text-2xl sm:text-4xl lg:text-5xl xl:text-[56px] leading-tight">+4.5k</span>
+        <span class="text-white/80 text-[10px] sm:text-sm lg:text-base">viviendas entregadas</span>
+      </div>
+      <div class="w-px h-10 sm:h-14 lg:h-16 bg-white/40"></div>
+      <div class="flex flex-col items-center">
+        <span class="text-white font-bold text-2xl sm:text-4xl lg:text-5xl xl:text-[56px] leading-tight">+21</span>
+        <span class="text-white/80 text-[10px] sm:text-sm lg:text-base">años de experiencia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('visita-toggle');
+    const options = document.getElementById('visita-options');
+    const arrow = document.getElementById('visita-arrow');
+    const container = document.getElementById('visita-dropdown-container');
+
+    if (!toggle || !options || !arrow) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = !options.classList.contains('hidden');
+      if (isOpen) {
+        options.classList.add('hidden');
+        arrow.classList.remove('-rotate-90');
+      } else {
+        options.classList.remove('hidden');
+        arrow.classList.add('-rotate-90');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (container && !container.contains(e.target as Node)) {
+        options.classList.add('hidden');
+        arrow.classList.remove('-rotate-90');
+      }
+    });
+  });
+</script>

@@ -1,36 +1,19 @@
 ---
 import Layout from '../Layout.astro';
-import HeaderAstro from '../../components/HeaderAstro.astro';
+import HeaderNonSticky from '../../components/home/HeaderNonSticky.astro';
+import SocialFooter from '../../components/home/SocialFooter.astro';
 import LocalImage from '../../components/LocalImage.astro';
 import ImageCarousel from '../../components/ImageCarousel.tsx';
-import LocalVideo from '../../components/LocalVideo.astro';
-import MapModal from '../../components/MapModal.tsx';
+import MapboxMap from '../../components/MapboxMap.tsx';
 import ChatWrapper from '../../components/ChatWrapper.astro';
 import BrochureDownloader from '../../components/BrochureDownloader';
 
-// Función para determinar la ubicación del proyecto (Este, Oeste, Centro)
 function getProjectLocation(projectId: string): string {
-  // Mapa de ubicaciones por proyecto
   const locationMap: Record<string, string> = {
-    // Proyectos del Este
-    'amitie': 'Este',
-    'filia': 'Este',
-    'lagun': 'Este',
-    'provenza': 'Este',
-    
-    // Proyectos del Oeste
-    'verona': 'Oeste',
-    'siena': 'Oeste',
-    'piamonte': 'Oeste',
-    
-    // Proyectos del Centro
-    'athas': 'Centro',
-    'gaudi': 'Centro',
-    'alai': 'Centro',
-    'astre': 'Centro'
+    'amitie': 'Este', 'filia': 'Este', 'lagun': 'Este', 'provenza': 'Este',
+    'verona': 'Oeste', 'siena': 'Oeste', 'piamonte': 'Oeste',
+    'athas': 'Centro', 'gaudi': 'Centro', 'alai': 'Centro', 'astre': 'Centro'
   };
-  
-  // Devolver la ubicación correspondiente o 'Centro' como valor predeterminado
   return locationMap[projectId] || 'Centro';
 }
 
@@ -51,10 +34,7 @@ export interface Props {
     coverImage: string;
     brochureFile: string;
     buttonText: string;
-    features: {
-      icon: string;
-      text: string;
-    }[];
+    features: { icon: string; text: string; }[];
     gallery: string[];
     videoFile: string;
     videoThumbnail: string;
@@ -66,345 +46,271 @@ export interface Props {
 
 const { project } = Astro.props;
 
-// Determinar la URL del brochure usando rutas locales
-const brochurePath = project.brochureFile.startsWith('http') 
-  ? project.brochureFile 
-  : `/Brochures/${project.brochureFile}`;
+const projectFolder = project.id.charAt(0).toUpperCase() + project.id.slice(1);
+const projectLocation = getProjectLocation(project.id);
+const imageBasePath = `/Proyectos/${projectLocation}/${projectFolder}`;
 
-// Determinar la ruta del video
-// Ya no necesitamos esta variable con GcsVideo
-// const videoPath = `/assets/VIDEOS/${project.videoFile}`;
+const videoMap: Record<string, string> = {
+  'athas': '/Videos/Video_proyecto_-_Athas_ptboqr.mp4',
+  'alai': '/Videos/Video_proyecto_Alai_nmabjm.mp4',
+  'astre': '/Videos/Video Astre (Apto Modelo).mp4',
+  'gaudi': '/Videos/Video_proyecto_-_Gaudi_ttsb7h.mp4',
+  'filia': '/Videos/Video_proyecto_-_Filia_xbc3da.mp4',
+  'amitie': '/Videos/Video_proyecto_-_Amitie_yyd81s.mp4',
+  'lagun': '/Videos/Video_proyecto_-_Lagun_hcvxxb.mp4',
+  'verona': '/Videos/Video_proyecto_-_Verona_u7febi.mp4',
+  'siena': '/Videos/Video_proyecto_-_Siena_zwm741.mp4',
+  'piamonte': '/Videos/Video_proyecto_-_Piamonte_ikfupf.mp4',
+};
+const heroVideo = videoMap[project.id];
+
+const coordsMap: Record<string, [number, number]> = {
+  'athas': [9.0137152, -79.5079926],
+  'alai': [9.0015646, -79.5162092],
+  'astre': [8.9823792, -79.5199793],
+  'gaudi': [9.0072838, -79.5089367],
+  'filia': [9.0780227, -79.4132632],
+  'amitie': [9.0706808, -79.3996566],
+  'lagun': [9.0715312, -79.4658814],
+  'verona': [8.9247678, -79.7653817],
+  'siena': [8.9248613, -79.7603834],
+  'piamonte': [8.9186541, -79.7499648],
+  'provenza': [9.111219, -79.252625],
+};
+const [projectLat, projectLng] = coordsMap[project.id] || [9.0, -79.5];
+const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
+
+const galleryLen = project.gallery.length;
+const amenityImages = [
+  project.gallery[0],
+  project.gallery[Math.floor(galleryLen / 3)],
+  project.gallery[Math.floor(galleryLen * 2 / 3)]
+];
 ---
 
-<Layout title={`${project.name} | Haus Panama`}>
-  <HeaderAstro />
-  
-  <!-- Pipedrive LeadBooster Chat -->
+<Layout title={`${project.name} | Haus Panama`} fixedHeader={false}>
+  <HeaderNonSticky />
   <ChatWrapper />
-  <main class="font-helvetica w-full min-h-screen -mt-[7px] relative">
-    <!-- Hero section con imagen de fondo y logo del proyecto -->
-    <div class="relative w-full h-[40vh] md:h-[50vh] xl:h-[60vh] overflow-hidden">
-      <img 
-        src={`/Proyectos/${getProjectLocation(project.id)}/${project.id.charAt(0).toUpperCase() + project.id.slice(1)}/${project.coverImage}`} 
-        alt={project.name}
-        class="w-full h-full object-cover object-bottom blur-[1px]"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
-        <div class="flex flex-col items-center gap-6 md:gap-8">
-          <div class="relative">
-            <img 
-              src={`/Portadas/${project.logo2}`} 
-              alt={project.name}
-              class="w-full max-w-[350px] md:max-w-[500px] xl:max-w-[650px] aos-init aos-animate transition-all duration-500"
-              loading="lazy"
-            />  
-            <p class="text-white text-sm md:text-lg xl:text-2xl absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap z-10 px-2 pt-24 rounded">{project.location}</p>
-          </div>
-          
+
+  <main class="font-helvetica w-full bg-white">
+    <!-- 1. HERO SECTION (rounded, padded like home hero) -->
+    <section class="w-full px-5 lg:px-8 pt-0">
+      <div class="relative w-full max-w-[1312px] mx-auto rounded-[24px] overflow-hidden">
+        {heroVideo ? (
+          <video 
+            src={heroVideo}
+            autoplay muted loop playsinline
+            class="w-full h-[50vh] md:h-[55vh] lg:h-[65vh] xl:h-[70vh] object-cover"
+          />
+        ) : (
+          <img 
+            src={`${imageBasePath}/${project.coverImage}`} 
+            alt={project.name}
+            class="w-full h-[50vh] md:h-[55vh] lg:h-[65vh] xl:h-[70vh] object-cover"
+            loading="eager"
+          />
+        )}
+        <div class="absolute inset-0 bg-[#464648]/40 mix-blend-multiply"></div>
+        
+        <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 flex flex-col items-end gap-3">
+          <img 
+            src={`/Portadas/${project.logo2}`} 
+            alt={project.name}
+            class="w-[120px] sm:w-[160px] md:w-[200px] lg:w-[250px] object-contain drop-shadow-lg"
+            loading="eager"
+          />
           <BrochureDownloader
             client:load
             brochureFile={project.brochureFile}
             projectName={project.name}
             buttonText={project.buttonText}
-            projectLocation={getProjectLocation(project.id)}
+            projectLocation={projectLocation}
             projectId={project.id}
-            className="bg-[var(--primary)] text-white rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base xl:text-lg font-medium transition-all hover:text-[var(--primary)] hover:bg-[var(--background)]/90 transform hover:scale-105 mt-2"
+            className="bg-[var(--primary)] text-white rounded-[8px] px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-medium transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
           />
         </div>
       </div>
-    </div>
-    
-    <!-- Shadow de transición sutil -->
-    <div class="h-2 w-full relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent shadow-[0_-4px_8px_rgba(0,0,0,0.2)]"></div>
-    </div>
-    
-    <!-- Contenido principal -->
-    <div class="w-full bg-white">
-      <!-- Sección con padding para título y descripción -->
-      <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 md:py-12 xl:py-16">
-        <!-- Separador horizontal antes del título -->
-        <div class="h-1 w-1/2 bg-[var(--background)] max-w-xs mx-auto my-4"></div>
+    </section>
+
+    <!-- 2. PROJECT INFO SECTION -->
+    <section class="w-full px-5 lg:px-8 py-12 md:py-16 lg:py-20">
+      <div class="max-w-[800px] mx-auto text-center">
+        <span class="inline-block border border-[#3a3a3c] rounded-full px-5 py-1 text-sm text-[#3a3a3c] mb-4">
+          PH {project.name}
+        </span>
         
-        <!-- Título y descripción -->
-        <div class="mb-8 md:mb-12">
-          <h1 class="text-gray-800 text-3xl md:text-4xl xl:text-5xl font-bold mb-6 mt-8 text-center">
-            {project.slogan}
-          </h1>
-          <p class="text-gray-600 text-sm md:text-lg xl:text-xl leading-relaxed text-center max-w-3xl mx-auto">
-            {project.description}
-          </p>
+        <h1 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-tight mb-6">
+          {project.slogan}
+        </h1>
+        
+        <p class="text-[#3a3a3c]/70 text-sm sm:text-base md:text-lg leading-relaxed mb-10 max-w-[700px] mx-auto">
+          {project.description}
+        </p>
+        
+        <div class="flex items-center justify-center gap-10 md:gap-14">
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 md:w-12 md:h-12 text-[#3a3a3c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span class="text-[#3a3a3c] text-sm md:text-base font-medium">{project.bedrooms} rec.</span>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 md:w-12 md:h-12 text-[#3a3a3c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+            </svg>
+            <span class="text-[#3a3a3c] text-sm md:text-base font-medium">desde {project.size}m²</span>
+          </div>
         </div>
       </div>
-      
-      <!-- Galería de imágenes / Carousel -->
-      <div class="w-full overflow-hidden py-2 md:py-4 bg-[var(--background)]/10">  
-        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
-          <ImageCarousel client:visible images={project.gallery} projectId={project.id} projectLocation={getProjectLocation(project.id)} />
-        </div>
+    </section>
+
+    <!-- 3. GALLERY CAROUSEL -->
+    <section class="w-full pb-12 md:pb-16">
+      <div class="w-full">
+        <ImageCarousel client:visible images={project.gallery} projectId={project.id} projectLocation={projectLocation} />
       </div>
-      
-      <!-- Volvemos al contenido con padding -->
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12 py-8 md:py-12 xl:py-16">
-        <!-- Apartamentos - Información de tamaño y recámaras -->
-        <div class="mb-6 md:mb-8">
-          <h2 class="text-gray-800 text-2xl md:text-3xl xl:text-4xl text-center font-bold mb-4">
-            {project.id === 'piamonte' ? (
-              <>Casas de 3 y 4 recámaras con terrenos desde 160m² y 167m² de construcción.</>
-            ) : project.id === 'siena' ? (
-              <>Casas de 3 recámaras con terrenos desde 180m² y 121m² de construcción</>
-            ) : project.id === 'verona' ? (
-              <>Casas de 2 y 3 recámaras con terrenos desde 160m² y 75m² de construcción</>
-            ) : (
-              <>{project.propertyType} {project.bedrooms} recámaras desde {project.size}m²</>
-            )}
-          </h2>
+    </section>
+    <!-- 4. AMENIDADES SECTION -->
+    <section class="w-full px-5 lg:px-8 py-12 md:py-16 lg:py-20">
+      <div class="max-w-[1100px] mx-auto">
+        <div class="text-center mb-4">
+          <span class="inline-block border border-[#3a3a3c] rounded-full px-5 py-1 text-sm text-[#3a3a3c]">
+            amenidades
+          </span>
         </div>
         
-        <!-- Separador horizontal después de la información de apartamentos -->
-        <div class="h-1 w-1/2 bg-[var(--background)] max-w-xs mx-auto my-6"></div>
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-tight text-center mb-10 lg:mb-14">
+          amenidades pensadas para el día a día
+        </h2>
         
-        <!-- Contenedor flex para video y características en desktop -->
-        <div class="flex flex-col lg:flex-row lg:items-stretch lg:justify-between gap-8 lg:gap-12 xl:gap-16 mb-12">
-          <!-- Características del proyecto -->
-          <div class="bg-white rounded-xl shadow-lg border border-gray-100/60 p-6 md:p-8 lg:p-10 lg:w-1/2 transition-all duration-300 hover:shadow-xl">
-          <h2 class="text-[var(--primary)] text-center text-2xl md:text-3xl xl:text-4xl font-bold mb-2 md:mb-4">
-            amenidades del proyecto
-          </h2>
-          
-          <!-- Separador horizontal después del título de características -->
-          <div class="h-1 w-1/2 bg-[var(--background)] max-w-xs md:max-w-sm mx-auto my-4 md:my-6"></div>
-          
-          <ul class="grid grid-cols-3 gap-2 xs:gap-3 md:gap-5 text-center">
-            {project.features.map((feature, index) => (
-              <li class="text-gray-700 text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-300 hover:text-[var(--primary)] hover:font-bold hover:scale-[1.05] cursor-default py-1 md:py-2 px-1 flex flex-col items-center justify-center">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-14 mb-10 lg:mb-14">
+          {project.features.slice(0, 6).map((feature) => (
+            <div class="flex flex-col items-center gap-2 w-[80px] md:w-[100px]">
+              <img 
+                src={`/Icons/${feature.icon}`} 
+                alt={feature.text}
+                class="w-12 h-12 md:w-14 md:h-14"
+                loading="lazy"
+              />
+              <span class="text-[#3a3a3c] text-xs md:text-sm text-center leading-tight">{feature.text}</span>
+            </div>
+          ))}
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
+          {amenityImages.map((img) => (
+            <div class="flex flex-col gap-2">
+              <div class="rounded-[10px] overflow-hidden aspect-[4/3]">
                 <img 
-                  src={`/Icons/${feature.icon}`} 
-                  alt={`Icono de ${feature.text}`}
-                  class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-1 sm:mb-2"
+                  src={`${imageBasePath}/${img}`}
+                  alt="Amenidad del proyecto"
+                  class="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <span class="leading-tight">{feature.text}</span>
-              </li>
-            ))}
-          </ul>
+              </div>
+              <p class="text-[#3a3a3c]/60 text-xs md:text-sm">Espacio para relajarse y disfrutar del tiempo libre.</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MAP + CONTACT FORM SECTION -->
+    <section class="w-full px-5 lg:px-8 py-12 md:py-16 lg:py-20 bg-white">
+      <div class="max-w-[1312px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          <div class="flex flex-col gap-3">
+            <div class="rounded-[10px] overflow-hidden min-h-[400px] flex-1">
+              <MapboxMap client:visible lat={projectLat} lng={projectLng} projectName={project.name} mapsUrl={project.mapsUrl} accessToken={MAPBOX_TOKEN} />
+            </div>
+            <a
+              href={project.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-[var(--primary)] text-white text-sm font-medium px-4 py-2.5 rounded-[8px] flex items-center justify-center gap-2 hover:brightness-110 transition-all w-fit"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              ver en Google Maps
+            </a>
           </div>
           
-          <!-- Video del proyecto -->
-          <div class="lg:w-1/2 flex items-center">
-            <div class="w-full h-full rounded-xl overflow-hidden shadow-lg">
-              <LocalVideo 
-                videoSrc={`Videos/${project.videoFile}`} 
-                thumbnailPath={`Proyectos/${getProjectLocation(project.id)}/${project.id.charAt(0).toUpperCase() + project.id.slice(1)}/${project.videoThumbnail || project.coverImage}`}
-                altText="Video del proyecto"
-                className="w-full h-full object-cover"
-              />
+          <div class="bg-white rounded-[10px] flex flex-col">
+            <style is:inline>
+              .pipedriveWebForms { width: 100%; display: flex; flex-direction: column; align-items: center; flex: 1; }
+              .pipedrive-form-iframe { width: 100% !important; height: 100% !important; min-height: 600px !important; overflow: hidden !important; border: none !important; border-radius: 0 0 10px 10px !important; display: block !important; flex-grow: 1 !important; }
+              .pipedrive-form-container { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; overflow: visible; }
+              .ppf__button { margin-bottom: 0 !important; }
+              .ppf__form > div:last-child { margin-bottom: 0 !important; }
+              @media (max-width: 639px) { .pipedrive-form-container { padding: 0; } }
+              @media (min-width: 1024px) { .ppf__form { padding: 0 !important; margin: 0 !important; } .ppf__field { margin-bottom: 12px !important; } }
+            </style>
+            
+            <div class="px-6 md:px-8 pt-6 md:pt-8">
+              <h2 class="text-[var(--primary)] text-xl md:text-2xl lg:text-3xl font-bold text-center italic mb-2">
+                ¡Gracias por tu interés en nuestro proyecto!
+              </h2>
+              <p class="text-center text-sm md:text-base text-[#3a3a3c]/70 mb-6">
+                Por favor brindanos tus datos para poder contactarte y enviarte información más detallada del proyecto.
+              </p>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Separador horizontal después del video -->
-      <div class="h-1 w-1/2 bg-[var(--background)] max-w-xs mx-auto my-6"></div>
-      
-      <!-- Mapa de ubicación -->
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12 mb-6">
-        <!-- Componente de modal para el mapa -->
-        <MapModal client:visible mapImage={project.mapImage} mapsUrl={project.mapsUrl} projectName={project.name} />
-        
-        <!-- Botón de ubicación con Google Maps -->
-        <div class="flex justify-center mt-4">
-          <a 
-            href={project.mapsUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--primary)] hover:bg-[#ff7d00] text-white rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <img 
-              src="/Icons/location.svg" 
-              alt="Icono de ubicación" 
-              class="w-5 h-5 mr-1"
-              loading="lazy"
-            />
-            <span class="font-medium">ubicación</span>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Separador horizontal después del mapa de ubicación -->
-      <div class="h-1 w-1/2 bg-[var(--background)] max-w-xs mx-auto my-6"></div>
-      <!-- Sección de formulario de contacto -->
-      <div class="container mx-auto max-w-2xl lg:max-w-3xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-12">
-      <!-- Formulario de contacto de Pipedrive -->
-      <div class="rounded-xl shadow-xl bg-white transition-all duration-300 hover:shadow-2xl">
-        
-        <div class="rounded-xl border border-[var(--background)] px-4 py-6 md:px-6 md:py-8 lg:px-4 lg:py-4 xl:px-4 xl:py-4">
-          <style is:inline>
-            /* Estilos generales del formulario */
-            .pipedriveWebForms {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            }
             
-            /* Ajustes responsivos para el iframe */
-            .pipedrive-form-iframe {
-              width: 100% !important;
-              overflow: hidden !important;
-              border: none !important;
-              border-radius: 0.5rem !important;
-              display: block !important;
-              flex-grow: 1 !important;
-            }
-            
-            /* Contenedor del formulario responsivo */
-            .pipedrive-form-container {
-              width: 100%;
-              height: auto;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              overflow: visible;
-            }
-            
-            /* Ajustes espaciado para Pipedrive forms */
-            .ppf__button {
-              margin-bottom: 0 !important;
-            }
-            
-            .ppf__form > div:last-child {
-              margin-bottom: 0 !important;
-            }
-            
-            @media (max-width: 639px) {
-              .pipedrive-form-container {
-                padding: 0;
-              }
-            }
-            
-            @media (min-width: 640px) {
-              .pipedrive-form-iframe {
-                min-height: 500px;
-              }
-            }
-            
-            @media (min-width: 1024px) {
-              .pipedrive-form-iframe {
-                min-height: 550px;
-              }
-              
-              .ppf__form {
-                padding: 0 !important;
-                margin: 0 !important;
-              }
-              
-              .ppf__field {
-                margin-bottom: 12px !important;
-              }
-            }
-          </style>
-          <h2 class="text-[var(--primary)] text-2xl md:text-3xl xl:text-4xl font-bold text-center mt-6 lg:mt-2 lg:mb-2">
-            ¡Gracias por tu interés en nuestro proyecto!
-          </h2>
-          <p class="text-center text-xs md:text-base xl:text-lg text-gray-600 mt-4 mb-6 lg:mt-2 lg:mb-2 max-w-xl mx-auto">
-            Por favor brindanos tus datos para poder contactarte y enviarte
-            información más detallada del proyecto.
-          </p>
-          <div class="pipedrive-form-container max-w-md md:max-w-full mx-auto">
-            <div
-              class="pipedriveWebForms w-full"
-              data-pd-webforms={project.pipedriveFormUrl}
-              id={`form-${project.id}`}
-            >
-              <script define:vars={{ formId: project.id }}>
-                // Función para ajustar dinámicamente el tamaño del iframe basado en su contenido
-                window.addEventListener('message', function(event) {
-                  // Verificar que el mensaje viene del iframe de Pipedrive
-                  if (event.data && typeof event.data === 'object' && event.data.type === 'pipedrive-form-height') {
-                    const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
-                    const iframe = document.querySelector(iframeSelector);
-                    if (iframe && event.data.height) {
-                      // Asegurar que estamos modificando un elemento HTML con interfaz HTMLElement
-                      if (iframe instanceof HTMLElement) {
+            <div class="pipedrive-form-container">
+              <div
+                class="pipedriveWebForms w-full"
+                data-pd-webforms={project.pipedriveFormUrl}
+                id={`form-${project.id}`}
+              >
+                <script define:vars={{ formId: project.id }}>
+                  window.addEventListener('message', function(event) {
+                    if (event.data && typeof event.data === 'object' && event.data.type === 'pipedrive-form-height') {
+                      const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
+                      const iframe = document.querySelector(iframeSelector);
+                      if (iframe && event.data.height && iframe instanceof HTMLElement) {
                         iframe.style.height = `${event.data.height}px`;
                       }
                     }
-                  }
-                });
+                  });
 
-                // Función para ajustar automáticamente la altura del iframe
-                function adjustIframeHeight() {
-                  const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
-                  const iframe = document.querySelector(iframeSelector);
-                  
-                  // Asegurarse de que el iframe exista antes de continuar
-                  if (iframe && iframe.contentWindow) {
-                    try {
-                      // Intentar obtener la altura del contenido
-                      const height = iframe.contentWindow.document.body.scrollHeight;
-                      if (height > 400) {
-                        iframe.style.height = `${height}px`;
+                  function adjustIframeHeight() {
+                    const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
+                    const iframe = document.querySelector(iframeSelector);
+                    if (iframe && iframe.contentWindow) {
+                      try {
+                        const height = iframe.contentWindow.document.body.scrollHeight;
+                        if (height > 400) { iframe.style.height = `${height}px`; }
+                      } catch (e) {
+                        console.log('CORS policy prevents iframe height reading');
                       }
-                    } catch (e) {
-                      // Error de seguridad por política de mismo origen, es normal
-                      console.log('No se puede acceder al contenido del iframe por política de seguridad');
                     }
                   }
-                }
 
-                // Cargar el script de Pipedrive
-                const script = document.createElement('script');
-                script.src = 'https://webforms.pipedrive.com/f/loader';
-                script.async = true;
-                document.body.appendChild(script);
+                  const script = document.createElement('script');
+                  script.src = 'https://webforms.pipedrive.com/f/loader';
+                  script.async = true;
+                  document.body.appendChild(script);
+                  setTimeout(adjustIframeHeight, 2000);
+                  setTimeout(adjustIframeHeight, 4000);
+                </script>
 
-                // Ajustar altura periódicamente (como fall-back)
-                setTimeout(adjustIframeHeight, 2000);
-                setTimeout(adjustIframeHeight, 4000); // Intentar de nuevo después de que el contenido esté completamente cargado
-              </script>
-
-              <iframe
-                src={`${project.pipedriveFormUrl}?embedded=1&uuid=form-${project.id}`}
-                name={`hauspanama-${project.id}`}
-                title="Web Forms"
-                class="pipedrive-form-iframe"
-                scrolling="no"
-                allowtransparency="true"
-              ></iframe>
+                <iframe
+                  src={`${project.pipedriveFormUrl}?embedded=1&uuid=form-${project.id}`}
+                  name={`hauspanama-${project.id}`}
+                  title="Web Forms"
+                  class="pipedrive-form-iframe"
+                  scrolling="no"
+                  allowtransparency="true"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Footer adaptado para el detalle de proyecto -->
-    <footer class="bg-white py-8 md:py-10 xl:py-12 px-4 md:px-6 border-t border-gray-100">
-      <div class="container mx-auto max-w-7xl flex flex-col items-center">
-        <!-- Social Icons -->
-        <div class="flex items-center gap-2 md:gap-4 mb-4 md:mb-6 justify-center">
-        <!-- Facebook -->
-    <a href="https://www.facebook.com/HausPanamaOficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook Haus Panama" class="block transition-transform hover:scale-110">
-      <LocalImage src="Icons/facebook.svg" alt="Facebook" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
-    </a>
-    
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@hauspanama5505" target="_blank" rel="noopener noreferrer" aria-label="YouTube Haus Panama" class="block transition-transform hover:scale-110">
-      <LocalImage src="Icons/youtube.svg" alt="YouTube" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
-    </a>
-    
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/hauspanama/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Haus Panama" class="block transition-transform hover:scale-110">
-      <LocalImage src="Icons/instagram.svg" alt="Instagram" width={35} height={35} className="w-8 h-8 md:w-10 md:h-10" />
-    </a>
-        </div>
-        <div class="mb-4 md:mb-6">
-          <p class="text-xs md:text-sm text-gray-500 font-helvetica text-center">una empresa de</p>
-          <LocalImage src="Logos/semahLogo_lh5hyz.png" alt="Semah" className="h-6 md:h-8" />
-        </div>
-        
-      </div>
-    </footer>
+    </section>
   </main>
+
+  <SocialFooter />
 </Layout>

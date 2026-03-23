@@ -1,0 +1,113 @@
+---
+---
+
+<section id="sobre-nosotros" class="w-full px-5 lg:px-8 py-12 md:py-16 lg:py-20">
+  <div class="max-w-[1180px] mx-auto">
+    <!-- Eyebrow label -->
+    <div class="mb-6 lg:mb-0">
+      <span class="inline-block border border-[#3a3a3c] rounded-full px-5 py-1 text-sm text-[#3a3a3c]">sobre nosotros</span>
+    </div>
+    
+    <!-- 3-column layout: Text + Image + Dropdowns -->
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-14 mt-4 lg:mt-8">
+      <!-- Column 1: Text -->
+      <div class="flex flex-col gap-4 lg:w-1/3">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-[36px] xl:text-[42px] leading-tight">
+          hogares pensados para las familias panameñas
+        </h2>
+        <p class="text-[#3a3a3c] text-sm sm:text-base lg:text-[16px] leading-relaxed lg:leading-[21px] text-justify">
+          en haus panamá hemos dedicado más de dos décadas al desarrollo de proyectos residenciales en ubicaciones clave de la ciudad, creando espacios pensados para el estilo de vida familiar y urbano de nuestros residentes. Nuestra trayectoria se ha forjado con experiencia, compromiso y una atención cuidadosa al detalle, acompañando a cada cliente en la búsqueda de un espacio que se sienta como hogar.
+        </p>
+      </div>
+      
+      <!-- Column 2: Image -->
+      <div class="lg:w-1/3">
+        <div class="w-full h-[300px] sm:h-[360px] lg:h-[420px] rounded-2xl overflow-hidden">
+          <img 
+            src="/Proyectos/Centro/Athas/Fotos_Athas-06.webp" 
+            alt="Oficinas Haus Panama" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      
+      <!-- Column 3: Accordion dropdowns -->
+      <div class="flex flex-col gap-5 lg:gap-6 lg:w-1/3">
+        <!-- Misión (open by default) -->
+        <div class="accordion-item rounded-[5px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(152,152,152,0.25)]" data-accordion="mision">
+          <button class="accordion-btn group w-full flex items-center justify-between px-[18px] py-5 bg-[var(--primary)] text-white transition-all duration-300 cursor-pointer" data-target="mision">
+            <span class="text-xl lg:text-2xl">nuestra misión</span>
+            <svg class="accordion-arrow w-8 h-8 transition-transform duration-300 -rotate-90 group-hover:-translate-y-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+          </button>
+          <div class="accordion-content bg-[var(--primary)] px-[18px] pb-5 text-white text-sm lg:text-base leading-[21px]" data-content="mision">
+            <p>nuestra misión es ofrecer viviendas residenciales bien ubicadas y de calidad que respondan a las necesidades reales de quienes buscan un lugar para vivir o crecer en Panamá, con servicios y espacios que aporten bienestar y tranquilidad día tras día.</p>
+          </div>
+        </div>
+        
+        <!-- Visión (closed) -->
+        <div class="accordion-item rounded-[5px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(152,152,152,0.25)]" data-accordion="vision">
+          <button class="accordion-btn group w-full flex items-center justify-between px-[18px] py-5 bg-white text-[#3a3a3c] transition-all duration-300 cursor-pointer" data-target="vision">
+            <span class="text-xl lg:text-2xl">nuestra visión</span>
+            <svg class="accordion-arrow w-8 h-8 transition-transform duration-300 group-hover:-translate-y-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+          </button>
+          <div class="accordion-content bg-white px-[18px] pb-5 text-[#3a3a3c] text-sm lg:text-base leading-[21px] hidden" data-content="vision">
+            <p>ser reconocidos como la empresa referente en desarrollo residencial en Panamá, por la calidad de nuestros proyectos, la confianza que generamos y el impacto positivo que dejamos en cada comunidad donde construimos.</p>
+          </div>
+        </div>
+        
+        <!-- Valores (closed) -->
+        <div class="accordion-item rounded-[5px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(152,152,152,0.25)]" data-accordion="valores">
+          <button class="accordion-btn group w-full flex items-center justify-between px-[18px] py-5 bg-white text-[#3a3a3c] transition-all duration-300 cursor-pointer" data-target="valores">
+            <span class="text-xl lg:text-2xl">nuestros valores</span>
+            <svg class="accordion-arrow w-8 h-8 transition-transform duration-300 group-hover:-translate-y-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+          </button>
+          <div class="accordion-content bg-white px-[18px] pb-5 text-[#3a3a3c] text-sm lg:text-base leading-[21px] hidden" data-content="valores">
+            <p>compromiso, calidad, transparencia, innovación y responsabilidad social. Estos pilares guían cada decisión que tomamos, desde el diseño de nuestros proyectos hasta la relación con nuestros clientes y comunidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordionBtns = document.querySelectorAll('.accordion-btn');
+    
+    accordionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        const content = document.querySelector(`[data-content="${target}"]`);
+        const arrow = btn.querySelector('.accordion-arrow');
+        
+        if (!content || !arrow) return;
+        
+        const isOpen = !content.classList.contains('hidden');
+        
+        // Close all accordions first
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.accordion-btn').forEach(b => {
+          b.classList.remove('bg-[var(--primary)]', 'text-white');
+          b.classList.add('bg-white', 'text-[#3a3a3c]');
+          const a = b.querySelector('.accordion-arrow');
+          if (a) a.classList.remove('-rotate-90');
+        });
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          c.classList.remove('bg-[var(--primary)]', 'text-white');
+          c.classList.add('bg-white', 'text-[#3a3a3c]');
+        });
+        
+        // If was closed, open it
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          content.classList.remove('bg-white', 'text-[#3a3a3c]');
+          content.classList.add('bg-[var(--primary)]', 'text-white');
+          btn.classList.remove('bg-white', 'text-[#3a3a3c]');
+          btn.classList.add('bg-[var(--primary)]', 'text-white');
+          arrow.classList.add('-rotate-90');
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+export interface Props {
+  name: string;
+  href: string;
+  coverImage: string;
+  logoWhite: string;
+  price: string;
+  locationBold: string;
+  locationDetail: string;
+  preVenta?: boolean;
+}
+
+const { name, href, coverImage, logoWhite, price, locationBold, locationDetail, preVenta = false } = Astro.props;
+---
+
+<div class="bg-[#f7f7f7] rounded-[10px] overflow-hidden flex flex-col w-full">
+  <!-- Image area -->
+  <a href={href} class="relative block aspect-[4/3] overflow-hidden group">
+    <img 
+      src={coverImage} 
+      alt={name} 
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+    
+    <!-- Price pill -->
+    <div class="absolute top-3 right-3 bg-[var(--primary)] text-white text-xs font-bold px-3 py-1.5 rounded-full">
+      desde {price}
+    </div>
+    
+    <!-- PRE-VENTA ribbon -->
+    {preVenta && (
+      <div class="absolute top-0 left-0 overflow-hidden w-[100px] h-[100px]">
+        <div class="absolute -left-[30px] top-[18px] -rotate-45 bg-[var(--primary)] text-white text-[10px] font-bold py-1 px-8 shadow-md uppercase tracking-wider w-[160px] text-center">
+          pre-venta
+        </div>
+      </div>
+    )}
+    
+    <!-- Project logo (white) -->
+    <div class="absolute bottom-3 left-3 z-10">
+      <img 
+        src={logoWhite} 
+        alt={`Logo ${name}`} 
+        class="h-[30px] sm:h-[35px] lg:h-[40px] w-auto object-contain drop-shadow-lg"
+        loading="lazy"
+      />
+    </div>
+  </a>
+  
+  <!-- Content area -->
+  <div class="flex flex-col gap-3 p-4">
+    <!-- Location -->
+    <div class="flex items-start gap-2">
+      <div class="w-[22px] h-[22px] rounded-full bg-[var(--primary)] flex items-center justify-center flex-shrink-0 mt-0.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      <p class="text-[#3a3a3c] text-xs sm:text-sm leading-snug">
+        <span class="font-bold">{locationBold}</span> <span class="text-[#3a3a3c]/70">({locationDetail})</span>
+      </p>
+    </div>
+    
+    <!-- CTA button -->
+    <a 
+      href={href} 
+      class="bg-[var(--primary)] text-white font-bold text-sm py-2.5 rounded-[6px] text-center transition-all duration-300 hover:brightness-110 hover:scale-[1.02] block"
+    >
+      ver proyecto
+    </a>
+  </div>
+</div>

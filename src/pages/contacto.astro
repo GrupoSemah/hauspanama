@@ -1,352 +1,182 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeaderAstro from '../components/HeaderAstro.astro';
-import SocialFooter from '../components/SocialFooter.astro';
-import LocalImage from '../components/LocalImage.astro';
+import HeaderNonSticky from '../components/home/HeaderNonSticky.astro';
+import SocialFooter from '../components/home/SocialFooter.astro';
 import ChatWrapper from '../components/ChatWrapper.astro';
 
 const pipedriveFormUrl = "https://webforms.pipedrive.com/f/1ytOitU9h6CfS4pSlk04tsAS3RnB6CGq2rSGVrXsTX7c612YxC0ILmQ7QnS3EOTcv";
 const formId = "contact-form";
 ---
 
-<Layout title="Contáctenos - Haus Panama" description="Contáctese con Haus Panama para obtener más información sobre nuestras propiedades exclusivas en la ciudad de Panamá.">
-  <HeaderAstro />
-  
-  <!-- Pipedrive LeadBooster Chat -->
+<Layout title="Contáctenos - Haus Panama" description="Contáctese con Haus Panama para obtener más información sobre nuestras propiedades exclusivas en la ciudad de Panamá." fixedHeader={false}>
+  <HeaderNonSticky />
   <ChatWrapper />
   
-  <!-- Contenedor principal - versión unificada para pantalla única -->
-  <main class="font-helvetica w-full bg-[var(--background)] py-4">
-    <!-- Título de la página -->
-    <div class="container max-w-7xl mx-auto px-4 mb-4">
-      <h1 class="text-2xl md:text-4xl font-bold text-center text-[var(--secondary)]">contáctenos</h1>
-      <div class="w-10 h-1 bg-[var(--primary)] mx-auto"></div>
-    </div>
-    
-    <!-- Versión Mobile: Cards separadas en una columna -->
-    <div class="lg:hidden py-6 bg-[var(--background)]">
-      <div class="container mx-auto px-4 space-y-6">
-        <!-- Card de información de contacto -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <!-- Imagen superior -->
-          <div class="w-full h-36">
-            <LocalImage 
-              src="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
-              alt="Vista de la Ciudad de Panamá" 
-              className="w-full h-full object-contain" 
-            />
-          </div>
-          
-          <!-- Información de contacto -->
-          <div class="p-3 space-y-2">
-            <!-- Teléfono -->
-            <div class="flex items-center">
-              <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+  <main class="font-helvetica w-full bg-white">
+    <!-- Hero section: comunícate con nosotros + form -->
+    <section class="w-full px-5 lg:px-8 py-10 lg:py-16">
+      <div class="max-w-[1180px] mx-auto">
+        <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+          <!-- Left: Contact info -->
+          <div class="flex flex-col gap-8 lg:w-1/2">
+            <h1 class="text-[#3a3a3c] font-bold text-3xl sm:text-4xl lg:text-[48px] xl:text-[56px] leading-tight">
+              comunícate<br/>con nosotros
+            </h1>
+            
+            <!-- Phone -->
+            <div class="flex items-center gap-4">
+              <div class="w-[50px] h-[50px] rounded-full bg-[var(--primary)] flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <div>
-                <h3 class="text-xs font-semibold text-[var(--primary)] mb-0.5">Teléfono</h3>
-                <p class="text-sm font-medium text-gray-700">+507 63307851</p>
-              </div>
+              <p class="text-[#3a3a3c] text-lg lg:text-xl font-medium">+507 6330 7851</p>
             </div>
             
             <!-- Email -->
-            <div class="flex items-center">
-              <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <div class="flex items-center gap-4">
+              <div class="w-[50px] h-[50px] rounded-full bg-[var(--primary)] flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <div>
-                <h3 class="text-xs font-semibold text-[var(--primary)] mb-0.5">Email</h3>
-                <p class="text-sm font-medium text-gray-700">ventas@hauspanama.com</p>
-              </div>
+              <p class="text-[#3a3a3c] text-lg lg:text-xl font-medium">ventas@hauspanama.com</p>
             </div>
             
-            <!-- Dirección -->
-            <div class="flex items-center">
-              <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <!-- Address -->
+            <div class="flex items-center gap-4">
+              <div class="w-[50px] h-[50px] rounded-full bg-[var(--primary)] flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <div>
-                <h3 class="text-xs font-semibold text-[var(--primary)] mb-0.5">Dirección</h3>
-                <p class="text-sm font-medium text-gray-700">Torres de las Américas</p>
-                <p class="text-sm font-medium text-gray-700">Torre C, Piso 33</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Card del formulario -->
-        <div class="bg-[var(-primary)] rounded-xl shadow-md overflow-hidden p-3">
-          <div class="pipedriveWebForms w-full"
-            data-pd-webforms={pipedriveFormUrl}
-            id="mobile-form"
-          >
-            <script src="https://webforms.pipedrive.com/f/loader"></script>
-            <iframe
-              src={`${pipedriveFormUrl}?embedded=1&uuid=mobile-form`}
-              name="hauspanama-contact-mobile"
-              title="Web Forms"
-              style="width: 100%; border: none; min-height: 520px; height: 100%; margin: 0 auto; border-radius: 0.5rem; overflow: visible;"
-              class="mx-auto block pipedrive-iframe"
-              scrolling="yes"
-              data-form-id="mobile-form"
-            ></iframe>
-          </div>
-        </div>
-        
-        <!-- Título de salas de ventas -->
-        <div class="text-center mb-4 mt-2">
-          <h2 class="text-xl font-bold text-[var(--secondary)]">visita nuestras salas de ventas</h2>
-          <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-1"></div>
-        </div>
-        
-        <!-- Cards de salas de ventas -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <div class="p-3 space-y-2">
-            <h3 class="text-lg font-bold text-[var(--secondary)] mb-1">sala de ventas en brisas</h3>
-            <div class="flex items-start">
-              <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-gray-700">PH Lagun, brisas via club de golf, diagonal al riba smith</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <div class="p-3 space-y-2">
-            <h3 class="text-lg font-bold text-[var(--secondary)] mb-1">sala de ventas en hato montaña</h3>
-            <div class="flex items-start">
-              <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-gray-700">Panama Oeste, Arraijan, Juan demostenes Arosemente, Hato montana via interamericana despues de la gasolineria puma</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Versión Desktop: Layout de grid en una sola card -->
-    <section class="hidden lg:flex lg:flex-grow lg:items-center lg:justify-center">
-      <div class="container max-w-5xl mx-auto px-4">
-        <!-- Card principal con sombra y bordes redondeados -->
-        <div class="bg-white rounded-xl  overflow-hidden lg:h-full lg:max-h-[calc(100vh-130px)]">
-          <div class="grid grid-cols-1 lg:grid-cols-2 lg:h-full">
-            
-            <!-- Lado izquierdo: Información de contacto -->
-            <div class="p-3 bg-gray-100 flex flex-col">
-              <!-- Imagen superior -->
-              <div class="mb-3 flex justify-center items-center py-1">
-                <LocalImage 
-                  src="Icons/Haus_construccion_emojis_3D_-_version_2_xkubfy.png" 
-                  alt="Vista de la Ciudad de Panamá" 
-                  className="h-52 w-72 object-contain" 
-                />
-              </div>
-              
-              <!-- Información de contacto -->
-              <div class="space-y-2 pl-1">
-                <!-- Teléfono -->
-                <div class="flex items-center">
-                  <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="text-xs font-semibold text-[var(--primary)] mb-0">Teléfono</h3>
-                    <p class="text-sm font-medium text-gray-700">+507 63307851</p>
-                  </div>
-                </div>
-                
-                <!-- Email -->
-                <div class="flex items-center">
-                  <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="text-xs font-semibold text-[var(--primary)] mb-0">Email</h3>
-                    <p class="text-sm font-medium text-gray-700">ventas@hauspanama.com</p>
-                  </div>
-                </div>
-                
-                <!-- Dirección -->
-                <div class="flex items-center">
-                  <div class="bg-[var(--primary)] p-2.5 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="text-xs font-semibold text-[var(--primary)] mb-0">Dirección</h3>
-                    <p class="text-sm font-medium text-gray-700">Torres de las Américas</p>
-                    <p class="text-sm font-medium text-gray-700">Torre C, Piso 33</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Lado derecho: Formulario -->
-            <div class="p-3 h-full bg-gray-100">
-              <!-- Formulario de Pipedrive implementado directamente con ancho controlado -->
-              <div class="mx-auto h-full w-full -mt-17">
-                <div
-                  data-pd-webforms={pipedriveFormUrl}
-                  id={formId}
-                >
-                  <script src="https://webforms.pipedrive.com/f/loader"></script>
-                  <iframe
-                    src={`${pipedriveFormUrl}?embedded=1&uuid=${formId}`}
-                    name="hauspanama-contact"
-                    title="Web Forms"
-                    style="width: 100%; border: none; height: 100%; margin: 0 auto; border-radius: 0.25rem; overflow: visible;"
-                    class="mx-auto block pipedrive-iframe"
-                    scrolling="yes"
-                    data-form-id={formId}
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Sección de salas de ventas para Desktop -->
-    <section class="hidden lg:block py-8 bg-[var(--background)]">
-      <div class="container max-w-6xl mx-auto px-4">
-        <!-- Título de sección -->
-        <div class="text-center mb-8">
-          <h2 class="text-2xl font-bold text-[var(--secondary)]">visita nuestras salas de ventas</h2>
-          <div class="w-16 h-1 bg-[var(--primary)] mx-auto mt-2"></div>
-        </div>
-        
-        <!-- Grid de cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <!-- Card 1: Sala de ventas en Brisas -->
-          <div class="bg-white rounded-xl shadow-md overflow-hidden h-full">
-            <div class="p-6 flex flex-col h-full">
-              <h3 class="text-xl font-bold text-[var(--secondary)] mb-4">sala de ventas en brisas</h3>
-              <div class="flex items-start">
-                <div class="bg-[var(--primary)] p-3 rounded-full mr-4 mt-1 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-base font-medium text-gray-700">PH Lagun, brisas via club de golf, diagonal al riba smith</p>
-                </div>
-              </div>
+              <p class="text-[#3a3a3c] text-lg lg:text-xl font-medium">Plaza Fidanque, Vía Porras</p>
             </div>
           </div>
           
-          <!-- Card 2: Sala de ventas en Hato Montaña -->
-          <div class="bg-white rounded-xl shadow-md overflow-hidden h-full">
-            <div class="p-6 flex flex-col h-full">
-              <h3 class="text-xl font-bold text-[var(--secondary)] mb-4">sala de ventas en hato montaña</h3>
-              <div class="flex items-start">
-                <div class="bg-[var(--primary)] p-3 rounded-full mr-4 mt-1 flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-base font-medium text-gray-700">Panama Oeste, Arraijan, Juan demostenes Arosemente, Hato montana via interamericana despues de la gasolineria puma</p>
-                </div>
+          <!-- Right: Pipedrive form -->
+          <div class="lg:w-1/2 w-full">
+            <div class="bg-white rounded-[10px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+              <div
+                data-pd-webforms={pipedriveFormUrl}
+                id={formId}
+              >
+                <script src="https://webforms.pipedrive.com/f/loader"></script>
+                <iframe
+                  src={`${pipedriveFormUrl}?embedded=1&uuid=${formId}`}
+                  name="hauspanama-contact"
+                  title="Formulario de contacto"
+                  style="width: 100%; border: none; min-height: 700px; height: 700px; margin: 0 auto; overflow: hidden;"
+                  class="mx-auto block pipedrive-iframe"
+                  scrolling="no"
+                  data-form-id={formId}
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    
+    <!-- Salas de venta section -->
+    <section class="w-full px-5 lg:px-8 py-10 lg:py-16 bg-white">
+      <div class="max-w-[1180px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-[40px] text-center mb-10 lg:mb-14">
+          visita nuestras salas de venta
+        </h2>
+        
+        <!-- Sales offices cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <!-- Hato Montaña -->
+          <a href="https://www.google.com/maps/place/Siena+Hato+Monta%C3%B1a/@8.9239842,-79.7627007,723m" target="_blank" rel="noopener noreferrer" class="bg-[var(--primary)] rounded-[10px] p-6 flex flex-col gap-3 transition-all duration-300 hover:brightness-110 hover:scale-[1.02]">
+            <h3 class="text-white font-bold text-base lg:text-lg">sala de ventas en hato montaña</h3>
+            <div class="flex items-start gap-3">
+              <div class="w-[30px] h-[30px] rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">PH Siena</p>
+                <p class="text-white/90 text-sm">Hato Montaña - arraijan</p>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Este -->
+          <a href="https://www.google.com/maps?ll=9.111219,-79.252625&z=16&t=m" target="_blank" rel="noopener noreferrer" class="bg-[var(--primary)] rounded-[10px] p-6 flex flex-col gap-3 transition-all duration-300 hover:brightness-110 hover:scale-[1.02]">
+            <h3 class="text-white font-bold text-base lg:text-lg">sala de ventas en el este</h3>
+            <div class="flex items-start gap-3">
+              <div class="w-[30px] h-[30px] rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">PH Provenza</p>
+                <p class="text-white/90 text-sm">pacora - San Diego</p>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Brisas -->
+          <a href="https://www.google.com/maps/place/PH+Lagun+by+Haus/@9.0715312,-79.4684563,860m" target="_blank" rel="noopener noreferrer" class="bg-[var(--primary)] rounded-[10px] p-6 flex flex-col gap-3 transition-all duration-300 hover:brightness-110 hover:scale-[1.02]">
+            <h3 class="text-white font-bold text-base lg:text-lg">sala de ventas en brisas</h3>
+            <div class="flex items-start gap-3">
+              <div class="w-[30px] h-[30px] rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">PH Lagun</p>
+                <p class="text-white/90 text-sm">brisas vía club de golf diagonal a riba smith</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <SocialFooter />
   </main>
-  
-  <SocialFooter />
 </Layout>
 
 <script>
-  // Script para hacer que los iframes de Pipedrive sean totalmente responsivos
   document.addEventListener('DOMContentLoaded', function() {
-    // Arreglar el nombre de la variable embebida (era 'embeded', ahora es 'embedded')
-    const pipedriveIframes = document.querySelectorAll<HTMLIFrameElement>('.pipedrive-iframe');
+    const pipedriveIframes = document.querySelectorAll('.pipedrive-iframe');
     
-    // Función para ajustar la altura del iframe basado en su contenido
-    const adjustIframeHeight = (iframe: HTMLIFrameElement): void => {
+    window.addEventListener('message', function(e) {
       try {
-        // Intentar comunicarse con el iframe
-        if (iframe.contentWindow) {
-          const height = iframe.contentWindow.document.body.scrollHeight;
-          if (height > 500) {
-            iframe.style.height = `${height + 50}px`; // Agregamos margen extra
-          }
-        }
-      } catch (error) {
-        // Error de seguridad de dominio cruzado (esperado), usamos alternativa
-        console.log('Usando método alternativo para el iframe');
-      }
-    };
-
-    // Definir la interfaz para los mensajes de Pipedrive
-    interface PipedriveHeightMessage {
-      type: string;
-      formId: string;
-      height: number;
-    }
-
-    // Escuchar los mensajes desde el iframe de Pipedrive
-    window.addEventListener('message', function(e: MessageEvent) {
-      try {
-        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data as Partial<PipedriveHeightMessage>;
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
         
         if (data && data.type === 'webforms:height') {
-          const formId = data.formId;
-          const height = data.height;
-          
-          // Buscar el iframe correspondiente
-          const iframe = document.querySelector<HTMLIFrameElement>(`.pipedrive-iframe[data-form-id="${formId}"]`);
-          if (iframe && height) {
-            iframe.style.height = `${Math.max(height, 520)}px`;
+          const iframe = document.querySelector<HTMLIFrameElement>(`.pipedrive-iframe[data-form-id="${data.formId}"]`);
+          if (iframe && data.height) {
+            iframe.style.height = `${Math.max(data.height, 520)}px`;
           }
         }
       } catch (error) {
-        // Ignorar errores de parseo JSON
+        // Ignore JSON parse errors
       }
     });
     
-    // Alternativa: comprobar periódicamente el tamaño
-    pipedriveIframes.forEach((iframe: HTMLIFrameElement) => {
-      // Intentar ajustar después de que cargue
-      iframe.addEventListener('load', () => {
-        setTimeout(() => adjustIframeHeight(iframe), 1000);
-        setTimeout(() => adjustIframeHeight(iframe), 2000);
-        setTimeout(() => adjustIframeHeight(iframe), 3000);
+    pipedriveIframes.forEach((iframe) => {
+      const iframeEl = iframe as HTMLIFrameElement;
+      iframeEl.addEventListener('load', () => {
+        setTimeout(() => {
+          try {
+            if (iframeEl.contentWindow) {
+              const height = iframeEl.contentWindow.document.body.scrollHeight;
+              if (height > 500) iframeEl.style.height = `${height + 50}px`;
+            }
+          } catch (_e) { /* cross-origin */ }
+        }, 2000);
       });
-      
-      // Verificar periódicamente para casos de cambios dinámicos
-      setInterval(() => adjustIframeHeight(iframe), 5000);
     });
   });
 </script>
