@@ -11,11 +11,13 @@ export interface Props {
 }
 
 const { name, href, coverImage, logoWhite, price, locationBold, locationDetail, preVenta = false } = Astro.props;
+const isExternal = href.startsWith('http');
+const linkAttrs = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
 <div class="bg-[#f7f7f7] rounded-[10px] overflow-hidden flex flex-col w-full">
   <!-- Image area -->
-  <a href={href} class="relative block aspect-[4/3] overflow-hidden group">
+  <a href={href} {...linkAttrs} class="relative block aspect-[4/3] overflow-hidden group">
     <img 
       src={coverImage} 
       alt={name} 
@@ -66,8 +68,9 @@ const { name, href, coverImage, logoWhite, price, locationBold, locationDetail, 
     </div>
     
     <!-- CTA button -->
-    <a 
-      href={href} 
+    <a
+      href={href}
+      {...linkAttrs}
       class="bg-[var(--primary)] text-white font-bold text-sm py-2.5 rounded-[6px] text-center transition-all duration-300 hover:brightness-110 hover:scale-[1.02] block"
     >
       ver proyecto

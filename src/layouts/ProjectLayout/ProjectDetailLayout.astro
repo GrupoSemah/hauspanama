@@ -11,7 +11,7 @@ import BrochureDownloader from '../../components/BrochureDownloader';
 function getProjectLocation(projectId: string): string {
   const locationMap: Record<string, string> = {
     'amitie': 'Este', 'filia': 'Este', 'lagun': 'Este', 'provenza': 'Este',
-    'verona': 'Oeste', 'siena': 'Oeste', 'piamonte': 'Oeste',
+    'verona': 'Oeste', 'siena': 'Oeste', 'piamonte': 'Oeste', 'solaris': 'Oeste',
     'athas': 'Centro', 'gaudi': 'Centro', 'alai': 'Centro', 'astre': 'Centro'
   };
   return locationMap[projectId] || 'Centro';
@@ -36,6 +36,7 @@ export interface Props {
     buttonText: string;
     features: { icon: string; text: string; }[];
     gallery: string[];
+    amenidades?: string[];
     videoFile: string;
     videoThumbnail: string;
     mapImage: string;
@@ -74,6 +75,7 @@ const coordsMap: Record<string, [number, number]> = {
   'lagun': [9.0715312, -79.4658814],
   'verona': [8.9247678, -79.7653817],
   'siena': [8.9248613, -79.7603834],
+  'solaris': [8.9248, -79.7630],
   'piamonte': [8.9186541, -79.7499648],
   'provenza': [9.111219, -79.252625],
 };
@@ -81,11 +83,17 @@ const [projectLat, projectLng] = coordsMap[project.id] || [9.0, -79.5];
 const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 
 const galleryLen = project.gallery.length;
-const amenityImages = [
-  project.gallery[0],
-  project.gallery[Math.floor(galleryLen / 3)],
-  project.gallery[Math.floor(galleryLen * 2 / 3)]
-];
+const amenityImages = project.amenidades && project.amenidades.length > 0
+  ? [
+      project.amenidades[0],
+      project.amenidades[Math.floor(project.amenidades.length / 3)],
+      project.amenidades[Math.floor(project.amenidades.length * 2 / 3)]
+    ]
+  : [
+      project.gallery[0],
+      project.gallery[Math.floor(galleryLen / 3)],
+      project.gallery[Math.floor(galleryLen * 2 / 3)]
+    ];
 ---
 
 <Layout title={`${project.name} | Haus Panama`} fixedHeader={false}>

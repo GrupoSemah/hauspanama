@@ -12,7 +12,7 @@ const projectsByZone = {
     { name: "áthas", path: "/athas" },
     { name: "gaudí", path: "/gaudi" },
     { name: "alai", path: "/alai" },
-    { name: "astre", path: "/astre" }
+    { name: "astre", path: "https://astrepanama.com" }
   ],
   este: [
     { name: "amitié", path: "/amitie" },
@@ -21,6 +21,7 @@ const projectsByZone = {
     { name: "provenza", path: "/provenza" }
   ],
   oeste: [
+    { name: "solaris", path: "/solaris" },
     { name: "verona", path: "/verona" },
     { name: "piamonte", path: "/piamonte" },
     { name: "siena", path: "/siena" }
@@ -52,8 +53,9 @@ const projectsByZone = {
         </button>
         <div class="zone-menu pl-2 hidden" data-zone="centro">
           {projectsByZone.centro.map(project => (
-            <a 
-              href={project.path} 
+            <a
+              href={project.path}
+              {...(project.path.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               class="block px-4 py-2 text-sm text-gray-700 transition-all duration-300 hover:text-[var(--primary)] hover:scale-120 transform origin-left"
             >
               {project.name}
@@ -74,8 +76,9 @@ const projectsByZone = {
         </button>
         <div class="zone-menu pl-2 hidden" data-zone="este">
           {projectsByZone.este.map(project => (
-            <a 
-              href={project.path} 
+            <a
+              href={project.path}
+              {...(project.path.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               class="block px-4 py-2 text-sm text-gray-700 transition-all duration-300 hover:text-[var(--primary)] hover:scale-120 transform origin-left"
             >
               {project.name}
@@ -96,8 +99,9 @@ const projectsByZone = {
         </button>
         <div class="zone-menu pl-2 hidden" data-zone="oeste">
           {projectsByZone.oeste.map(project => (
-            <a 
-              href={project.path} 
+            <a
+              href={project.path}
+              {...(project.path.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               class="block px-4 py-2 text-sm text-gray-700 transition-all duration-300 hover:text-[var(--primary)] hover:scale-120 transform origin-left"
             >
               {project.name}

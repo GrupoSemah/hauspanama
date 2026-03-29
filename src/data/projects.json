@@ -13,42 +13,72 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $125k",
-    "coverImage": "Fotos_Athas-16.webp",
-    "heroVideo": "Fotos_Athas-16.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Athas-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Athas-01.webp",
     "brochureFile": "Plantas_Athas_hwvbbz.pdf",
     "videoFile": "Video_proyecto_-_Athas_ptboqr.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC6hcyw8ddAUT9t1obChl4XMbeS7LuVgaOCv9MfNYi2Mp0behk4k2KGBh6romIlZ",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" }, 
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
-      { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "salón de fiesta" },
-      { "icon": "Web_page_icon_pet_park.svg", "text": "pet área" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha de basket" },
-      { "icon": "Web_page_icon_Coworking.svg", "text": "coworking" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_game_room.svg",
+        "text": "game room"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "salón de fiesta"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet área"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha de basket"
+      },
+      {
+        "icon": "Web_page_icon_Coworking.svg",
+        "text": "coworking"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Fotos_Athas-01.webp",
-      "Fotos_Athas-02.webp",
-      "Fotos_Athas-03.webp",
-      "Fotos_Athas-04.webp",
-      "Fotos_Athas-05.webp",
-      "Fotos_Athas-06.webp",
-      "Fotos_Athas-07.webp",
-      "Fotos_Athas-08.webp",
-      "Fotos_Athas-09.webp",
-      "Fotos_Athas-10.webp",
-      "Fotos_Athas-11.webp",
-      "Fotos_Athas-12.webp",
-      "Fotos_Athas-13.webp",
-      "Fotos_Athas-14.webp",
-      "Fotos_Athas-15.webp",
-      "Fotos_Athas-16.webp"
+      "PRODUCTO/Carrusel-Producto Athas-01.webp",
+      "PRODUCTO/Carrusel-Producto Athas-02.webp",
+      "PRODUCTO/Carrusel-Producto Athas-03.webp",
+      "PRODUCTO/Carrusel-Producto Athas-04.webp",
+      "PRODUCTO/Carrusel-Producto Athas-05.webp",
+      "PRODUCTO/Carrusel-Producto Athas-06.webp",
+      "PRODUCTO/Carrusel-Producto Athas-07.webp",
+      "PRODUCTO/Carrusel-Producto Athas-08.webp",
+      "PRODUCTO/Carrusel-Producto Athas-09.webp",
+      "PRODUCTO/Carrusel-Producto Athas-10.webp",
+      "PRODUCTO/Carrusel-Producto Athas-11.webp"
     ],
-    "videoThumbnail": "Fotos_Athas-16.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Athas-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Athas-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Athas-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Athas-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Athas-05.webp",
+      "AMENIDADES/Carrusel-Amenidades Athas-06.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Athas-01.webp",
     "mapImage": "Mapa_-_Athas_ftz7kk.webp",
     "mapsUrl": "https://www.google.com/maps/place/P.H.+%C3%81THAS/@9.0137152,-79.5079926,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8faca9b6f18a1f9d:0xe8cb2203bc102756!8m2!3d9.0137152!4d-79.5079926!16s%2Fg%2F11fxb00jtv?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -66,43 +96,63 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $135k",
-    "coverImage": "Fotos_Alai-19.webp",
-    "heroVideo": "Fotos_Alai-19.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Alai-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Alai-01.webp",
     "brochureFile": "Plantas___Alai_-_Torre_100_y_200_lbhvc6.pdf",
     "videoFile": "Video_proyecto_Alai_nmabjm.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC5Q9coclqNPSHuMHFDSKjfqxw7uuSClZcvN0YGBAg24C8Ax6vvcIZ9ZmNkBjnUf",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" }, 
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
-      { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
-      { "icon": "Web_page_icon_Guarderia.svg", "text": "guardería"},
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "salón de fiesta" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_game_room.svg",
+        "text": "game room"
+      },
+      {
+        "icon": "Web_page_icon_Guarderia.svg",
+        "text": "guardería"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "salón de fiesta"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Fotos_Alai-01.webp",
-      "Fotos_Alai-02.webp",
-      "Fotos_Alai-03.webp",
-      "Fotos_Alai-04.webp",
-      "Fotos_Alai-05.webp",
-      "Fotos_Alai-06.webp",
-      "Fotos_Alai-07.webp",
-      "Fotos_Alai-08.webp",
-      "Fotos_Alai-09.webp",
-      "Fotos_Alai-10.webp",
-      "Fotos_Alai-11.webp",
-      "Fotos_Alai-12.webp",
-      "Fotos_Alai-13.webp",
-      "Fotos_Alai-14.webp",
-      "Fotos_Alai-15.webp",
-      "Fotos_Alai-16.webp",
-      "Fotos_Alai-17.webp",
-      "Fotos_Alai-18.webp",
-      "Fotos_Alai-19.webp"
+      "PRODUCTO/Carrusel-Producto Alai-01.webp",
+      "PRODUCTO/Carrusel-Producto Alai-02.webp",
+      "PRODUCTO/Carrusel-Producto Alai-03.webp",
+      "PRODUCTO/Carrusel-Producto Alai-04.webp",
+      "PRODUCTO/Carrusel-Producto Alai-05.webp",
+      "PRODUCTO/Carrusel-Producto Alai-06.webp",
+      "PRODUCTO/Carrusel-Producto Alai-07.webp",
+      "PRODUCTO/Carrusel-Producto Alai-08.webp",
+      "PRODUCTO/Carrusel-Producto Alai-09.webp",
+      "PRODUCTO/Carrusel-Producto Alai-10.webp",
+      "PRODUCTO/Carrusel-Producto Alai-11.webp"
     ],
-    "videoThumbnail": "Fotos_Alai-19.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Alai-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Alai-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Alai-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Alai-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Alai-05.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Alai-01.webp",
     "mapImage": "Mapa_-_Alai_bl5tny.webp",
     "mapsUrl": "https://www.google.com/maps/place/Ph+Alai/@9.0015646,-79.5187841,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8faca9001f75d653:0xbbb0fdb6bcfdfed1!8m2!3d9.0015646!4d-79.5162092!16s%2Fg%2F11xd2g8g1l?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -127,15 +177,42 @@
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC6ipIGHPj01VsGABGDaOEy7t5pw9SpZVrllit59X1RXQTeGazamAE7dAQbYAWST",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" }, 
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
-      { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "salón de fiesta" },
-      { "icon": "Web_page_icon_pet_park.svg", "text": "pet área" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha de basket" },
-      { "icon": "Web_page_icon_Coworking.svg", "text": "coworking" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_game_room.svg",
+        "text": "game room"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "salón de fiesta"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet área"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha de basket"
+      },
+      {
+        "icon": "Web_page_icon_Coworking.svg",
+        "text": "coworking"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
       "Fotos_Gaudi-01.webp",
@@ -177,46 +254,71 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $101k",
-    "coverImage": "Fotos_filia-20.webp",
-    "heroVideo": "Fotos_filia-20.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Filia-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Filia-01.webp",
     "brochureFile": "Plantas_Filia_bffrxu.pdf",
     "videoFile": "Video_proyecto_-_Filia_xbc3da.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC5YfZhfUUrIe8FjuyoSptG5LiEGCAEBvfly3BbMEZ1flzDBNdHhE2ywU6EgkTQv",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebos fiestas" },
-      { "icon": "Web_page_icon_BBQ.svg", "text": "área BBQ" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-    { "icon": "Web_page_icon_terraza_yoga.svg", "text": "parque infantil" },
-    { "icon": "Web_page_icon_Coworking.svg", "text": "coworking" },
-    { "icon": "Web_page_icon_Terraza_Lounge.svg", "text": "sunset lounge" },
-    { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebos fiestas"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "área BBQ"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_terraza_yoga.svg",
+        "text": "parque infantil"
+      },
+      {
+        "icon": "Web_page_icon_Coworking.svg",
+        "text": "coworking"
+      },
+      {
+        "icon": "Web_page_icon_Terraza_Lounge.svg",
+        "text": "sunset lounge"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Fotos_filia-01.webp",
-      "Fotos_filia-02.webp",
-      "Fotos_filia-03.webp",
-      "Fotos_filia-04.webp",
-      "Fotos_filia-05.webp",
-      "Fotos_filia-06.webp",
-      "Fotos_filia-07.webp",
-      "Fotos_filia-08.webp",
-      "Fotos_filia-09.webp",
-      "Fotos_filia-10.webp",
-      "Fotos_filia-11.webp",
-      "Fotos_filia-12.webp",
-      "Fotos_filia-13.webp",
-      "Fotos_filia-14.webp",
-      "Fotos_filia-15.webp",
-      "Fotos_filia-16.webp",
-      "Fotos_filia-17.webp",
-      "Fotos_filia-18.webp",
-      "Fotos_filia-19.webp",
-      "Fotos_filia-20.webp"
+      "PRODUCTO/Carrusel-Producto Filia-01.webp",
+      "PRODUCTO/Carrusel-Producto Filia-02.webp",
+      "PRODUCTO/Carrusel-Producto Filia-03.webp",
+      "PRODUCTO/Carrusel-Producto Filia-04.webp",
+      "PRODUCTO/Carrusel-Producto Filia-05.webp",
+      "PRODUCTO/Carrusel-Producto Filia-06.webp",
+      "PRODUCTO/Carrusel-Producto Filia-07.webp",
+      "PRODUCTO/Carrusel-Producto Filia-08.webp",
+      "PRODUCTO/Carrusel-Producto Filia-09.webp",
+      "PRODUCTO/Carrusel-Producto Filia-10.webp",
+      "PRODUCTO/Carrusel-Producto Filia-11.webp"
     ],
-    "videoThumbnail": "Fotos_filia-19.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel- Amenidades Filia-01.webp",
+      "AMENIDADES/Carrusel- Amenidades Filia-02.webp",
+      "AMENIDADES/Carrusel- Amenidades Filia-03.webp",
+      "AMENIDADES/Carrusel- Amenidades Filia-04.webp",
+      "AMENIDADES/Carrusel- Amenidades Filia-05.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Filia-01.webp",
     "mapImage": "Mapa_-_Filia_yefony.webp",
     "mapsUrl": "https://www.google.com/maps/place/PH+Filia+by+Haus/@9.0780227,-79.4158381,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fab5578399f4a4b:0x7a2096f170b42970!8m2!3d9.0780227!4d-79.4132632!16s%2Fg%2F11r4ggt6dx?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -234,47 +336,86 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $120k",
-    "coverImage": "Fotos_Amitie-03.webp",
-    "heroVideo": "Fotos_Amitie-03.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Amitie-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Amitie-01.webp",
     "brochureFile": "Plantas_Amitie_pamugb.pdf",
     "videoFile": "Video_proyecto_-_Amitie_yyd81s.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC5X1dMZ35pjiW6ErlMCUKdaZzzmM5CnfF1bfhffQ7IuTWwkZLFgnMQ5coxrKWCT",
     "features": [
-    { "icon": "Web_page_icon_piscina.svg", "text": "piscina" },
-    { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
-    { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
-    { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-    { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebos fiestas" },
-    { "icon": "Web_page_icon_Coworking.svg", "text": "coworking" },
-    { "icon": "Web_page_icon_Terraza_de_cine.svg", "text": "terraza de cine" },
-    { "icon": "Web_page_icon_Terraza_Lounge.svg", "text": "terraza lounge" },
-    { "icon": "Web_page_icon_terraza_yoga.svg", "text": "terraza de yoga" },
-    { "icon": "Web_page_icon_BBQ.svg", "text": "terraza BBQ" },
-    { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-    { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
-],
-    "gallery": [
-      "Fotos_Amitie-01.webp",
-      "Fotos_Amitie-02.webp",
-      "Fotos_Amitie-03.webp",
-      "Fotos_Amitie-04.webp",
-      "Fotos_Amitie-05.webp",
-      "Fotos_Amitie-06.webp",
-      "Fotos_Amitie-07.webp",
-      "Fotos_Amitie-08.webp",
-      "Fotos_Amitie-09.webp",
-      "Fotos_Amitie-10.webp",
-      "Fotos_Amitie-11.webp",
-      "Fotos_Amitie-12.webp",
-      "Fotos_Amitie-13.webp",
-      "Fotos_Amitie-14.webp",
-      "Fotos_Amitie-15.webp",
-      "Fotos_Amitie-16.webp",
-      "Fotos_Amitie-17.webp",
-      "Fotos_Amitie-18.webp"
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_game_room.svg",
+        "text": "game room"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebos fiestas"
+      },
+      {
+        "icon": "Web_page_icon_Coworking.svg",
+        "text": "coworking"
+      },
+      {
+        "icon": "Web_page_icon_Terraza_de_cine.svg",
+        "text": "terraza de cine"
+      },
+      {
+        "icon": "Web_page_icon_Terraza_Lounge.svg",
+        "text": "terraza lounge"
+      },
+      {
+        "icon": "Web_page_icon_terraza_yoga.svg",
+        "text": "terraza de yoga"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "terraza BBQ"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
-    "videoThumbnail": "Fotos_Amitie-04.webp",
+    "gallery": [
+      "PRODUCTO/Carrusel-Producto Amitie-01.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-02.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-03.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-04.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-05.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-06.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-07.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-08.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-09.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-10.webp",
+      "PRODUCTO/Carrusel-Producto Amitie-11.webp"
+    ],
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Amitie-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-05.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-06.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-07.webp",
+      "AMENIDADES/Carrusel-Amenidades Amitie-08.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Amitie-01.webp",
     "mapImage": "Mapa_-_Amitie_fwe3vc.webp",
     "mapsUrl": "https://www.google.com/maps/place/PH+Amiti%C3%A9+by+Haus/@9.0706808,-79.4022315,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fab55f806649231:0x490a2f39366a72bd!8m2!3d9.0706808!4d-79.3996566!16s%2Fg%2F11sgchvb_0?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -292,46 +433,61 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $131k",
-    "coverImage": "Fotos_lagun-01.webp",
-    "heroVideo": "Fotos_lagun-01.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Lagun-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Lagun-01.webp",
     "brochureFile": "Plantas_Lagun_l7t3dk.pdf",
     "videoFile": "Video_proyecto_-_Lagun_hcvxxb.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC5QlTNlOEmlJELJsFwQtoSynYkLxZCrIwGeH4ybuuR7eB5otqL9IouY9mOtq7iX",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" },
-      { "icon": "Web_page_icon_terraza_yoga.svg", "text": "área infantil" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebos fiestas" },
-      { "icon": "Web_page_icon_Coworking.svg", "text": "coworking" },
-      { "icon": "Web_page_icon_Terraza_Lounge.svg", "text": "terraza de yoga" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
-],
-    "gallery": [
-      "Fotos_lagun-01.webp",
-      "Fotos_lagun-02.webp",
-      "Fotos_lagun-03.webp",
-      "Fotos_lagun-04.webp",
-      "Fotos_lagun-05.webp",
-      "Fotos_lagun-06.webp",
-      "Fotos_lagun-07.webp",
-      "Fotos_lagun-08.webp",
-      "Fotos_lagun-09.webp",
-      "Fotos_lagun-10.webp",
-      "Fotos_lagun-11.webp",
-      "Fotos_lagun-12.webp",
-      "Fotos_lagun-13.jpg",
-      "Fotos_lagun-14.jpg",
-      "Fotos_lagun-15.jpg",
-      "Fotos_lagun-16.jpg",
-      "Fotos_lagun-17.jpg",
-      "Fotos_lagun-18.jpg",
-      "Fotos_lagun-19.jpg",
-      "Fotos_lagun-20.jpg",
-      "Fotos_lagun-21.jpg"
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_terraza_yoga.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebos fiestas"
+      },
+      {
+        "icon": "Web_page_icon_Coworking.svg",
+        "text": "coworking"
+      },
+      {
+        "icon": "Web_page_icon_Terraza_Lounge.svg",
+        "text": "terraza de yoga"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
-    "videoThumbnail": "Fotos_lagun-21.jpg",
+    "gallery": [
+      "PRODUCTO/Carrusel-Producto Lagun-01.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-02.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-03.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-04.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-05.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-06.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-07.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-08.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-09.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-10.webp",
+      "PRODUCTO/Carrusel-Producto Lagun-11.webp"
+    ],
+    "amenidades": [],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Lagun-01.webp",
     "mapImage": "Mapa_-_Lagun_i3jgth.webp",
     "mapsUrl": "https://www.google.com/maps/place/PH+Lagun+by+Haus/@9.0715312,-79.4684563,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fab55788f20e821:0xd71f954edaae1b8!8m2!3d9.0715312!4d-79.4658814!16s%2Fg%2F11rd7_k0f8?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -349,34 +505,62 @@
     "bedrooms": " 2 y 3",
     "bathrooms": "2",
     "price": "desde $82k",
-    "coverImage": "Verona_fotos-02.webp",
-    "heroVideo": "Verona_fotos-02.webp",
+    "coverImage": "PRODUCTO/Carrusel-producto verona-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-producto verona-01.webp",
     "brochureFile": "Plantas_Verona_vbekjj.pdf",
     "videoFile": "Video_proyecto_-_Verona_u7febi.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TCsaowsoAyYpVpvsZto8mHzd4A1xibje0XWaPQYMZwU8eFqGMGrUviA3qeN453Nh",
     "features": [
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebo para fiestas" },
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "parque infantil" },
-      { "icon": "Web_page_icon_pet_park.svg", "text": "pet park" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gym al aire libre" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-      { "icon": "Web_page_icon_BBQ.svg", "text": "área BBQ" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebo para fiestas"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "parque infantil"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet park"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gym al aire libre"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "área BBQ"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Verona_fotos-01.png",
-      "Verona_fotos-02.webp",
-      "Verona_fotos-03.webp",
-      "Verona_fotos-04.webp",
-      "Verona_fotos-05.webp",
-      "Verona_fotos-06.webp",
-      "Verona_fotos-07.webp",
-      "Verona_fotos-08.webp",
-      "Verona_fotos-09.webp",
-      "Verona_fotos-10.webp"
+      "PRODUCTO/Carrusel-producto verona-01.webp",
+      "PRODUCTO/Carrusel-producto verona-02.webp",
+      "PRODUCTO/Carrusel-producto verona-03.webp",
+      "PRODUCTO/Carrusel-producto verona-04.webp",
+      "PRODUCTO/Carrusel-producto verona-05.webp",
+      "PRODUCTO/Carrusel-producto verona-06.webp",
+      "PRODUCTO/Carrusel-producto verona-07.webp",
+      "PRODUCTO/Carrusel-producto verona-08.webp",
+      "PRODUCTO/Carrusel-producto verona-09.webp",
+      "PRODUCTO/Carrusel-producto verona-10.webp",
+      "PRODUCTO/Carrusel-producto verona-11.webp"
     ],
-    "videoThumbnail": "Verona_fotos-02.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Verona-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Verona-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Verona-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Verona-04.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-producto verona-01.webp",
     "mapImage": "Mapa_-_Verona_ctvrab.webp",
     "mapsUrl": "https://www.google.com/maps/place/PH+Verona+Hato+Monta%C3%B1a/@8.9247678,-79.7679566,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fac998624dfea1f:0x7c36003f207da421!8m2!3d8.9247678!4d-79.7653817!16s%2Fg%2F11qnvq1kly?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -394,40 +578,71 @@
     "bedrooms": " 3",
     "bathrooms": "2",
     "price": "desde $112.5k",
-    "coverImage": "Fotos_siena-02.webp",
-    "heroVideo": "Fotos_siena-02.webp",
+    "coverImage": "PRODUCTO/Carrusel-Producto Siena-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Siena-01.webp",
     "brochureFile": "Plantas_Siena_vbqfsm.pdf",
     "videoFile": "Video_proyecto_-_Siena_zwm741.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1HI23EQR6ch0EZIQtv9pmA3UxpHr4UkvpJ9P2r3FF7sOvpT365bn4sqWJqIjoMJJV",
     "features": [
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebo para fiestas" },
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "parque infantil" },
-      { "icon": "Web_page_icon_pet_park.svg", "text": "pet park" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gym al aire libre" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-      { "icon": "Web_page_icon_pies_descalzos.svg", "text": "pies descalzos" },
-      { "icon": "Web_page_icon_hamacarium.svg", "text": "hamacarium" },
-      { "icon": "Web_page_icon_BBQ.svg", "text": "área BBQ" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebo para fiestas"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "parque infantil"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet park"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gym al aire libre"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_pies_descalzos.svg",
+        "text": "pies descalzos"
+      },
+      {
+        "icon": "Web_page_icon_hamacarium.svg",
+        "text": "hamacarium"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "área BBQ"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Fotos_siena-01.webp",
-      "Fotos_siena-02.webp",
-      "Fotos_siena-03.webp",
-      "Fotos_siena-04.webp",
-      "Fotos_siena-05.webp",
-      "Fotos_siena-06.webp",
-      "Fotos_siena-07.webp",
-      "Fotos_siena-08.webp",
-      "Fotos_siena-09.webp",
-      "Fotos_siena-10.webp",
-      "Fotos_siena-11.webp",
-      "Fotos_siena-12.webp",
-      "Fotos_siena-13.webp",
-      "Fotos_siena-14.webp"
+      "PRODUCTO/Carrusel-Producto Siena-01.webp",
+      "PRODUCTO/Carrusel-Producto Siena-02.webp",
+      "PRODUCTO/Carrusel-Producto Siena-03.webp",
+      "PRODUCTO/Carrusel-Producto Siena-04.webp",
+      "PRODUCTO/Carrusel-Producto Siena-05.webp",
+      "PRODUCTO/Carrusel-Producto Siena-06.webp",
+      "PRODUCTO/Carrusel-Producto Siena-07.webp",
+      "PRODUCTO/Carrusel-Producto Siena-08.webp",
+      "PRODUCTO/Carrusel-Producto Siena-09.webp",
+      "PRODUCTO/Carrusel-Producto Siena-10.webp",
+      "PRODUCTO/Carrusel-Producto Siena-11.webp"
     ],
-    "videoThumbnail": "Fotos_siena-02.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Siena-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Siena-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Siena-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Siena-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Siena-05.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Siena-01.webp",
     "mapImage": "Mapa_-_Siena_umqvx5.webp",
     "mapsUrl": "https://www.google.com/maps/place/Siena+Hato+Monta%C3%B1a/@8.9239842,-79.7627007,723m/data=!3m1!1e3!4m6!3m5!1s0x8fac99e11cec7787:0x585c7d5fa9956f3!8m2!3d8.9248613!4d-79.7603834!16s%2Fg%2F11kj_yw7h5?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -445,39 +660,67 @@
     "bedrooms": " 3 y 4",
     "bathrooms": "2",
     "price": "desde $120k",
-    "coverImage": "Fotos_Piamonte-10.jpg",
-    "heroVideo": "Fotos_Piamonte-10.jpg",
+    "coverImage": "PRODUCTO/Carrusel-Producto Piamonte-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Piamonte-01.webp",
     "brochureFile": "Plantas_Piamonte_dcf3a1.pdf",
     "videoFile": "Video_proyecto_-_Piamonte_ikfupf.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC6ar1NArV89keS8SZZ9p7S8hQbhKltdTjQAv2mEUapHJFboLkht4yOpzKY4a1Jp",
     "features": [
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "gazebo para fiestas" },
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "parque infantil" },
-      { "icon": "Web_page_icon_pet_park.svg", "text": "pet park" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gym al aire libre" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-      { "icon": "Web_page_icon_BBQ.svg", "text": "área BBQ" },
-      { "icon": "Web_page_icon_hamacarium.svg", "text": "hamacarium" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebo para fiestas"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "parque infantil"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet park"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gym al aire libre"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "área BBQ"
+      },
+      {
+        "icon": "Web_page_icon_hamacarium.svg",
+        "text": "hamacarium"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
-      "Fotos_Piamonte-01.webp",
-      "Fotos_Piamonte-02.webp",
-      "Fotos_Piamonte-03.webp",
-      "Fotos_Piamonte-04.webp",
-      "Fotos_Piamonte-05.webp",
-      "Fotos_Piamonte-06.webp",
-      "Fotos_Piamonte-07.webp",
-      "Fotos_Piamonte-08.jpg",
-      "Fotos_Piamonte-09.jpg",
-      "Fotos_Piamonte-10.jpg",
-      "Fotos_Piamonte-11.jpg",
-      "Fotos_Piamonte-12.jpg",
-      "Fotos_Piamonte-13.jpg",
-      "Fotos_Piamonte-14.jpg"
+      "PRODUCTO/Carrusel-Producto Piamonte-01.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-02.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-03.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-04.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-05.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-06.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-07.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-08.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-09.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-10.webp",
+      "PRODUCTO/Carrusel-Producto Piamonte-11.webp"
     ],
-    "videoThumbnail": "Fotos_Piamonte-10.jpg",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Piamonte-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Piamonte-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Piamonte-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Piamonte-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Piamonte-05.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Piamonte-01.webp",
     "mapImage": "Mapa_-_Piamonte_zbl09m.webp",
     "mapsUrl": "https://www.google.com/maps/place/PH+Piamonte/@8.9186541,-79.7525397,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fac99883798d08d:0xc0f6e0e1c11217bd!8m2!3d8.9186541!4d-79.7499648!16s%2Fg%2F11s2xv_38c?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
@@ -494,28 +737,48 @@
     "size": "150",
     "bedrooms": " 3",
     "bathrooms": "2",
-    "price": "desde $75k", 
-    "coverImage": "Carrusel imágenes-01.webp",
-    "heroVideo": "Carrusel imágenes-01.webp",
+    "price": "desde $75k",
+    "coverImage": "PRODUCTO/Carrusel-Producto Provenza-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Provenza-01.webp",
     "brochureFile": "Planta y masterplan general.pdf",
     "videoFile": "Video_proyecto_-_Provenza_ikfupf.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1wzBuFf6BY5uWSxg2k0jFa2oQIj15pTNf5RrGp8KsDIqrGZ8bj96LrmXzvYTBVnAT",
     "features": [
-      { "icon": "Comercios.svg", "text": "cerca a supermercados, farmacias y comercios" },
-      { "icon": "Carretera.svg", "text": "rápido acceso desde la panamericana" },
-      { "icon": "Seguridad.svg", "text": "garita de seguridad 24/7" },
-      { "icon": "Areas verdes.svg", "text": "parques y áreas verdes" }
+      {
+        "icon": "Comercios.svg",
+        "text": "cerca a supermercados, farmacias y comercios"
+      },
+      {
+        "icon": "Carretera.svg",
+        "text": "rápido acceso desde la panamericana"
+      },
+      {
+        "icon": "Seguridad.svg",
+        "text": "garita de seguridad 24/7"
+      },
+      {
+        "icon": "Areas verdes.svg",
+        "text": "parques y áreas verdes"
+      }
     ],
     "gallery": [
-      "Carrusel imágenes-01.webp",
-      "Carrusel imágenes-02.webp",
-      "Carrusel imágenes-03.webp",
-      "Carrusel imágenes-04.webp",
-      "Carrusel imágenes-05.webp",
-      "Carrusel imágenes-06.webp"
+      "PRODUCTO/Carrusel-Producto Provenza-01.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-02.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-03.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-04.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-05.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-06.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-07.webp",
+      "PRODUCTO/Carrusel-Producto Provenza-08.webp"
     ],
-    "videoThumbnail": "Carrusel imágenes-06.webp",
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Provenza-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Provenza-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Provenza-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Provenza-04.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Provenza-01.webp",
     "mapImage": "MAPA PROVENZA.webp",
     "mapsUrl": "https://www.google.com/maps?ll=9.111219,-79.252625&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=14428727568052350116"
   },
@@ -540,13 +803,34 @@
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1v5qMjauiD4Md9QRe3GD01vyT0ji2ma943RIn49MS7sx99p0XyAmPVe04YNMwH85R",
     "features": [
-      { "icon": "Web_page_icon_piscina.svg", "text": "piscina" }, 
-      { "icon": "Web_page_icon_parque_infantil.svg", "text": "área infantil" },
-      { "icon": "Web_page_icon_cancha_deportiva.svg", "text": "cancha deportiva" },
-      { "icon": "Web_page_icon_game_room.svg", "text": "game room" },
-      { "icon": "Web_page_icon_gimnasio.svg", "text": "gimnasio" },
-      { "icon": "Web_page_icon_gazebo_para_fiestas.svg", "text": "salón de fiesta" },
-      { "icon": "energy_icon.svg", "text": "garita de seguridad 24/7" }
+      {
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "área infantil"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_game_room.svg",
+        "text": "game room"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gimnasio"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "salón de fiesta"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
     ],
     "gallery": [
       "Diseno_Imagenes-01.webp",
@@ -565,5 +849,79 @@
     "videoThumbnail": "Diseno_Imagenes-06.webp",
     "mapImage": "Mapa Astre - Haus.webp",
     "mapsUrl": "https://www.google.com/maps/place/Panama+City,+Panama/@8.9823792,-79.5199793,13z/data=!3m1!4b1!4m6!3m5!1s0x8faca8f1de7bf28f:0xa7030cfb9cd2c718!8m2!3d8.9823792!4d-79.5199793!16zL20vMDVfZzI?entry=ttu"
+  },
+  "solaris": {
+    "id": "solaris",
+    "name": "Solaris",
+    "logo": "Logo_Siena_s0jeke.svg",
+    "logo2": "Logo_Siena_-_blanco_zodyyk.svg",
+    "propertyType": "casas de",
+    "location": "panama oeste",
+    "address": "a 2 min de la panamericana - hato montaña",
+    "slogan": "un nuevo estilo de vida en el oeste",
+    "description": "Solaris es un proyecto residencial ubicado en una de las zonas de mayor crecimiento de Panamá Oeste, con diseño moderno y amenidades pensadas para toda la familia.",
+    "size": "150",
+    "bedrooms": " 3",
+    "bathrooms": "2",
+    "price": "desde $120k",
+    "coverImage": "PRODUCTO/Carrusel-Producto Solaris-01.webp",
+    "heroVideo": "PRODUCTO/Carrusel-Producto Solaris-01.webp",
+    "brochureFile": "",
+    "videoFile": "",
+    "buttonText": "descargar planta",
+    "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1HI23EQR6ch0EZIQtv9pmA3UxpHr4UkvpJ9P2r3FF7sOvpT365bn4sqWJqIjoMJJV",
+    "features": [
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebo para fiestas"
+      },
+      {
+        "icon": "Web_page_icon_parque_infantil.svg",
+        "text": "parque infantil"
+      },
+      {
+        "icon": "Web_page_icon_pet_park.svg",
+        "text": "pet park"
+      },
+      {
+        "icon": "Web_page_icon_gimnasio.svg",
+        "text": "gym al aire libre"
+      },
+      {
+        "icon": "Web_page_icon_cancha_deportiva.svg",
+        "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_BBQ.svg",
+        "text": "área BBQ"
+      },
+      {
+        "icon": "energy_icon.svg",
+        "text": "garita de seguridad 24/7"
+      }
+    ],
+    "gallery": [
+      "PRODUCTO/Carrusel-Producto Solaris-01.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-02.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-03.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-04.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-05.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-06.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-07.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-08.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-09.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-10.webp",
+      "PRODUCTO/Carrusel-Producto Solaris-11.webp"
+    ],
+    "amenidades": [
+      "AMENIDADES/Carrusel-Amenidades Solaris-01.webp",
+      "AMENIDADES/Carrusel-Amenidades Solaris-02.webp",
+      "AMENIDADES/Carrusel-Amenidades Solaris-03.webp",
+      "AMENIDADES/Carrusel-Amenidades Solaris-04.webp",
+      "AMENIDADES/Carrusel-Amenidades Solaris-05.webp"
+    ],
+    "videoThumbnail": "PRODUCTO/Carrusel-Producto Solaris-01.webp",
+    "mapImage": "",
+    "mapsUrl": "https://www.google.com/maps/place/Hato+Monta%C3%B1a,+Arraij%C3%A1n"
   }
 }
