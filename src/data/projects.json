@@ -156,90 +156,6 @@
     "mapImage": "Mapa_-_Alai_bl5tny.webp",
     "mapsUrl": "https://www.google.com/maps/place/Ph+Alai/@9.0015646,-79.5187841,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8faca9001f75d653:0xbbb0fdb6bcfdfed1!8m2!3d9.0015646!4d-79.5162092!16s%2Fg%2F11xd2g8g1l?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
   },
-  "gaudi": {
-    "id": "gaudi",
-    "name": "Gaudi",
-    "logo": "Logo_Gaudi_hfvu13.svg",
-    "logo2": "Logo_Gaudi_-_blanco_o1uzwj.svg",
-    "propertyType": "apartamentos de",
-    "location": "panama centro",
-    "address": "frente al palacio del mueble - via españa",
-    "slogan": "tener un hogar cerca es un lujo que te puedes dar",
-    "description": "ubicación estratégica a minutos del parque omar, vivir aquí te da la tranquilidad de tener a distancias muy cortas de tu nuevo apartamento, los comercios, lugares y principales accesos y rutas que mejorarán notablemente tu calidad de vida.",
-    "size": "60",
-    "bedrooms": " 2 y 3",
-    "bathrooms": "2",
-    "price": "desde $130k",
-    "coverImage": "Fotos_Gaudi-20.webp",
-    "heroVideo": "Fotos_Gaudi-20.webp",
-    "brochureFile": "Plantas_Gaudi_-_Torre_100_y_200_pwt3sz.pdf",
-    "videoFile": "Video_proyecto_-_Gaudi_ttsb7h.mp4",
-    "buttonText": "descargar planta",
-    "pipedriveFormUrl": "https://webforms.pipedrive.com/f/2TC6ipIGHPj01VsGABGDaOEy7t5pw9SpZVrllit59X1RXQTeGazamAE7dAQbYAWST",
-    "features": [
-      {
-        "icon": "Web_page_icon_piscina.svg",
-        "text": "piscina"
-      },
-      {
-        "icon": "Web_page_icon_parque_infantil.svg",
-        "text": "área infantil"
-      },
-      {
-        "icon": "Web_page_icon_game_room.svg",
-        "text": "game room"
-      },
-      {
-        "icon": "Web_page_icon_gimnasio.svg",
-        "text": "gimnasio"
-      },
-      {
-        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
-        "text": "salón de fiesta"
-      },
-      {
-        "icon": "Web_page_icon_pet_park.svg",
-        "text": "pet área"
-      },
-      {
-        "icon": "Web_page_icon_cancha_deportiva.svg",
-        "text": "cancha de basket"
-      },
-      {
-        "icon": "Web_page_icon_Coworking.svg",
-        "text": "coworking"
-      },
-      {
-        "icon": "energy_icon.svg",
-        "text": "garita de seguridad 24/7"
-      }
-    ],
-    "gallery": [
-      "Fotos_Gaudi-01.webp",
-      "Fotos_Gaudi-02.webp",
-      "Fotos_Gaudi-03.webp",
-      "Fotos_Gaudi-04.webp",
-      "Fotos_Gaudi-05.webp",
-      "Fotos_Gaudi-06.webp",
-      "Fotos_Gaudi-07.webp",
-      "Fotos_Gaudi-08.webp",
-      "Fotos_Gaudi-09.webp",
-      "Fotos_Gaudi-10.webp",
-      "Fotos_Gaudi-11.webp",
-      "Fotos_Gaudi-12.webp",
-      "Fotos_Gaudi-13.webp",
-      "Fotos_Gaudi-14.webp",
-      "Fotos_Gaudi-15.webp",
-      "Fotos_Gaudi-16.webp",
-      "Fotos_Gaudi-17.webp",
-      "Fotos_Gaudi-18.webp",
-      "Fotos_Gaudi-19.webp",
-      "Fotos_Gaudi-20.webp"
-    ],
-    "videoThumbnail": "Fotos_Gaudi-20.webp",
-    "mapImage": "Mapa_-_Gaudi_iw2owx.webp",
-    "mapsUrl": "https://www.google.com/maps/place/P.H.+GAUD%C3%8D/@9.0072838,-79.5115116,860m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8faca9b1edbba023:0xe1679866f877d62f!8m2!3d9.0072838!4d-79.5089367!16s%2Fg%2F11d_99yhld?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
-  },
   "filia": {
     "id": "filia",
     "name": "Filia",
@@ -853,14 +769,14 @@
   "solaris": {
     "id": "solaris",
     "name": "Solaris",
-    "logo": "Logo_Siena_s0jeke.svg",
-    "logo2": "Logo_Siena_-_blanco_zodyyk.svg",
+    "logo": "Logo Solaris - blanco.svg",
+    "logo2": "Logo Solaris - blanco.svg",
     "propertyType": "casas de",
     "location": "panama oeste",
-    "address": "a 2 min de la panamericana - hato montaña",
-    "slogan": "un nuevo estilo de vida en el oeste",
-    "description": "Solaris es un proyecto residencial ubicado en una de las zonas de mayor crecimiento de Panamá Oeste, con diseño moderno y amenidades pensadas para toda la familia.",
-    "size": "150",
+    "address": "a 5 min del Machetazo - Hato Montaña",
+    "slogan": "una comunidad diseñada para acompañar el presente de tu familia y adaptarse a su futuro",
+    "description": "Ubicado dentro del desarrollo de Olimpia, en una de las zonas menos densas de Hato Montaña a 5 minutos del Machetazo, Solaris forma parte de un entorno planificado que prioriza el espacio, la organización y la proyección a futuro. Una comunidad diseñada para acompañar el presente de tu familia y adaptarse a su futuro con una planificación que sí marca la diferencia.",
+    "size": "120",
     "bedrooms": " 3",
     "bathrooms": "2",
     "price": "desde $120k",
@@ -872,24 +788,20 @@
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1HI23EQR6ch0EZIQtv9pmA3UxpHr4UkvpJ9P2r3FF7sOvpT365bn4sqWJqIjoMJJV",
     "features": [
       {
-        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
-        "text": "gazebo para fiestas"
+        "icon": "Web_page_icon_piscina.svg",
+        "text": "piscina"
       },
       {
         "icon": "Web_page_icon_parque_infantil.svg",
         "text": "parque infantil"
       },
       {
-        "icon": "Web_page_icon_pet_park.svg",
-        "text": "pet park"
-      },
-      {
-        "icon": "Web_page_icon_gimnasio.svg",
-        "text": "gym al aire libre"
-      },
-      {
         "icon": "Web_page_icon_cancha_deportiva.svg",
         "text": "cancha deportiva"
+      },
+      {
+        "icon": "Web_page_icon_gazebo_para_fiestas.svg",
+        "text": "gazebo"
       },
       {
         "icon": "Web_page_icon_BBQ.svg",
@@ -922,6 +834,6 @@
     ],
     "videoThumbnail": "PRODUCTO/Carrusel-Producto Solaris-01.webp",
     "mapImage": "",
-    "mapsUrl": "https://www.google.com/maps/place/Hato+Monta%C3%B1a,+Arraij%C3%A1n"
+    "mapsUrl": "https://www.google.com/maps/place/P.H.+OLIMPIA/@8.9190748,-79.7510631,1016m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8fac988660480395:0x53f010000d0a37b0!8m2!3d8.9190748!4d-79.7484882!16s%2Fg%2F11d_95030x?entry=ttu"
   }
 }
