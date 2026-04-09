@@ -83,13 +83,73 @@ const isProjectsPage = currentPath === '/apartamentos' || currentPath === '/apar
           quienes somos
         </a>
       </li>
-      <li>
-        <a 
-          href="/apartamentos" 
-          class={`text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isProjectsPage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
+      <li class="w-full flex flex-col items-center">
+        <!-- Botón principal proyectos -->
+        <button
+          id="mobile-projects-toggle"
+          class={`flex items-center gap-2 text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isProjectsPage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
         >
-          proyectos
-        </a>
+          <span>proyectos</span>
+          <svg id="mobile-projects-arrow" class="transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </button>
+
+        <!-- Submenú por zonas -->
+        <div id="mobile-projects-menu" class="mt-4 w-full max-w-[220px] text-center" style="display:none; flex-direction:column; gap:12px;">
+
+          <!-- Centro -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-centro">
+              <span>Centro</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-centro">
+              <a href="/athas" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">áthas</a>
+              <a href="/alai" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">alai</a>
+              <a href="https://astrepanama.com" target="_blank" rel="noopener noreferrer" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">astre ↗</a>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200"></div>
+
+          <!-- Este -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-este">
+              <span>Este</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-este">
+              <a href="/amitie" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">amitié</a>
+              <a href="/lagun" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">lagun</a>
+              <a href="/filia" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">filia</a>
+              <a href="/provenza" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">provenza</a>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200"></div>
+
+          <!-- Oeste -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-oeste">
+              <span>Oeste</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-oeste">
+              <a href="/solaris" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">solaris</a>
+              <a href="/verona" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">verona</a>
+              <a href="/piamonte" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">piamonte</a>
+              <a href="/siena" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">siena</a>
+            </div>
+          </div>
+
+        </div>
       </li>
       <li>
         <a 
@@ -102,3 +162,61 @@ const isProjectsPage = currentPath === '/apartamentos' || currentPath === '/apar
     </ul>
   </nav>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectsToggle = document.getElementById('mobile-projects-toggle');
+    const projectsMenu = document.getElementById('mobile-projects-menu');
+    const projectsArrow = document.getElementById('mobile-projects-arrow');
+
+    if (!projectsToggle || !projectsMenu || !projectsArrow) return;
+
+    // Alternar menú principal de proyectos
+    projectsToggle.addEventListener('click', () => {
+      const isHidden = projectsMenu.style.display === 'none' || projectsMenu.style.display === '';
+
+      if (isHidden) {
+        projectsMenu.style.display = 'flex';
+        projectsArrow.classList.add('rotate-180');
+      } else {
+        projectsMenu.style.display = 'none';
+        projectsArrow.classList.remove('rotate-180');
+        // Cerrar todos los submenús de zona
+        document.querySelectorAll('.mobile-zone-menu').forEach((menu) => {
+          (menu as HTMLElement).style.display = 'none';
+        });
+        document.querySelectorAll('.mobile-zone-arrow').forEach((arrow) => {
+          arrow.classList.remove('rotate-180');
+        });
+      }
+    });
+
+    // Alternar submenú por zona
+    document.querySelectorAll('.mobile-zone-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const zone = (toggle as HTMLElement).dataset.zone;
+        const zoneMenu = document.querySelector(`.mobile-zone-menu[data-zone="${zone}"]`) as HTMLElement | null;
+        const zoneArrow = toggle.querySelector('.mobile-zone-arrow');
+
+        if (!zoneMenu || !zoneArrow) return;
+
+        const isHidden = zoneMenu.style.display === 'none' || zoneMenu.style.display === '';
+
+        // Cerrar todos primero
+        document.querySelectorAll('.mobile-zone-menu').forEach((menu) => {
+          (menu as HTMLElement).style.display = 'none';
+        });
+        document.querySelectorAll('.mobile-zone-arrow').forEach((arrow) => {
+          arrow.classList.remove('rotate-180');
+        });
+
+        // Abrir el seleccionado si estaba cerrado
+        if (isHidden) {
+          zoneMenu.style.display = 'flex';
+          zoneArrow.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
