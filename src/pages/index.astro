@@ -17,7 +17,7 @@ const mainCards = [
   },
   {
     id: 'brisas',
-    title: 'casas en',
+    title: 'apartamentos en',
     title2: 'brisas y tocumen',
     subtitle: 'desde $95k',
     link: '/brisas-y-tocumen',
@@ -33,8 +33,8 @@ const mainCards = [
   },
   {
     id: 'este',
-    title: 'casas en',
-    title2: 'panamá este',
+    title: 'casa en',
+    title2: 'panamá este y norte',
     subtitle: 'desde $85k',
     link: '/casas-este',
     imagePath: 'Proyectos/Este/Provenza/Carrusel imágenes-04.webp'
@@ -48,7 +48,7 @@ const mainCards = [
 
   <main class="font-helvetica w-full bg-white">
     <!-- HERO: Headline + 4 cards de zonas -->
-    <section class="w-full px-5 lg:px-8 pb-4 lg:pb-6 flex flex-col justify-start" style="min-height: calc(100vh - 80px); padding-top: 12px;">
+    <section class="w-full px-5 lg:px-8 pt-3 pb-6 lg:pb-8 hero-section">
       <div class="max-w-[1312px] mx-auto w-full">
         <!-- Headline centrado -->
         <h1 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[48px] text-center leading-tight mb-3 lg:mb-4 max-w-[700px] mx-auto">
@@ -121,6 +121,12 @@ const mainCards = [
   .property-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      min-height: calc(100vh - 80px);
+    }
   }
 </style>
 
