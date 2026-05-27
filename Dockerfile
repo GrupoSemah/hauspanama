@@ -10,6 +10,6 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package.json ./package.json
 ENV HOST=0.0.0.0
-ENV PORT=4321
-EXPOSE 4321
+ENV PORT=3000
+EXPOSE 3000
 CMD ["node", "dist/server/entry.mjs"]
