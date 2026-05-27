@@ -33,8 +33,6 @@ export const POST: APIRoute = async ({ request }) => {
   const dealPayload = {
     title: `Lead Página Web - ${areaLabel}`,
     pipeline_id: Number(pipelineId),
-    channel: 597,
-    channel_id: 'hauspanama.com',
   };
 
   const response = await fetch(
