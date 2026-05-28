@@ -51,16 +51,16 @@ const mainCards = [
     <section class="w-full px-5 lg:px-8 pt-3 pb-6 lg:pb-8 hero-section">
       <div class="max-w-[1312px] mx-auto w-full">
         <!-- Headline centrado -->
-        <h1 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[48px] text-center leading-tight mb-3 lg:mb-4 max-w-[700px] mx-auto">
+        <h1 id="hero-heading" class="anim-fade-up text-[#3a3a3c] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[48px] text-center leading-tight mb-3 lg:mb-4 max-w-[700px] mx-auto">
           un hogar bien pensado cambia la forma de vivir
         </h1>
 
         <!-- 4 Cards en fila horizontal -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 items-stretch">
-          {mainCards.map((card) => (
+        <div id="cards-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 items-stretch">
+          {mainCards.map((card, index) => (
             <a
               href={card.link}
-              class="property-card interactive-element group flex flex-col h-full relative rounded-xl overflow-hidden border-2 border-[var(--primary)] transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              class={`property-card interactive-element group flex flex-col h-full relative rounded-xl overflow-hidden border-2 border-[var(--primary)] transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] anim-fade-up anim-card anim-delay-${index}`}
               tabindex="0"
               aria-label={`${card.title} ${card.title2} - ${card.subtitle}`}
             >
@@ -87,7 +87,7 @@ const mainCards = [
         </div>
 
         <!-- Botón Agenda una Visita -->
-        <div class="flex justify-center mt-5 lg:mt-6">
+        <div id="visita-cta" class="anim-fade-up flex justify-center mt-5 lg:mt-6">
           <div class="relative" id="visita-dropdown-container">
             <button id="visita-toggle" class="group border-2 border-[var(--primary)] text-[var(--primary)] font-medium text-sm sm:text-base lg:text-lg px-8 py-3 rounded-[10px] text-center transition-all duration-300 hover:bg-[var(--primary)] hover:text-white flex items-center gap-2 cursor-pointer">
               agenda una visita
@@ -118,11 +118,34 @@ const mainCards = [
 </Layout>
 
 <style>
-  .property-card:hover {
+  /* Animaciones de entrada */
+  .anim-fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-fade-up.anim-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .anim-delay-0 { transition-delay: 0ms; }
+  .anim-delay-1 { transition-delay: 100ms; }
+  .anim-delay-2 { transition-delay: 200ms; }
+  .anim-delay-3 { transition-delay: 300ms; }
+
+  /* Reducir movimiento para usuarios que lo prefieran */
+  @media (prefers-reduced-motion: reduce) {
+    .anim-fade-up {
+      opacity: 0;
+      transform: none;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  .property-card.anim-visible:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
-
 </style>
 
 <script>
@@ -130,6 +153,32 @@ const mainCards = [
   document.addEventListener('DOMContentLoaded', initPropertyCardInteractions);
 
   document.addEventListener('DOMContentLoaded', () => {
+    // --- Animaciones de entrada ---
+
+    // Hero: h1 aparece inmediatamente al cargar
+    const heroHeading = document.getElementById('hero-heading');
+    if (heroHeading) {
+      setTimeout(() => heroHeading.classList.add('anim-visible'), 50);
+    }
+
+    // Cards + botón CTA: Intersection Observer (scroll)
+    const scrollTargets = document.querySelectorAll<HTMLElement>('.anim-card, #visita-cta');
+    if (scrollTargets.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              (entry.target as HTMLElement).classList.add('anim-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      scrollTargets.forEach((el) => observer.observe(el));
+    }
+
+    // --- Lógica del dropdown de visita ---
     const toggle = document.getElementById('visita-toggle');
     const options = document.getElementById('visita-options');
     const arrow = document.getElementById('visita-arrow');
