@@ -1,0 +1,270 @@
+---
+export interface Props {
+  formAction: string;
+  formId: string;
+}
+
+const { formAction, formId } = Astro.props;
+
+// Atributos personalizados de Zoho que no existen en el tipo HTMLInputElement de TypeScript.
+// validation.js los lee vía getAttribute(), por lo que deben estar en el DOM como atributos.
+const zohoTextAttrs = { checktype: "c1", fieldType: "1" } as Record<string, string>;
+const zohoEmailAttrs = { checktype: "c5", fieldType: "9" } as Record<string, string>;
+const zohoSelectAttrs = { checktype: "c1" } as Record<string, string>;
+---
+
+<!-- Cabecera del formulario: mismo estilo que el bloque de Pipedrive -->
+<div class="px-6 md:px-8 pt-6 md:pt-8">
+  <h2 class="text-[var(--primary)] text-xl md:text-2xl lg:text-3xl font-bold text-center italic mb-2">
+    ¡Gracias por tu interés en nuestro proyecto!
+  </h2>
+  <p class="text-center text-sm md:text-base text-[#3a3a3c]/70 mb-6">
+    Por favor brindanos tus datos para poder contactarte y enviarte información más detallada del proyecto.
+  </p>
+</div>
+
+<!-- Formulario Zoho — atributos exactos requeridos por validation.js y el endpoint -->
+<form
+  id="form"
+  name="form"
+  action={formAction}
+  method="POST"
+  enctype="multipart/form-data"
+  accept-charset="UTF-8"
+  onsubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();'
+  class="w-full px-6 md:px-8 pb-8 flex flex-col gap-5"
+>
+  <!-- Campos ocultos requeridos por Zoho Forms -->
+  <input type="hidden" name="zf_referrer_name" value="" />
+  <input type="hidden" name="zf_redirect_url" value="https://hauspanama.com/gracias" />
+  <input type="hidden" name="zc_gad" value="" />
+  <input type="hidden" name="utm_source" value="" />
+  <input type="hidden" name="utm_medium" value="" />
+  <input type="hidden" name="utm_campaign" value="" />
+  <input type="hidden" name="utm_term" value="" />
+  <input type="hidden" name="utm_content" value="" />
+
+  <!-- Campo: Nombre completo -->
+  <div class="flex flex-col gap-1.5">
+    <label
+      for={`SingleLine-${formId}`}
+      class="text-sm font-medium text-[#3a3a3c]"
+    >
+      Nombre completo <span class="text-red-500">*</span>
+    </label>
+    <input
+      id={`SingleLine-${formId}`}
+      type="text"
+      name="SingleLine"
+      value=""
+      maxlength="255"
+      placeholder=""
+      {...zohoTextAttrs}
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+    />
+    <p id="SingleLine_error" class="zf-errorMessage text-xs text-red-500" style="display:none;">
+      Invalid value
+    </p>
+  </div>
+
+  <!-- Campo: Teléfono / WhatsApp -->
+  <div class="flex flex-col gap-1.5">
+    <label
+      for={`SingleLine1-${formId}`}
+      class="text-sm font-medium text-[#3a3a3c]"
+    >
+      Número de teléfono / WhatsApp <span class="text-red-500">*</span>
+    </label>
+    <input
+      id={`SingleLine1-${formId}`}
+      type="text"
+      name="SingleLine1"
+      value=""
+      maxlength="255"
+      placeholder=""
+      {...zohoTextAttrs}
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+    />
+    <p id="SingleLine1_error" class="zf-errorMessage text-xs text-red-500" style="display:none;">
+      Invalid value
+    </p>
+  </div>
+
+  <!-- Campo: Correo Electrónico -->
+  <div class="flex flex-col gap-1.5">
+    <label
+      for={`Email-${formId}`}
+      class="text-sm font-medium text-[#3a3a3c]"
+    >
+      Correo Electrónico <span class="text-red-500">*</span>
+    </label>
+    <input
+      id={`Email-${formId}`}
+      type="text"
+      name="Email"
+      value=""
+      maxlength="255"
+      placeholder=""
+      {...zohoEmailAttrs}
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+    />
+    <p id="Email_error" class="zf-errorMessage text-xs text-red-500" style="display:none;">
+      Invalid value
+    </p>
+  </div>
+
+  <!-- Campo: Ingreso familiar -->
+  <div class="flex flex-col gap-1.5">
+    <label
+      for={`Dropdown-${formId}`}
+      class="text-sm font-medium text-[#3a3a3c]"
+    >
+      Ingreso familiar <span class="text-red-500">*</span>
+    </label>
+    <select
+      id={`Dropdown-${formId}`}
+      class="zf-form-sBox w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all appearance-none cursor-pointer"
+      name="Dropdown"
+      {...zohoSelectAttrs}
+    >
+      <option value="-Select-">-Select-</option>
+      <option value="Menos de $800">Menos de $800</option>
+      <option value="$801 a $1,000">$801 a $1,000</option>
+      <option value="$1,001 a $1,500">$1,001 a $1,500</option>
+      <option value="$1,501 a $2,000">$1,501 a $2,000</option>
+      <option value="$2,001 a $2,500">$2,001 a $2,500</option>
+      <option value="$2,501 a $3,000">$2,501 a $3,000</option>
+      <option value="Mayor a $3,000">Mayor a $3,000</option>
+    </select>
+    <p id="Dropdown_error" class="zf-errorMessage text-xs text-red-500" style="display:none;">
+      Invalid value
+    </p>
+  </div>
+
+  <!-- Botón de envío -->
+  <button
+    type="submit"
+    class="w-full bg-[var(--primary)] text-white font-semibold text-sm rounded-[8px] px-6 py-3 hover:brightness-110 active:scale-[0.98] transition-all mt-1 cursor-pointer"
+  >
+    Enviar
+  </button>
+</form>
+
+<!-- Carga del validador de Zoho como script externo (no bundleado por Astro) -->
+<script is:inline src="/zoho/validation.js"></script>
+
+<!-- Arrays de configuración requeridos por validation.js -->
+<script is:inline>
+  var dateAndMonthRegexFormateArray = zf_SetDateAndMonthRegexBasedOnDateFormate('dd-MMM-yyyy');
+  var zf_DateRegex = new RegExp(dateAndMonthRegexFormateArray[0]);
+  var zf_MonthYearRegex = new RegExp(dateAndMonthRegexFormateArray[1]);
+  var zf_MandArray = ["SingleLine", "SingleLine1", "Email", "Dropdown"];
+  var zf_FieldArray = ["SingleLine", "SingleLine1", "Email", "Dropdown"];
+  var isSalesIQIntegrationEnabled = false;
+  var salesIQFieldsArray = [];
+</script>
+
+<!-- Captura UTM avanzada de Zoho (ZFAdvLead) — llena los hidden utm_* del form -->
+<script is:inline>
+  var ZFAdvLead = function() {};
+  ZFAdvLead.prototype = {
+    utmPNameArr: ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"],
+
+    zfautm_ini: function() {
+      for (var i = 0; i < this.utmPNameArr.length; i++) {
+        var zfutm_pVal = this.zfautm_gP(this.utmPNameArr[i]);
+        if (zfutm_pVal) {
+          this.zfautm_sC(this.utmPNameArr[i], zfutm_pVal);
+        }
+      }
+    },
+
+    zfautm_gP: function(paramName) {
+      var pQuery = window.location.search;
+      var zfutm_pRes = "";
+      if (pQuery && pQuery.length > 0) {
+        pQuery = pQuery.substring(1);
+        var pParams = pQuery.split("&");
+        for (var i = 0; i < pParams.length; i++) {
+          var pPair = pParams[i].split("=");
+          if (decodeURIComponent(pPair[0]) === paramName) {
+            if (pPair.length > 1) {
+              zfutm_pRes = decodeURIComponent(pPair[1]);
+            }
+            break;
+          }
+        }
+      }
+      if (!zfutm_pRes) {
+        zfutm_pRes = this.zfautm_gC(paramName);
+      }
+      return zfutm_pRes;
+    },
+
+    zfautm_gC: function(cookieName) {
+      var zfutm_cookieArr = document.cookie.split(";");
+      for (var i = 0; i < zfutm_cookieArr.length; i++) {
+        var zfutm_cPair = zfutm_cookieArr[i].split("=");
+        var zfutm_cName = zfutm_cPair[0].replace(/^\s+|\s+$/g, "");
+        if (zfutm_cName === cookieName) {
+          return decodeURIComponent(zfutm_cPair[1]);
+        }
+      }
+      return "";
+    },
+
+    zfautm_sC: function(cookieName, cookieVal) {
+      var zfutm_exp = new Date();
+      zfutm_exp.setDate(zfutm_exp.getDate() + 30);
+      document.cookie = cookieName + "=" + encodeURIComponent(cookieVal) + "; expires=" + zfutm_exp.toUTCString() + "; path=/";
+    },
+
+    zfautm_bscPCap: function() {
+      var zfutm_src = document.referrer;
+      var zfutm_searchEngines = ["google", "yahoo", "bing", "ask", "aol", "duckduckgo"];
+      if (zfutm_src) {
+        for (var i = 0; i < zfutm_searchEngines.length; i++) {
+          if (zfutm_src.indexOf(zfutm_searchEngines[i]) !== -1) {
+            return "organic";
+          }
+        }
+        return "referral";
+      }
+      return "direct";
+    },
+
+    zfautm_calcTrafSrc: function() {
+      var zfutm_src = this.zfautm_gP("utm_source");
+      if (!zfutm_src) {
+        var zfutm_trafSrc = this.zfautm_bscPCap();
+        if (zfutm_trafSrc !== "direct") {
+          this.zfautm_sC("utm_source", document.referrer);
+          this.zfautm_sC("utm_medium", zfutm_trafSrc);
+        }
+      }
+    },
+
+    zfautm_DHtmlSprt: function() {
+      var zfutm_form = document.forms["form"];
+      if (!zfutm_form) { return; }
+      for (var i = 0; i < this.utmPNameArr.length; i++) {
+        var zfutm_fldName = this.utmPNameArr[i];
+        var zfutm_fldVal = this.zfautm_gP(zfutm_fldName);
+        if (zfutm_fldVal && zfutm_form[zfutm_fldName]) {
+          zfutm_form[zfutm_fldName].value = zfutm_fldVal;
+        }
+      }
+    }
+  };
+
+  var zfutm_zfAdvLead = new ZFAdvLead();
+  zfautm_ini = function() {
+    zfutm_zfAdvLead.zfautm_calcTrafSrc();
+    zfutm_zfAdvLead.zfautm_ini();
+  };
+  zfautm_ini();
+
+  window.addEventListener("load", function() {
+    zfutm_zfAdvLead.zfautm_DHtmlSprt();
+  });
+</script>

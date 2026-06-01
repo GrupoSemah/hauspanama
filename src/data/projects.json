@@ -696,7 +696,9 @@
     ],
     "videoThumbnail": "PRODUCTO/Carrusel-Producto Provenza-01.webp",
     "mapImage": "MAPA PROVENZA.webp",
-    "mapsUrl": "https://www.google.com/maps?ll=9.111219,-79.252625&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=14428727568052350116"
+    "mapsUrl": "https://www.google.com/maps?ll=9.111219,-79.252625&z=16&t=m&hl=en&gl=US&mapclient=embed&cid=14428727568052350116",
+    "crm": "zoho",
+    "zohoFormAction": "https://forms.zohopublic.com/semahshared1/form/GraciasporsuintersenelproyectoProvenza/formperma/641Skl5pUCLA9744_jZbThT1Tx_E61YJwWlKoyvvx4A/htmlRecords/submit"
   },
   "astre": {
     "id": "astre",

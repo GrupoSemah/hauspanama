@@ -7,6 +7,7 @@ import ImageCarousel from '../../components/ImageCarousel.tsx';
 import MapboxMap from '../../components/MapboxMap.tsx';
 import ChatWrapper from '../../components/ChatWrapper.astro';
 import BrochureDownloader from '../../components/BrochureDownloader';
+import ZohoForm from '../../components/ZohoForm.astro';
 
 function getProjectLocation(projectId: string): string {
   const locationMap: Record<string, string> = {
@@ -42,6 +43,8 @@ export interface Props {
     mapImage: string;
     mapsUrl: string;
     pipedriveFormUrl: string;
+    crm?: string;
+    zohoFormAction?: string;
   };
 }
 
@@ -239,75 +242,84 @@ const amenityImages = project.amenidades && project.amenidades.length > 0
             </a>
           </div>
           
-          <div class="bg-white rounded-[10px] flex flex-col">
-            <style is:inline>
-              .pipedriveWebForms { width: 100%; display: flex; flex-direction: column; align-items: center; flex: 1; }
-              .pipedrive-form-iframe { width: 100% !important; height: 100% !important; min-height: 600px !important; overflow: hidden !important; border: none !important; border-radius: 0 0 10px 10px !important; display: block !important; flex-grow: 1 !important; }
-              .pipedrive-form-container { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; overflow: visible; }
-              .ppf__button { margin-bottom: 0 !important; }
-              .ppf__form > div:last-child { margin-bottom: 0 !important; }
-              @media (max-width: 639px) { .pipedrive-form-container { padding: 0; } }
-              @media (min-width: 1024px) { .ppf__form { padding: 0 !important; margin: 0 !important; } .ppf__field { margin-bottom: 12px !important; } }
-            </style>
-            
-            <div class="px-6 md:px-8 pt-6 md:pt-8">
-              <h2 class="text-[var(--primary)] text-xl md:text-2xl lg:text-3xl font-bold text-center italic mb-2">
-                ¡Gracias por tu interés en nuestro proyecto!
-              </h2>
-              <p class="text-center text-sm md:text-base text-[#3a3a3c]/70 mb-6">
-                Por favor brindanos tus datos para poder contactarte y enviarte información más detallada del proyecto.
-              </p>
+          {project.crm === 'zoho' ? (
+            <div class="bg-white rounded-[10px] flex flex-col">
+              <ZohoForm
+                formAction={project.zohoFormAction ?? ''}
+                formId={project.id}
+              />
             </div>
-            
-            <div class="pipedrive-form-container">
-              <div
-                class="pipedriveWebForms w-full"
-                data-pd-webforms={project.pipedriveFormUrl}
-                id={`form-${project.id}`}
-              >
-                <script define:vars={{ formId: project.id }}>
-                  window.addEventListener('message', function(event) {
-                    if (event.data && typeof event.data === 'object' && event.data.type === 'pipedrive-form-height') {
+          ) : (
+            <div class="bg-white rounded-[10px] flex flex-col">
+              <style is:inline>
+                .pipedriveWebForms { width: 100%; display: flex; flex-direction: column; align-items: center; flex: 1; }
+                .pipedrive-form-iframe { width: 100% !important; height: 100% !important; min-height: 600px !important; overflow: hidden !important; border: none !important; border-radius: 0 0 10px 10px !important; display: block !important; flex-grow: 1 !important; }
+                .pipedrive-form-container { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; overflow: visible; }
+                .ppf__button { margin-bottom: 0 !important; }
+                .ppf__form > div:last-child { margin-bottom: 0 !important; }
+                @media (max-width: 639px) { .pipedrive-form-container { padding: 0; } }
+                @media (min-width: 1024px) { .ppf__form { padding: 0 !important; margin: 0 !important; } .ppf__field { margin-bottom: 12px !important; } }
+              </style>
+
+              <div class="px-6 md:px-8 pt-6 md:pt-8">
+                <h2 class="text-[var(--primary)] text-xl md:text-2xl lg:text-3xl font-bold text-center italic mb-2">
+                  ¡Gracias por tu interés en nuestro proyecto!
+                </h2>
+                <p class="text-center text-sm md:text-base text-[#3a3a3c]/70 mb-6">
+                  Por favor brindanos tus datos para poder contactarte y enviarte información más detallada del proyecto.
+                </p>
+              </div>
+
+              <div class="pipedrive-form-container">
+                <div
+                  class="pipedriveWebForms w-full"
+                  data-pd-webforms={project.pipedriveFormUrl}
+                  id={`form-${project.id}`}
+                >
+                  <script define:vars={{ formId: project.id }}>
+                    window.addEventListener('message', function(event) {
+                      if (event.data && typeof event.data === 'object' && event.data.type === 'pipedrive-form-height') {
+                        const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
+                        const iframe = document.querySelector(iframeSelector);
+                        if (iframe && event.data.height && iframe instanceof HTMLElement) {
+                          iframe.style.height = `${event.data.height}px`;
+                        }
+                      }
+                    });
+
+                    function adjustIframeHeight() {
                       const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
                       const iframe = document.querySelector(iframeSelector);
-                      if (iframe && event.data.height && iframe instanceof HTMLElement) {
-                        iframe.style.height = `${event.data.height}px`;
+                      if (iframe && iframe.contentWindow) {
+                        try {
+                          const height = iframe.contentWindow.document.body.scrollHeight;
+                          if (height > 400) { iframe.style.height = `${height}px`; }
+                        } catch (e) {
+                          console.log('CORS policy prevents iframe height reading');
+                        }
                       }
                     }
-                  });
 
-                  function adjustIframeHeight() {
-                    const iframeSelector = `iframe[name="hauspanama-${formId}"]`;
-                    const iframe = document.querySelector(iframeSelector);
-                    if (iframe && iframe.contentWindow) {
-                      try {
-                        const height = iframe.contentWindow.document.body.scrollHeight;
-                        if (height > 400) { iframe.style.height = `${height}px`; }
-                      } catch (e) {
-                        console.log('CORS policy prevents iframe height reading');
-                      }
-                    }
-                  }
+                    const script = document.createElement('script');
+                    script.src = 'https://webforms.pipedrive.com/f/loader';
+                    script.async = true;
+                    document.body.appendChild(script);
+                    setTimeout(adjustIframeHeight, 2000);
+                    setTimeout(adjustIframeHeight, 4000);
+                  </script>
 
-                  const script = document.createElement('script');
-                  script.src = 'https://webforms.pipedrive.com/f/loader';
-                  script.async = true;
-                  document.body.appendChild(script);
-                  setTimeout(adjustIframeHeight, 2000);
-                  setTimeout(adjustIframeHeight, 4000);
-                </script>
-
-                <iframe
-                  src={`${project.pipedriveFormUrl}?embedded=1&uuid=form-${project.id}`}
-                  name={`hauspanama-${project.id}`}
-                  title="Web Forms"
-                  class="pipedrive-form-iframe"
-                  scrolling="no"
-                  allowtransparency="true"
-                ></iframe>
+                  <iframe
+                    src={`${project.pipedriveFormUrl}?embedded=1&uuid=form-${project.id}`}
+                    name={`hauspanama-${project.id}`}
+                    title="Web Forms"
+                    class="pipedrive-form-iframe"
+                    scrolling="no"
+                    allowtransparency="true"
+                  ></iframe>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
