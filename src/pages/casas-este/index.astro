@@ -1,8 +1,42 @@
 ---
-import ProjectDetailLayout from '../../layouts/ProjectLayout/ProjectDetailLayout.astro';
-import projects from '../../data/projects.json';
+import Layout from '../../layouts/Layout.astro';
+import HeaderNonSticky from '../../components/home/HeaderNonSticky.astro';
+import SocialFooter from '../../components/home/SocialFooter.astro';
+import ChatWrapper from '../../components/ChatWrapper.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 
-const project = projects.provenza;
+const proyectos = [
+  {
+    name: "Provenza",
+    href: "/provenza",
+    coverImage: "/Proyectos/Este/Provenza/PRODUCTO/Carrusel-Producto Provenza-01.webp",
+    logoWhite: "/Portadas/Logo_Provenza_-_blanco.svg",
+    price: "$85,000",
+    locationBold: "sobre la vía panamericana",
+    locationDetail: "pasando la entrada de san diego-pacora",
+    preVenta: true,
+  },
+];
 ---
 
-<ProjectDetailLayout project={project} />
+<Layout title="Casas en Panamá Este | Haus Panama" fixedHeader={false}>
+  <HeaderNonSticky />
+  <ChatWrapper />
+
+  <main class="font-helvetica w-full bg-white">
+    <section class="w-full px-5 lg:px-8 pt-10 lg:pt-16 pb-16 lg:pb-24">
+      <div class="max-w-[1312px] mx-auto">
+        <h2 class="text-[#3a3a3c] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] leading-tight mb-8 lg:mb-10">
+          casas en panamá este
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {proyectos.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SocialFooter />
+</Layout>

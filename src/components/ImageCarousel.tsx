@@ -14,29 +14,15 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
   const [selectedImage, setSelectedImage] = useState('');
   const [modalImageIndex, setModalImageIndex] = useState(0);
   
-  // Variables para controlar cuántas imágenes mostrar
-  const imagesPerView = 3;
-  const totalSlides = Math.ceil(images.length / imagesPerView);
+  const totalImages = images.length;
 
-  // Función para navegar a la siguiente diapositiva (memoizada)
   const nextSlide = useCallback(() => {
-    if (currentIndex < images.length - imagesPerView) {
-      setCurrentIndex(prevIndex => prevIndex + 1);
-    } else {
-      // Volver al inicio cuando llegas al final
-      setCurrentIndex(0);
-    }
-  }, [currentIndex, images.length, imagesPerView]);
+    setCurrentIndex((prev) => (prev + 1) % totalImages);
+  }, [totalImages]);
 
-  // Función para navegar a la diapositiva anterior (memoizada)
   const prevSlide = useCallback(() => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prevIndex => prevIndex - 1);
-    } else {
-      // Ir al final cuando estás en el inicio
-      setCurrentIndex(Math.max(0, images.length - imagesPerView));
-    }
-  }, [currentIndex, images.length, imagesPerView]);
+    setCurrentIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  }, [totalImages]);
 
   // Función para abrir el modal con la imagen seleccionada (memoizada)
   const openModal = useCallback((imageUrl: string, index: number) => {
@@ -218,32 +204,41 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
     }
   }, [nextSlide, modalOpen]);
 
-  // Calcular el índice para los indicadores
-  const indicatorIndex = Math.floor(currentIndex / imagesPerView);
+  const imagePath = (image: string) =>
+    `/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${image}`;
 
   return (
-    <div className="relative w-full mb-8 max-w-[100vw]">
-      {/* Contenedor principal del carrusel con la clase necesaria para los event listeners */}
-      <div 
-        className="relative overflow-hidden w-full carousel-container" 
-      >
-        {/* Se han eliminado los botones de navegación (flechas) para permitir solo navegación táctil/mouse */}
-        
-        {/* Contenedor de las imágenes */}
+    <div className="relative w-full">
+      {/* Peek-style carousel: center image prominent, sides peek from edges */}
+      <div className="overflow-hidden w-full carousel-container">
         <div 
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / imagesPerView)}%)` }}
+          className="flex items-center transition-transform duration-500 ease-in-out"
+          style={{ 
+            gap: '12px',
+            transform: `translateX(calc(22.5% - ${currentIndex * 55}% - ${currentIndex * 12}px))`
+          }}
         >
           {images.map((image, index) => (
             <div
               key={index}
-              className="min-w-[33.333%] px-1 cursor-pointer"
-              onClick={() => openModal(image, index)}
+              className={`flex-shrink-0 rounded-[12px] overflow-hidden cursor-pointer transition-all duration-500 self-center ${
+                index === currentIndex ? 'opacity-100 scale-100' : 'opacity-60 scale-[0.85]'
+              }`}
+              style={{ width: '55%' }}
+              onClick={() => {
+                if (index === currentIndex) {
+                  openModal(image, index);
+                } else if (index < currentIndex) {
+                  prevSlide();
+                } else {
+                  nextSlide();
+                }
+              }}
             >
               <img 
-                src={`/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${image}`} 
+                src={imagePath(image)} 
                 alt={`Imagen ${index + 1}`} 
-                className="w-full aspect-square object-cover rounded-md"
+                className="w-full aspect-[16/9] object-cover"
                 loading="lazy"
               />
             </div>
@@ -251,16 +246,16 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
         </div>
       </div>
       
-      {/* Indicadores de diapositiva */}
+      {/* Navigation dots */}
       <div className="flex justify-center mt-4 gap-1.5">
-        {Array.from({ length: totalSlides }).map((_, index) => (
+        {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index * imagesPerView)}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              index === indicatorIndex ? 'bg-[var(--secondary)]' : 'bg-gray-300'
+            onClick={() => setCurrentIndex(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'bg-[#3a3a3c] w-3' : 'bg-gray-300 w-2'
             }`}
-            aria-label={`Ir a diapositiva ${index + 1}`}
+            aria-label={`Ir a imagen ${index + 1}`}
           />
         ))}
       </div>
@@ -288,7 +283,7 @@ function ImageCarousel({ images, projectId = '', projectLocation = '' }: ImageCa
               className="relative w-full touch-pan-x overflow-hidden"
             >
               <img 
-                src={`/Proyectos/${projectLocation}/${projectId.charAt(0).toUpperCase() + projectId.slice(1)}/${selectedImage}`} 
+                src={imagePath(selectedImage)} 
                 alt="Imagen ampliada" 
                 className="w-full h-auto max-h-[80vh] object-contain select-none"
                 loading="lazy"

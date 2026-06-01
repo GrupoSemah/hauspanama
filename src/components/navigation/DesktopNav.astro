@@ -27,30 +27,14 @@ const isProjectsPage = currentPath.includes('/centro') ||
                       currentPath.includes('/proyecto');
 ---
 
-<nav class="hidden xl:flex items-center space-x-6 w-full justify-center">
-  <div class="flex flex-col items-center">
-    <a href="/" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isHomePage ? 'text-[var(--primary)] font-bold' : ''}`}>
-      inicio
-    </a>
-    {isHomePage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
-  </div>
+<nav class="hidden xl:flex items-center justify-end flex-1 gap-10 py-2.5">
+  <a href="/" class={`font-helvetica font-medium text-[16px] text-[#3a3a3c] transition-all duration-300 hover:text-[var(--primary)] whitespace-nowrap ${isHomePage ? 'text-[var(--primary)] font-bold' : ''}`}>
+    inicio
+  </a>
   
-  <div class="flex flex-col items-center">
-    <a href="/about" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isAboutPage ? 'text-[var(--primary)] font-bold' : ''}`}>
-      sobre nosotros
-    </a>
-    {isAboutPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
-  </div>
+  <a href="/#sobre-nosotros" class={`font-helvetica font-medium text-[16px] text-[#3a3a3c] transition-all duration-300 hover:text-[var(--primary)] whitespace-nowrap ${isAboutPage ? 'text-[var(--primary)] font-bold' : ''}`}>
+    quienes somos
+  </a>
   
-  <div class="flex flex-col items-center">
-    <ProjectsDropdown isActive={isProjectsPage} />
-    {isProjectsPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
-  </div>
-  
-  <div class="flex flex-col items-center">
-    <a href="/contacto" class={`font-helvetica font-medium px-2.5 py-1 text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:scale-105 ${isContactPage ? 'text-[var(--primary)] font-bold' : ''}`}>
-      contáctenos
-    </a>
-    {isContactPage && <div class="w-10 h-1 bg-[var(--primary)] mx-auto mt-0"></div>}
-  </div>
+  <ProjectsDropdown isActive={isProjectsPage} />
 </nav>

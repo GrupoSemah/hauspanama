@@ -8,11 +8,13 @@ const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === '/' || currentPath === '';
 const isAboutPage = currentPath.startsWith('/about') || currentPath.startsWith('/sobre-nosotros') || currentPath.includes('nosotros');
 const isContactPage = currentPath.includes('contacto') || currentPath.includes('contact');
-const isProjectsPage = currentPath.includes('/centro') || 
+const isProjectsPage = currentPath === '/apartamentos' || currentPath === '/apartamentos/' ||
+                     currentPath === '/casas' || currentPath === '/casas/' ||
+                     currentPath.includes('/centro') || 
                      currentPath.includes('/este') || 
                      currentPath.includes('/oeste') ||
                      currentPath.includes('/athas') ||
-                     currentPath.includes('/gaudi') ||
+
                      currentPath.includes('/alai') ||
                      currentPath.includes('/astre') ||
                      currentPath.includes('/amitie') ||
@@ -23,273 +25,198 @@ const isProjectsPage = currentPath.includes('/centro') ||
                      currentPath.includes('/piamonte') ||
                      currentPath.includes('/siena') ||
                      currentPath.includes('/provenza') ||
-                     currentPath.includes('/proyecto');
-
-// Proyectos organizados por zona para el menú móvil
-const projectsByZone = {
-  centro: [
-    { name: "áthas", path: "/athas" },
-    { name: "gaudí", path: "/gaudi" },
-    { name: "alai", path: "/alai" },
-    { name: "astre", path: "/astre" }
-  ],
-  este: [
-    { name: "amitié", path: "/amitie" },
-    { name: "lagun", path: "/lagun" },
-    { name: "filia", path: "/filia" },
-    { name: "provenza", path: "/provenza" }
-  ],
-  oeste: [
-    { name: "verona", path: "/verona" },
-    { name: "piamonte", path: "/piamonte" },
-    { name: "siena", path: "/siena" }
-  ]
-};
+                     currentPath.includes('/solaris') ||
+                     currentPath.includes('/proyecto') ||
+                     currentPath.includes('/apartamentos-') ||
+                     currentPath.includes('/casas-');
 ---
 
 <!-- Mobile menu overlay -->
 <div 
   id="mobile-menu" 
-  class="fixed top-0 left-0 w-full h-screen z-40 hidden flex-col bg-white transition-all duration-300 ease-in-out transform opacity-0 -translate-y-4"
+  class="fixed top-0 left-0 w-full h-full z-[9999] hidden bg-white transition-all duration-300 ease-in-out transform opacity-0 -translate-y-4"
+  style="display:none;"
   aria-hidden="true"
   role="dialog"
   aria-modal="true"
   aria-label="Menú de navegación móvil"
 >
-  <div class="flex justify-start items-center px-4 py-2.5 border-b border-gray-100/20 bg-[var(--secondary)]/20 backdrop-blur-sm">
-    <a href="/">
-      <LocalImage 
-        src="Logos/logohaus_usiwqr.svg" 
-        alt="Haus Panama Logo" 
-        className="h-8" 
-      />
-    </a>
+  <!-- Mobile menu header -->
+  <div class="flex items-center px-5 py-2.5 w-full">
+    <div class="bg-[#f7f7f7] flex items-center justify-between h-[60px] px-5 rounded-[50px] w-full">
+      <a href="/">
+        <LocalImage 
+          src="Logos/logohaus_usiwqr.svg" 
+          alt="Haus Panama Logo" 
+          className="h-[28px]" 
+        />
+      </a>
+      <!-- Close button (dash icon matching Figma) -->
+      <button 
+        id="mobile-menu-close" 
+        class="w-[40px] h-[40px] flex items-center justify-center"
+        aria-label="Cerrar menú de navegación"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-[#3a3a3c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+        </svg>
+      </button>
+    </div>
   </div>
-  <nav class="flex-1 overflow-y-auto" aria-label="Navegación principal">
-    <ul class="py-6 px-4 space-y-4">
-      <li class="border-b border-gray-100/20 pb-2">
-        <div class="flex flex-col">
-          <a 
-            href="/" 
-            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isHomePage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
-          >
-            inicio
-          </a>
-          {isHomePage && <div class="w-12 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
-        </div>
+
+  <!-- Nav items centered -->
+  <nav class="flex-1 flex flex-col items-center justify-center h-[calc(100%-80px)]" aria-label="Navegación principal">
+    <ul class="flex flex-col items-center gap-8">
+      <li>
+        <a 
+          href="/" 
+          class={`text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isHomePage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
+        >
+          inicio
+        </a>
       </li>
-      <li class="border-b border-gray-100/20 pb-2">
-        <div class="flex flex-col">
-          <a 
-            href="/about" 
-            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isAboutPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
-          >
-            sobre nosotros
-          </a>
-          {isAboutPage && <div class="w-34 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
-        </div>
+      <li>
+        <a 
+          href="/#sobre-nosotros" 
+          class={`text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isAboutPage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
+        >
+          quienes somos
+        </a>
       </li>
-      <li class="border-b border-gray-100/20 pb-2">
-        <div class="relative">
-          <!-- Dropdown toggle for mobile - Proyectos principal -->
-          <div class="flex flex-col">
-            <button 
-              id="projects-dropdown-toggle" 
-              class={`flex items-center justify-between w-full text-xl py-3.5 px-4 font-medium transition-all duration-300 hover:text-[var(--primary)] ${isProjectsPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
-              aria-expanded="false"
-              aria-haspopup="true"
-              aria-controls="projects-dropdown-content"
-            >
-              <span>proyectos</span>
-              <svg id="dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <li class="w-full flex flex-col items-center">
+        <!-- Botón principal proyectos -->
+        <button
+          id="mobile-projects-toggle"
+          class={`flex items-center gap-2 text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isProjectsPage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
+        >
+          <span>proyectos</span>
+          <svg id="mobile-projects-arrow" class="transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </button>
+
+        <!-- Submenú por zonas -->
+        <div id="mobile-projects-menu" class="mt-4 w-full max-w-[220px] text-center" style="display:none; flex-direction:column; gap:12px;">
+
+          <!-- Centro -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-centro">
+              <span>Centro</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m6 9 6 6 6-6"/>
               </svg>
-              <svg id="dropdown-icon-up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden">
-                <path d="m18 15-6-6-6 6"/>
+            </button>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-centro">
+              <a href="/athas" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">áthas</a>
+              <a href="/alai" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">alai</a>
+              <a href="https://astrepanama.com" target="_blank" rel="noopener noreferrer" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">astre ↗</a>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200"></div>
+
+          <!-- Este -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-este">
+              <span>Este</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
               </svg>
             </button>
-            {isProjectsPage && <div class="w-24 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
-          </div>
-          
-          <div 
-            id="projects-dropdown-content" 
-            class="hidden mt-2 space-y-2 pl-2"
-            role="menu"
-            aria-labelledby="projects-dropdown-toggle"
-          >
-            <!-- Centro submenu -->
-            <div class="relative">
-              <button 
-                id="centro-dropdown-toggle" 
-                class="flex items-center justify-between w-full text-lg py-2 px-4 font-bold text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)]"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="centro-dropdown-content"
-              >
-                <span>Centro</span>
-                <svg class="centro-dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"/>
-                </svg>
-                <svg class="centro-dropdown-icon-up hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-              </button>
-              
-              <div 
-                id="centro-dropdown-content" 
-                class="hidden pl-4 space-y-1"
-                role="menu"
-                aria-labelledby="centro-dropdown-toggle"
-              >
-                {projectsByZone.centro.map(project => (
-                  <a 
-                    href={project.path} 
-                    class="block py-2 px-4 text-md text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:font-bold hover:translate-x-1 transform"
-                    role="menuitem"
-                  >
-                    {project.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-            
-            <!-- Este submenu -->
-            <div class="relative">
-              <button 
-                id="este-dropdown-toggle" 
-                class="flex items-center justify-between w-full text-lg py-2 px-4 font-bold text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)]"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="este-dropdown-content"
-              >
-                <span>Este</span>
-                <svg class="este-dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"/>
-                </svg>
-                <svg class="este-dropdown-icon-up hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-              </button>
-              
-              <div 
-                id="este-dropdown-content" 
-                class="hidden pl-4 space-y-1"
-                role="menu"
-                aria-labelledby="este-dropdown-toggle"
-              >
-                {projectsByZone.este.map(project => (
-                  <a 
-                    href={project.path} 
-                    class="block py-2 px-4 text-md text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:font-bold hover:translate-x-1 transform"
-                    role="menuitem"
-                  >
-                    {project.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-            
-            <!-- Oeste submenu -->
-            <div class="relative">
-              <button 
-                id="oeste-dropdown-toggle" 
-                class="flex items-center justify-between w-full text-lg py-2 px-4 font-bold text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)]"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="oeste-dropdown-content"
-              >
-                <span>Oeste</span>
-                <svg class="oeste-dropdown-icon-down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6"/>
-                </svg>
-                <svg class="oeste-dropdown-icon-up hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m18 15-6-6-6 6"/>
-                </svg>
-              </button>
-              
-              <div 
-                id="oeste-dropdown-content" 
-                class="hidden pl-4 space-y-1"
-                role="menu"
-                aria-labelledby="oeste-dropdown-toggle"
-              >
-                {projectsByZone.oeste.map(project => (
-                  <a 
-                    href={project.path} 
-                    class="block py-2 px-4 text-md text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:font-bold hover:translate-x-1 transform"
-                    role="menuitem"
-                  >
-                    {project.name}
-                  </a>
-                ))}
-              </div>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-este">
+              <a href="/amitie" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">amitié</a>
+              <a href="/lagun" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">lagun</a>
+              <a href="/filia" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">filia</a>
+              <a href="/provenza" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">provenza</a>
             </div>
           </div>
+
+          <div class="border-t border-gray-200"></div>
+
+          <!-- Oeste -->
+          <div>
+            <button class="mobile-zone-toggle w-full flex items-center justify-center gap-2 text-[20px] font-bold text-[#3a3a3c] hover:text-[var(--primary)] transition-colors" data-zone="mobile-oeste">
+              <span>Oeste</span>
+              <svg class="mobile-zone-arrow transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="mobile-zone-menu mt-2" style="display:none; flex-direction:column; gap:8px;" data-zone="mobile-oeste">
+              <a href="/solaris" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">solaris</a>
+              <a href="/verona" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">verona</a>
+              <a href="/piamonte" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">piamonte</a>
+              <a href="/siena" class="text-[20px] font-medium text-gray-500 hover:text-[var(--primary)] transition-colors py-1">siena</a>
+            </div>
+          </div>
+
         </div>
       </li>
-      <li class="border-b border-gray-100/20 pb-2">
-        <div class="flex flex-col">
-          <a 
-            href="/contacto" 
-            class={`text-xl py-3.5 px-4 block font-medium transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1 ${isContactPage ? 'text-[var(--primary)] font-bold' : 'text-[var(--secondary)]'}`}
-          >
-            contáctenos
-          </a>
-          {isContactPage && <div class="w-30 h-1 bg-[var(--primary)] ml-4 -mt-2"></div>}
-        </div>
-      </li>
-      <li class="border-b border-gray-100/20 pb-2">
+      <li>
         <a 
-          href="/terminos-legales" 
-          class="text-xl py-3.5 px-4 block font-medium text-[var(--secondary)] transition-all duration-300 hover:text-[var(--primary)] hover:translate-x-1"
+          href="/contacto" 
+          class={`text-[20px] font-medium transition-all duration-300 hover:text-[var(--primary)] ${isContactPage ? 'text-[var(--primary)] font-bold' : 'text-[#3a3a3c]'}`}
         >
-          términos legales
+          contacto
         </a>
       </li>
     </ul>
   </nav>
 </div>
 
-<button 
-  id="mobile-menu-button" 
-  class="z-50 xl:hidden focus:outline-none fixed top-2.5 right-4 md:right-8" 
-  aria-label="Abrir menú de navegación"
-  aria-expanded="false"
-  aria-controls="mobile-menu"
->
-  <svg 
-    id="menu-icon" 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="32" 
-    height="32" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="2.5" 
-    stroke-linecap="round" 
-    stroke-linejoin="round" 
-    class="h-8 w-8 stroke-[2.5px] transition-all duration-300"
-    aria-hidden="true"
-  >
-    <line x1="4" x2="20" y1="12" y2="12" />
-    <line x1="4" x2="20" y1="6" y2="6" />
-    <line x1="4" x2="20" y1="18" y2="18" />
-  </svg>
-  <svg 
-    id="close-icon" 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="32" 
-    height="32" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="2.5" 
-    stroke-linecap="round" 
-    stroke-linejoin="round" 
-    class="h-8 w-8 stroke-[2.5px] transition-all duration-300 hidden"
-    aria-hidden="true"
-  >
-    <path d="M18 6 6 18" />
-    <path d="m6 6 12 12" />
-  </svg>
-</button>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectsToggle = document.getElementById('mobile-projects-toggle');
+    const projectsMenu = document.getElementById('mobile-projects-menu');
+    const projectsArrow = document.getElementById('mobile-projects-arrow');
+
+    if (!projectsToggle || !projectsMenu || !projectsArrow) return;
+
+    // Alternar menú principal de proyectos
+    projectsToggle.addEventListener('click', () => {
+      const isHidden = projectsMenu.style.display === 'none' || projectsMenu.style.display === '';
+
+      if (isHidden) {
+        projectsMenu.style.display = 'flex';
+        projectsArrow.classList.add('rotate-180');
+      } else {
+        projectsMenu.style.display = 'none';
+        projectsArrow.classList.remove('rotate-180');
+        // Cerrar todos los submenús de zona
+        document.querySelectorAll('.mobile-zone-menu').forEach((menu) => {
+          (menu as HTMLElement).style.display = 'none';
+        });
+        document.querySelectorAll('.mobile-zone-arrow').forEach((arrow) => {
+          arrow.classList.remove('rotate-180');
+        });
+      }
+    });
+
+    // Alternar submenú por zona
+    document.querySelectorAll('.mobile-zone-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const zone = (toggle as HTMLElement).dataset.zone;
+        const zoneMenu = document.querySelector(`.mobile-zone-menu[data-zone="${zone}"]`) as HTMLElement | null;
+        const zoneArrow = toggle.querySelector('.mobile-zone-arrow');
+
+        if (!zoneMenu || !zoneArrow) return;
+
+        const isHidden = zoneMenu.style.display === 'none' || zoneMenu.style.display === '';
+
+        // Cerrar todos primero
+        document.querySelectorAll('.mobile-zone-menu').forEach((menu) => {
+          (menu as HTMLElement).style.display = 'none';
+        });
+        document.querySelectorAll('.mobile-zone-arrow').forEach((arrow) => {
+          arrow.classList.remove('rotate-180');
+        });
+
+        // Abrir el seleccionado si estaba cerrado
+        if (isHidden) {
+          zoneMenu.style.display = 'flex';
+          zoneArrow.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
