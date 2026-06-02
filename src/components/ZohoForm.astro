@@ -6,6 +6,9 @@ export interface Props {
 
 const { formAction, formId } = Astro.props;
 
+// Site key pública de Cloudflare Turnstile — debe estar en el .env como PUBLIC_TURNSTILE_SITE_KEY
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
+
 // Atributos personalizados de Zoho que no existen en el tipo HTMLInputElement de TypeScript.
 // validation.js los lee vía getAttribute(), por lo que deben estar en el DOM como atributos.
 const zohoTextAttrs = { checktype: "c1", fieldType: "1" } as Record<string, string>;
@@ -23,7 +26,7 @@ const zohoSelectAttrs = { checktype: "c1" } as Record<string, string>;
   </p>
 </div>
 
-<!-- Formulario Zoho — atributos exactos requeridos por validation.js y el endpoint -->
+<!-- Formulario Zoho — action/method se conservan como fallback no-JS; el submit real lo maneja JS via fetch -->
 <form
   id="form"
   name="form"
@@ -31,7 +34,6 @@ const zohoSelectAttrs = { checktype: "c1" } as Record<string, string>;
   method="POST"
   enctype="multipart/form-data"
   accept-charset="UTF-8"
-  onsubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();'
   class="w-full px-6 md:px-8 pb-8 flex flex-col gap-5"
 >
   <!-- Campos ocultos requeridos por Zoho Forms -->
@@ -43,6 +45,23 @@ const zohoSelectAttrs = { checktype: "c1" } as Record<string, string>;
   <input type="hidden" name="utm_campaign" value="" />
   <input type="hidden" name="utm_term" value="" />
   <input type="hidden" name="utm_content" value="" />
+
+  <!-- Honeypot anti-bot: oculto fuera de pantalla, invisible para humanos, visible para bots -->
+  <div
+    aria-hidden="true"
+    style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;"
+  >
+    <label for={`hp_website-${formId}`} aria-hidden="true">Website</label>
+    <input
+      type="text"
+      id={`hp_website-${formId}`}
+      name="hp_website"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+      value=""
+    />
+  </div>
 
   <!-- Campo: Nombre completo -->
   <div class="flex flex-col gap-1.5">
@@ -141,14 +160,157 @@ const zohoSelectAttrs = { checktype: "c1" } as Record<string, string>;
     </p>
   </div>
 
+  <!-- Widget de Cloudflare Turnstile — solo se renderiza si la site key está definida -->
+  {turnstileSiteKey && (
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+  )}
+
+  <!-- Mensaje de error genérico del submit (oculto por defecto) -->
+  <p
+    id={`form-error-${formId}`}
+    class="text-xs text-red-500 text-center hidden"
+    aria-live="polite"
+  ></p>
+
   <!-- Botón de envío -->
   <button
+    id={`submit-btn-${formId}`}
     type="submit"
-    class="w-full bg-[var(--primary)] text-white font-semibold text-sm rounded-[8px] px-6 py-3 hover:brightness-110 active:scale-[0.98] transition-all mt-1 cursor-pointer"
+    class="w-full bg-[var(--primary)] text-white font-semibold text-sm rounded-[8px] px-6 py-3 hover:brightness-110 active:scale-[0.98] transition-all mt-1 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
   >
     Enviar
   </button>
 </form>
+
+<!-- Script de Cloudflare Turnstile — cargado async/defer para no bloquear el render -->
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<!-- Guard anti-bot + flujo de submit via fetch hacia /api/zoho-lead -->
+<script is:inline define:vars={{ formId, formAction }}>
+  // Registra el momento de carga por instancia para evitar colisiones entre múltiples formularios
+  window.__hpFormLoad = window.__hpFormLoad || {};
+  window.__hpFormLoad[formId] = Date.now();
+
+  (function () {
+    var form = document.getElementById('form');
+    if (!form) { return; }
+
+    form.addEventListener('submit', function (e) {
+      // Siempre prevenir la navegación nativa — el submit lo maneja fetch
+      e.preventDefault();
+
+      var errorEl = document.getElementById('form-error-' + formId);
+      var submitBtn = document.getElementById('submit-btn-' + formId);
+
+      // Oculta cualquier mensaje de error previo
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.classList.add('hidden');
+      }
+
+      // --- 1. Check honeypot ---
+      var hp = document.getElementById('hp_website-' + formId);
+      if (hp && hp.value.trim() !== '') {
+        // Bot detectado — falla en silencio
+        return;
+      }
+
+      // --- 2. Check timing (< 3 segundos → bot) ---
+      if (Date.now() - window.__hpFormLoad[formId] < 3000) {
+        // Submit demasiado rápido — falla en silencio
+        return;
+      }
+
+      // --- 3. Validación de campos Zoho ---
+      if (typeof window.zf_ValidateAndSubmit === 'function') {
+        if (!window.zf_ValidateAndSubmit()) {
+          // zf_ValidateAndSubmit ya muestra los errores de campo en el DOM
+          return;
+        }
+      }
+
+      // --- 4. Token de Turnstile ---
+      var turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
+      var turnstileToken = turnstileInput ? turnstileInput.value : '';
+
+      // Si hay widget activo (hay un .cf-turnstile en el form) y el token está vacío → bloquear
+      var hasTurnstileWidget = !!form.querySelector('.cf-turnstile');
+      if (hasTurnstileWidget && !turnstileToken) {
+        if (errorEl) {
+          errorEl.textContent = 'Por favor completa la verificación de seguridad.';
+          errorEl.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // --- 5. Construir payload con el contrato exacto del endpoint ---
+      var payload = {
+        projectId: formId,
+        name:    (document.getElementById('SingleLine-' + formId) || {}).value || '',
+        phone:   (document.getElementById('SingleLine1-' + formId) || {}).value || '',
+        email:   (document.getElementById('Email-' + formId) || {}).value || '',
+        income:  (document.getElementById('Dropdown-' + formId) || {}).value || '',
+        honeypot: hp ? hp.value : '',
+        turnstileToken: turnstileToken,
+        utm: {
+          utm_source:   (form.querySelector('[name="utm_source"]') || {}).value || '',
+          utm_medium:   (form.querySelector('[name="utm_medium"]') || {}).value || '',
+          utm_campaign: (form.querySelector('[name="utm_campaign"]') || {}).value || '',
+          utm_term:     (form.querySelector('[name="utm_term"]') || {}).value || '',
+          utm_content:  (form.querySelector('[name="utm_content"]') || {}).value || '',
+        },
+        referrer: (form.querySelector('[name="zf_referrer_name"]') || {}).value || '',
+      };
+
+      // --- 6. Deshabilitar botón para evitar doble submit ---
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando…';
+      }
+
+      // --- 7. Enviar al endpoint propio ---
+      fetch('/api/zoho-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          if (res.status === 429) {
+            return res.json().then(function () {
+              throw { status: 429 };
+            }).catch(function () {
+              throw { status: 429 };
+            });
+          }
+          return res.json().then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.data && result.data.success) {
+            window.location.href = '/gracias';
+          } else {
+            throw { status: 0 };
+          }
+        })
+        .catch(function (err) {
+          // Reactivar botón en cualquier error
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar';
+          }
+          if (errorEl) {
+            if (err && err.status === 429) {
+              errorEl.textContent = 'Demasiados intentos, espera un momento.';
+            } else {
+              errorEl.textContent = 'Hubo un problema al enviar. Intenta de nuevo.';
+            }
+            errorEl.classList.remove('hidden');
+          }
+        });
+    });
+  })();
+</script>
 
 <!-- Carga del validador de Zoho como script externo (no bundleado por Astro) -->
 <script is:inline src="/zoho/validation.js"></script>

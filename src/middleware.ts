@@ -13,21 +13,34 @@ const RATE_LIMIT_WINDOW_MS = 60_000; // 60 segundos
 
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
+// Limpia un valor de IP crudo para evitar log injection.
+// Toma solo el primer segmento (ante proxies encadenados) y permite
+// únicamente caracteres válidos de IPv4/IPv6.
+function sanitizeIp(raw: string | null): string {
+  if (!raw) return 'unknown';
+  const first = raw.split(',')[0].trim();
+  // Permitir solo dígitos, puntos, dos puntos y hex (IPv4 e IPv6); recortar a 45 chars
+  const cleaned = first.replace(/[^0-9a-fA-F:.]/g, '').slice(0, 45);
+  return cleaned || 'unknown';
+}
+
 function getClientIp(request: Request): string {
-  // Primero: leer el header (seguro en cualquier contexto, incluyendo rutas prerenderizadas)
+  // Prioridad 1: CF-Connecting-IP — lo setea Cloudflare, no spoofeable por el cliente
+  const cfIp = request.headers.get('cf-connecting-ip');
+  if (cfIp) return sanitizeIp(cfIp);
+
+  // Prioridad 2: primer valor de X-Forwarded-For (detrás de proxies encadenados)
   const forwarded = request.headers.get('x-forwarded-for');
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
-  }
-  return 'unknown';
+  return sanitizeIp(forwarded);
 }
 
 export const onRequest = defineMiddleware((context, next) => {
   const { request } = context;
 
-  // Guard: cualquier ruta que NO sea el endpoint de leads pasa sin tocar clientAddress
+  // Guard: solo aplica rate-limit a los endpoints de leads (Pipedrive y Zoho)
+  const RATE_LIMITED_PATHS = new Set(['/api/pipedrive-lead', '/api/zoho-lead']);
   const url = new URL(request.url);
-  if (request.method !== 'POST' || url.pathname !== '/api/pipedrive-lead') {
+  if (request.method !== 'POST' || !RATE_LIMITED_PATHS.has(url.pathname)) {
     return next();
   }
 
