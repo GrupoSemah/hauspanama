@@ -1,0 +1,286 @@
+---
+export interface Props {
+  projectId: string;
+  projectName: string;
+  whatsappNumber: string;
+}
+
+const { projectId, projectName, whatsappNumber } = Astro.props;
+
+// Rangos de ingreso familiar — idénticos a ZohoForm.astro
+const incomeRanges = [
+  'Menos de $800',
+  '$801 a $1,000',
+  '$1,001 a $1,500',
+  '$1,501 a $2,000',
+  '$2,001 a $2,500',
+  '$2,501 a $3,000',
+  'Mayor a $3,000',
+];
+---
+
+<!-- Cabecera del formulario: mismo estilo que ZohoForm -->
+<div class="px-6 md:px-8 pt-6 md:pt-8">
+  <h2 class="text-[var(--primary)] text-xl md:text-2xl lg:text-3xl font-bold text-center italic mb-2">
+    ¡Recibe información de {projectName} por WhatsApp!
+  </h2>
+  <p class="text-center text-sm md:text-base text-[#3a3a3c]/70 mb-6">
+    Completa tus datos y te contactamos de inmediato por WhatsApp.
+  </p>
+</div>
+
+<!-- Formulario WhatsApp-first: sin backend, solo validación cliente + redirect a wa.me -->
+<form
+  id={`wa-lead-form-${projectId}`}
+  class="w-full px-6 md:px-8 pb-8 flex flex-col gap-5"
+  novalidate
+>
+  <!-- Honeypot anti-bot: oculto fuera de pantalla, invisible para humanos, visible para bots -->
+  <div
+    aria-hidden="true"
+    style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;"
+  >
+    <label for={`wa-hp-${projectId}`} aria-hidden="true">Website</label>
+    <input
+      type="text"
+      id={`wa-hp-${projectId}`}
+      name="hp_website"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+      value=""
+    />
+  </div>
+
+  <!-- Hidden UTM: se completan en el cliente desde query params / sessionStorage -->
+  <input type="hidden" name="utm_source" value="" />
+  <input type="hidden" name="utm_medium" value="" />
+  <input type="hidden" name="utm_campaign" value="" />
+  <input type="hidden" name="utm_term" value="" />
+  <input type="hidden" name="utm_content" value="" />
+
+  <!-- Campo: Nombre completo -->
+  <div class="flex flex-col gap-1.5">
+    <label for={`wa-name-${projectId}`} class="text-sm font-medium text-[#3a3a3c]">
+      Nombre completo <span class="text-red-500">*</span>
+    </label>
+    <input
+      id={`wa-name-${projectId}`}
+      type="text"
+      name="name"
+      maxlength="255"
+      autocomplete="name"
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+    />
+    <p id={`wa-name-error-${projectId}`} class="text-xs text-red-500 hidden" role="alert" aria-live="polite"></p>
+  </div>
+
+  <!-- Campo: Teléfono / WhatsApp -->
+  <div class="flex flex-col gap-1.5">
+    <label for={`wa-phone-${projectId}`} class="text-sm font-medium text-[#3a3a3c]">
+      Número de teléfono / WhatsApp <span class="text-red-500">*</span>
+    </label>
+    <input
+      id={`wa-phone-${projectId}`}
+      type="tel"
+      name="phone"
+      inputmode="tel"
+      maxlength="30"
+      autocomplete="tel"
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+    />
+    <p id={`wa-phone-error-${projectId}`} class="text-xs text-red-500 hidden" role="alert" aria-live="polite"></p>
+  </div>
+
+  <!-- Campo: Ingreso familiar (opcional) -->
+  <div class="flex flex-col gap-1.5">
+    <label for={`wa-income-${projectId}`} class="text-sm font-medium text-[#3a3a3c]">
+      Ingreso familiar
+    </label>
+    <select
+      id={`wa-income-${projectId}`}
+      name="income"
+      class="w-full border border-gray-300 rounded-[8px] px-4 py-2.5 text-sm text-[#3a3a3c] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all appearance-none cursor-pointer"
+    >
+      <option value="">-Select-</option>
+      {incomeRanges.map((range) => (
+        <option value={range}>{range}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Mensaje de error genérico del submit (oculto por defecto) -->
+  <p
+    id={`wa-form-error-${projectId}`}
+    class="text-xs text-red-500 text-center hidden"
+    role="alert"
+    aria-live="polite"
+  ></p>
+
+  <!-- Botón de envío -->
+  <button
+    id={`wa-submit-${projectId}`}
+    type="submit"
+    class="w-full bg-[var(--primary)] text-white font-semibold text-sm rounded-[8px] px-6 py-3 hover:brightness-110 active:scale-[0.98] transition-all mt-1 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+  >
+    Continuar por WhatsApp
+  </button>
+</form>
+
+<!-- Guard anti-bot + captura de UTM + construcción del mensaje + redirect a wa.me (sin backend) -->
+<script is:inline define:vars={{ projectId, projectName, whatsappNumber }}>
+  // Registra el momento de carga por instancia para evitar colisiones entre múltiples formularios
+  window.__hpWaFormLoad = window.__hpWaFormLoad || {};
+  window.__hpWaFormLoad[projectId] = Date.now();
+
+  (function () {
+    var form = document.getElementById('wa-lead-form-' + projectId);
+    if (!form) { return; }
+
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    var utmStorageKey = 'hp_utm_params';
+
+    function getQueryParam(name) {
+      var params = new URLSearchParams(window.location.search);
+      return params.get(name) || '';
+    }
+
+    // Elimina saltos/tabs y acota longitud para no romper el link de wa.me
+    function sanitizeUtm(value) {
+      return value.replace(/[\r\n\t]/g, '').slice(0, 100);
+    }
+
+    // Captura UTM de query params, con fallback a sessionStorage para sobrevivir navegación
+    function loadUtm() {
+      var stored = {};
+      try {
+        var raw = sessionStorage.getItem(utmStorageKey);
+        if (raw) { stored = JSON.parse(raw); }
+      } catch (e) {
+        stored = {};
+      }
+
+      var current = {};
+      var hasNew = false;
+      utmKeys.forEach(function (key) {
+        var fromQuery = getQueryParam(key);
+        if (fromQuery) {
+          current[key] = sanitizeUtm(fromQuery);
+          hasNew = true;
+        } else {
+          current[key] = stored[key] || '';
+        }
+      });
+
+      if (hasNew) {
+        try { sessionStorage.setItem(utmStorageKey, JSON.stringify(current)); } catch (e) {}
+      }
+
+      utmKeys.forEach(function (key) {
+        var input = form.querySelector('[name="' + key + '"]');
+        if (input) { input.value = current[key] || ''; }
+      });
+
+      return current;
+    }
+
+    loadUtm();
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nameInput = document.getElementById('wa-name-' + projectId);
+      var phoneInput = document.getElementById('wa-phone-' + projectId);
+      var incomeSelect = document.getElementById('wa-income-' + projectId);
+      var nameError = document.getElementById('wa-name-error-' + projectId);
+      var phoneError = document.getElementById('wa-phone-error-' + projectId);
+      var formError = document.getElementById('wa-form-error-' + projectId);
+      var submitBtn = document.getElementById('wa-submit-' + projectId);
+
+      [nameError, phoneError, formError].forEach(function (el) {
+        if (el) {
+          el.textContent = '';
+          el.classList.add('hidden');
+        }
+      });
+
+      // --- 1. Honeypot ---
+      var hp = document.getElementById('wa-hp-' + projectId);
+      if (hp && hp.value.trim() !== '') {
+        // Bot detectado — falla en silencio
+        return;
+      }
+
+      // --- 2. Timing guard (< 3 segundos → bot) ---
+      if (Date.now() - window.__hpWaFormLoad[projectId] < 3000) {
+        return;
+      }
+
+      // --- 3. Validación de campos ---
+      var name = nameInput ? nameInput.value.trim() : '';
+      var phone = phoneInput ? phoneInput.value.trim() : '';
+      var income = incomeSelect ? incomeSelect.value : '';
+      var phonePattern = /^[\d\s+\-()]{6,30}$/;
+      var valid = true;
+
+      if (name.length < 3) {
+        if (nameError) {
+          nameError.textContent = 'El nombre debe tener al menos 3 caracteres.';
+          nameError.classList.remove('hidden');
+        }
+        valid = false;
+      }
+
+      if (!phonePattern.test(phone)) {
+        if (phoneError) {
+          phoneError.textContent = 'Ingresa un número de teléfono válido.';
+          phoneError.classList.remove('hidden');
+        }
+        valid = false;
+      }
+
+      if (!valid) { return; }
+
+      // --- 4. UTM actuales (ya poblados en los hidden por loadUtm) ---
+      var utm = {};
+      var hasUtm = false;
+      utmKeys.forEach(function (key) {
+        var input = form.querySelector('[name="' + key + '"]');
+        utm[key] = input ? input.value : '';
+        if (utm[key]) { hasUtm = true; }
+      });
+
+      // --- 5. Tracking de conversión (antes del redirect) ---
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: projectName, content_category: 'whatsapp-web' });
+      }
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', { project: projectId });
+        // Label de conversión de Google Ads pendiente — el Jefe debe reemplazar PENDING_LABEL
+        gtag('event', 'conversion', { send_to: 'AW-797523509/PENDING_LABEL' });
+      }
+
+      // --- 6. Construir mensaje de WhatsApp ---
+      var lines = [
+        'Hola, quiero información de ' + projectName + '.',
+        'Nombre: ' + name,
+        'Tel: ' + phone,
+      ];
+      if (income) {
+        lines.push('Ingreso: ' + income);
+      }
+      if (hasUtm) {
+        lines.push('Ref: ' + projectId + '|src=' + utm.utm_source + '|camp=' + utm.utm_campaign);
+      }
+      var message = lines.join('\n');
+
+      // --- 7. Deshabilitar botón y redirigir a WhatsApp ---
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Redirigiendo…';
+      }
+
+      window.location.href = 'https://wa.me/' + encodeURIComponent(whatsappNumber) + '?text=' + encodeURIComponent(message);
+    });
+  })();
+</script>
