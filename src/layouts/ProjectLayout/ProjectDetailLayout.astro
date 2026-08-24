@@ -8,6 +8,7 @@ import MapboxMap from '../../components/MapboxMap.tsx';
 import ChatWrapper from '../../components/ChatWrapper.astro';
 import BrochureDownloader from '../../components/BrochureDownloader';
 import ZohoForm from '../../components/ZohoForm.astro';
+import WhatsAppLeadForm from '../../components/WhatsAppLeadForm.astro';
 
 function getProjectLocation(projectId: string): string {
   const locationMap: Record<string, string> = {
@@ -45,10 +46,12 @@ export interface Props {
     pipedriveFormUrl: string;
     crm?: string;
     zohoFormAction?: string;
+    leadChannel?: string;
   };
 }
 
 const { project } = Astro.props;
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '50769655269';
 
 const projectFolder = project.id.charAt(0).toUpperCase() + project.id.slice(1);
 const projectLocation = getProjectLocation(project.id);
@@ -242,7 +245,15 @@ const amenityImages = project.amenidades && project.amenidades.length > 0
             </a>
           </div>
           
-          {project.crm === 'zoho' ? (
+          {project.leadChannel === 'whatsapp' ? (
+            <div class="bg-white rounded-[10px] flex flex-col">
+              <WhatsAppLeadForm
+                projectId={project.id}
+                projectName={project.name}
+                whatsappNumber={whatsappNumber}
+              />
+            </div>
+          ) : project.crm === 'zoho' ? (
             <div class="bg-white rounded-[10px] flex flex-col">
               <ZohoForm
                 formAction={project.zohoFormAction ?? ''}

@@ -26,6 +26,12 @@ export interface Project {
   videoThumbnail: string;
   mapImage: string;
   mapsUrl: string;
+  /** CRM alterno usado para captura de leads (ej. 'zoho' en vez de Pipedrive) */
+  crm?: string;
+  /** URL de destino del form cuando crm es 'zoho' */
+  zohoFormAction?: string;
+  /** Canal de captura alterno: si es 'whatsapp', el form redirige a WhatsApp en vez de al CRM */
+  leadChannel?: 'whatsapp';
 }
 
 /**
