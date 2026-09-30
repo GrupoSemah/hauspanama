@@ -501,6 +501,8 @@
     "videoFile": "Video_proyecto_-_Siena_zwm741.mp4",
     "buttonText": "descargar planta",
     "pipedriveFormUrl": "https://webforms.pipedrive.com/f/1HI23EQR6ch0EZIQtv9pmA3UxpHr4UkvpJ9P2r3FF7sOvpT365bn4sqWJqIjoMJJV",
+    "crm": "zoho",
+    "zohoFormAction": "https://forms.zohopublic.com/semahshared1/form/GraciasporsuintersenelproyectoSiena/formperma/5RsNj1Z4XB3jQgZ9zCpYvrzcFoEZIuN0MVe2XVX-QoU/htmlRecords/submit",
     "features": [
       {
         "icon": "Web_page_icon_gazebo_para_fiestas.svg",
